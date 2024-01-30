@@ -1,0 +1,25 @@
+.card.two {
+	padding: 0.5rem;
+	text-align: center;
+	color: var(--third-clr);
+	background-color: var(--main-clr);
+	transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.card.two ul {
+	list-style-position: inside;
+}
+
+.card.two a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.card.two img {
+	height: 60%;
+}
+
+.card.two {
+	color: var(--fourth-clr);
+	background-color: var(--second-clr);
+}

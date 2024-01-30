@@ -1,0 +1,42 @@
+.home {
+	color: var(--second-clr);
+	background-color: var(--fourth-clr);
+	transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.user-clue-1 {
+	padding: 1rem 0;
+	text-align: center;
+}
+
+.user-clue-1 .icon {
+	font-size: 3.5rem;
+	animation: moveDown 1s infinite;
+}
+
+@keyframes moveDown {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(10px); /* Ajusta la distancia que se mueve hacia abajo */
+	}
+}
+
+.form-link {
+	position: absolute;
+	z-index: 5;
+	top: 3vh;
+	left: 3vw;
+
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	gap: 0.4rem;
+}
+
+.form-link img {
+	width: 40px;
+	height: 40px;
+}

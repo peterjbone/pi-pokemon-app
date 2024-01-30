@@ -1,5 +1,22 @@
+/*? light theme*/
+:root {
+	--main-clr: #ffe600;
+	--second-clr: #f1f1f1;
+	--third-clr: #000;
+	--fourth-clr: #2b58e2;
+	--root-font-size: 16px;
+}
+
+/*? dark theme*/
+[data-theme="dark"] {
+	--main-clr: #000;
+	--second-clr: #ffff00;
+	--third-clr: #ffe600;
+	--fourth-clr: #333;
+}
+
 html {
-	font-size: 16px;
+	font-size: var(--root-font-size);
 	box-sizing: border-box;
 	scroll-behavior: smooth;
 }
@@ -11,12 +28,35 @@ html {
 }
 
 body {
+	min-height: 100vh;
 	margin: 0;
 	font-size: 1rem;
-	font-family: sans-serif;
+	font-family: "Montserrat", sans-serif;
+	line-height: 1.5;
+
+	color: var(--secondary-clr);
+	background-color: var(--tertiary-clr);
+}
+
+#root {
+	min-height: 100vh;
+}
+
+#root > div {
+	min-height: 100vh;
 }
 
 img {
 	max-width: 100%;
 	height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul {
+	padding: 0;
+	margin: 0;
 }

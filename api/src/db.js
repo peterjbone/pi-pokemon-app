@@ -8,15 +8,21 @@ const sequelize = new Sequelize(
 )
 
 // Traemos los modelos de la carpeta Models
+const PokemonModel = require("./models/Pokemon.js")
+const TypeModel = require("./models/Type.js")
 
 // Injectamos la conexion (sequelize) a todos los modelos
+PokemonModel(sequelize)
+TypeModel(sequelize)
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-//? const { Pokemon } = sequelize
+const { Pokemon, Type } = sequelize.models
+//console.log(sequelize.models)
 
 // Aca vendrian las relaciones
-//? Product.hasMany(Reviews);
+Pokemon.belongsToMany(Type, { through: "pokemons_x_types" })
+Type.belongsToMany(Pokemon, { through: "pokemons_x_types" })
 
 module.exports = {
 	...sequelize.models,

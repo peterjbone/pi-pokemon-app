@@ -1,0 +1,61 @@
+/*** no estilos en body, ul o las li***/
+
+.scroller {
+	max-width: 1200px;
+	margin: 2rem auto 0.5rem;
+	/* outline: medium solid greenyellow; */
+}
+
+.scroller__inner {
+	padding: 1rem 0;
+	list-style-type: none;
+	display: flex;
+	/* flex-wrap: wrap; */
+	gap: 1rem;
+}
+
+/*creando la máscara del scroller*/
+.scroller[data-animated="true"] {
+	/* 	border: medium solid greenyellow; */
+	overflow: hidden;
+	--webkit-mask: linear-gradient(
+		90deg,
+		transparent,
+		white 20%,
+		white 80%,
+		transparent
+	);
+	mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+}
+
+/*seteando la animación scroller__inner*/
+.scroller[data-animated="true"] .scroller__inner {
+	width: max-content;
+	flex-wrap: nowrap;
+	animation: scroll var(--animation-duration) var(--animation-direction) linear
+		infinite;
+}
+
+/* CAMBIO de direcciones si se lo desea*/
+.scroller[data-direction="right"] {
+	--animation-direction: reverse;
+}
+
+.scroller[data-direction="left"] {
+	--animation-direction: forwards;
+}
+
+/* CAMBIO de velocidades si se lo desea*/
+.scroller[data-speed="fast"] {
+	--animation-duration: 20s;
+}
+
+.scroller[data-speed="slow"] {
+	--animation-duration: 60s;
+}
+
+@keyframes scroll {
+	to {
+		transform: translateX(calc(-50% - 0.5rem));
+	}
+}

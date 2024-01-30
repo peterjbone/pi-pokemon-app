@@ -1,0 +1,79 @@
+.searchBar {
+	width: 50%;
+	padding: 1rem 0;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.searchBar p {
+	font-weight: 500;
+	font-size: 1.15rem;
+}
+
+.searchBar input {
+	height: 2rem;
+	margin-right: 0.5rem;
+	font-size: 1.2rem;
+}
+
+.searchBar .searchIcon {
+	color: var(--second-clr);
+	font-size: 2rem;
+	transform: translateY(10px);
+	cursor: pointer;
+}
+
+/***************************/
+
+.wrong-popup,
+.repeated-popup {
+	position: fixed;
+	z-index: 5;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	width: 100vw;
+	height: 100vh;
+
+	display: none;
+	justify-content: center;
+	align-items: center;
+
+	transition: display 1s ease-in-out;
+
+	backdrop-filter: blur(50px);
+}
+
+.wrong-popup.active,
+.repeated-popup.active {
+	display: flex;
+}
+
+.wrong-popup div,
+.repeated-popup div {
+	position: relative;
+	width: 300px;
+	height: 300px;
+	color: #fff;
+	background-color: crimson;
+}
+
+.wrong-popup button,
+.repeated-popup button {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: #fff;
+	cursor: pointer;
+}
+
+.wrong-popup p,
+.repeated-popup p {
+	padding: 100px 0;
+}
