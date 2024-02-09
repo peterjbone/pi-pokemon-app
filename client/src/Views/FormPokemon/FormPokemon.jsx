@@ -53,6 +53,7 @@ function FormPokemon() {
 			const previousValues = pokedata.Types.filter((tipo) => tipo !== value) //? no se repite el ultimo agregado
 
 			const repeatedValue = pokedata.Types.indexOf(value) //? evita meter repetidos
+
 			if (repeatedValue !== -1) {
 				setPokedata({
 					...pokedata,

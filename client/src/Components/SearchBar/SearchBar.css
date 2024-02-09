@@ -17,18 +17,19 @@
 }
 
 .searchBar .searchIcon {
+	margin-left: 0.6rem;
 	color: var(--second-clr);
 	font-size: 2rem;
 	transform: translateY(10px);
 	cursor: pointer;
 }
 
-/***************************/
+/* NUEVOS AVISOS DE ERRORES */
 
-.wrong-popup,
-.repeated-popup {
+#nonPokemon,
+#repeatedPoke {
 	position: fixed;
-	z-index: 5;
+	z-index: 999;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
@@ -36,44 +37,68 @@
 	width: 100vw;
 	height: 100vh;
 
-	display: none;
+	display: flex;
 	justify-content: center;
 	align-items: center;
 
-	transition: display 1s ease-in-out;
-
-	backdrop-filter: blur(50px);
+	backdrop-filter: blur(20px);
 }
-
-.wrong-popup.active,
-.repeated-popup.active {
-	display: flex;
-}
-
-.wrong-popup div,
-.repeated-popup div {
-	position: relative;
-	width: 300px;
-	height: 300px;
+#nonPokemon div,
+#repeatedPoke div {
+	padding: 10px;
+	width: 350px;
+	height: 350px;
+	text-align: center;
+	font-size: 1.5rem;
+	font-weight: 700;
+	font-family: sans-serif;
 	color: #fff;
-	background-color: crimson;
+	background-color: #dd2c00;
+
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+}
+#nonPokemon div img,
+#repeatedPoke div img {
+	width: 200px;
+}
+#nonPokemon div .clue,
+#repeatedPoke div .clue {
+	font-style: italic;
+	font-size: 1.15rem;
+}
+#nonPokemon.error,
+#repeatedPoke.error {
+	background-color: transparent;
+}
+#nonPokemon.fade-in,
+#repeatedPoke.fade-in {
+	opacity: 0;
+	animation: fadeInAnimation 1s ease-in-out forwards;
+}
+#nonPokemon.fade-out,
+#repeatedPoke.fade-out {
+	opacity: 1;
+	animation: fadeOutAnimation 1s ease-in-out forwards;
 }
 
-.wrong-popup button,
-.repeated-popup button {
-	position: absolute;
-	top: 0;
-	left: 50%;
-	transform: translateX(-50%);
-
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	background-color: #fff;
-	cursor: pointer;
+@keyframes fadeInAnimation {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
 
-.wrong-popup p,
-.repeated-popup p {
-	padding: 100px 0;
+@keyframes fadeOutAnimation {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
 }

@@ -7,8 +7,13 @@ import {
 	orderByAttack
 } from "../../Redux/Actions"
 import CardTwo from "../CardTwo/CardTwo.jsx"
+import { useLocation } from "react-router-dom"
+import Paginado from "../Paginado/Paginado.jsx"
 
 function Cards() {
+	//! AVERIGUAR EN QUE RUTA ESTAS PARA PODER MAPEAR CARDS
+	const path = useLocation().pathname
+
 	const selectedPokemons = useSelector((state) => state.selectedPokemons)
 
 	const dispatch = useDispatch()
@@ -115,11 +120,27 @@ function Cards() {
 				</div>
 			) : (
 				<div className="yes-pokemons">
-					{selectedPokemons.map((pokemon, index) => (
-						<CardTwo key={index + 1} pokemon={pokemon} />
-					))}
+					{selectedPokemons.map((pokemon, index) => {
+						if (path === "/home" && index <= 11) {
+							return <CardTwo key={index + 1} pokemon={pokemon} />
+						}
+
+						if (path.includes("/home/page/2") && index > 11 && index <= 23) {
+							return <CardTwo key={index + 1} pokemon={pokemon} />
+						}
+						if (path.includes("/home/page/3") && index > 23 && index <= 35) {
+							return <CardTwo key={index + 1} pokemon={pokemon} />
+						}
+						if (path.includes("/home/page/4") && index > 35 && index <= 47) {
+							return <CardTwo key={index + 1} pokemon={pokemon} />
+						}
+						if (path.includes("/home/page/5") && index > 47 && index <= 59) {
+							return <CardTwo key={index + 1} pokemon={pokemon} />
+						}
+					})}
 				</div>
 			)}
+			<Paginado />
 		</div>
 	)
 }

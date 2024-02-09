@@ -1,0 +1,3 @@
+FALTA en el proyecto:
+- Arreglar problemas de la coincidencias de ID (en su lugar usar UUID)
+- Agregar pokemones por tipos ( almacenar en Redux y BD)

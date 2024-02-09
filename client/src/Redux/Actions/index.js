@@ -70,3 +70,15 @@ export function orderByAttack(order) {
 		payload: order
 	}
 }
+
+//* BONUS
+export function addPokemonRedux() {
+	const endpoint = "http://localhost:3001/fullpokemons"
+	return async (dispatch) => {
+		const { data } = await axios.get(endpoint)
+		return dispatch({
+			type: "ADD_FULL",
+			payload: data
+		})
+	}
+}

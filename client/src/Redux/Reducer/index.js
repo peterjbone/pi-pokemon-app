@@ -627,6 +627,13 @@ function rootReducer(state = initialState, { type, payload }) {
 			}
 		}
 
+		case "ADD_FULL":
+			return {
+				...state,
+				selectedPokemons: [...payload, ...state.allPokemons],
+				allPokemons: [...payload, ...state.allPokemons]
+			}
+
 		default:
 			return { ...state }
 	}

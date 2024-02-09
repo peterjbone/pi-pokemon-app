@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize")
+const { DataTypes } = require("sequelize");
 
 function Pokemon(sequelize) {
 	sequelize.define(
@@ -48,7 +48,7 @@ function Pokemon(sequelize) {
 			}
 		},
 		{ timestamps: false }
-	)
+	);
 }
 
-module.exports = Pokemon
+module.exports = Pokemon;

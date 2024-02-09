@@ -34,7 +34,7 @@ function Carousel({ defaultPokemons }) {
 	}, [])
 
 	return (
-		<div className="scroller" data-direction="left" data-speed="slow">
+		<div className="scroller" data-direction="left" data-speed="fast">
 			<ul className="cards-list scroller__inner">
 				{defaultPokemons.map((pokemon) => (
 					<li key={pokemon.id}>{<CardOne pokemon={pokemon} />}</li>

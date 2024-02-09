@@ -1,14 +1,13 @@
 import "./SearchBar.css"
 import axios from "axios"
 import { FaSearch } from "react-icons/fa"
+import { GiBatteryPack } from "react-icons/gi"
 import { useState, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { addPokemonByName } from "../../Redux/Actions"
+import { addPokemonByName, addPokemonRedux } from "../../Redux/Actions"
 
 function SearchBar() {
 	const [pokeName, setPokeName] = useState("")
-	const wrongPopupRef = useRef(null)
-	const repeatedPopupRef = useRef(null)
 
 	//* Para cachar el valor del input
 	function handleChange(e) {
@@ -23,7 +22,7 @@ function SearchBar() {
 	//* Esta función hace 4 cosas
 	//* 1) Evita ingresos nulos
 	//* 2) Evita repetidos
-	//* 3) Evita no existente
+	//* 3) Evita existentes
 	//* 4) Si todo es correcto agrega un pokemon nuevo
 	function handleClick(e) {
 		e.preventDefault()
@@ -38,7 +37,34 @@ function SearchBar() {
 			(pokemon) => pokemon.nombre === pokeNameFix
 		)
 		if (repeatedPokemon) {
-			repeatedPopupRef.current.classList.add("active")
+			if (document.getElementById("repeatedPoke") === null) {
+				const repeatedPoke = document.createElement("div")
+				repeatedPoke.id = "repeatedPoke"
+				repeatedPoke.style.display = "none"
+				document
+					.querySelector("body")
+					.insertAdjacentElement("afterend", repeatedPoke)
+			}
+			const repeatedPoke = document.getElementById("repeatedPoke")
+			repeatedPoke.innerHTML = `
+            <div>
+              <p>Ya tienes a ese Pokemon agregado a tu colección!</p>
+              <img src="../../../public/ash-y-pika.png" alt="repeated pokemon">
+              <span class="clue">(Haz click en cualquier sitio para eliminar este mensaje)</span>
+            </div>
+          `
+			repeatedPoke.className = "error fade-in"
+			repeatedPoke.style.display = "flex"
+
+			document.getElementById("repeatedPoke").addEventListener("click", (e) => {
+				if ("flex" === repeatedPoke.style.display) {
+					repeatedPoke.className = "fade-out"
+
+					setTimeout(() => {
+						repeatedPoke.style.display = "none"
+					}, 1000)
+				}
+			})
 		} else {
 			dispatch(addPokemonByName(pokeNameFix))
 			searchInput.current.value = ""
@@ -50,35 +76,47 @@ function SearchBar() {
 				.then(({ data }) => console.log("👍"))
 				.catch((error) => {
 					console.log("👎")
-					wrongPopupRef.current.classList.add("active")
+
+					if (document.getElementById("nonPokemon") === null) {
+						const nonPokemon = document.createElement("div")
+						nonPokemon.id = "nonPokemon"
+						nonPokemon.style.display = "none"
+						document
+							.querySelector("body")
+							.insertAdjacentElement("afterend", nonPokemon)
+					}
+					const nonPokemon = document.getElementById("nonPokemon")
+					nonPokemon.innerHTML = `
+            <div>
+              <p>El nombre de ese Pokemon no fue encontrado!</p>
+              <img src="../../../public/pika-sorprendido.png" alt="no pokemon">
+              <span class="clue">(Haz click en cualquier sitio para eliminar este mensaje)</span>
+            </div>
+          `
+					nonPokemon.className = "error fade-in"
+					nonPokemon.style.display = "flex"
+
+					document.getElementById("nonPokemon").addEventListener("click", (e) => {
+						if ("flex" === nonPokemon.style.display) {
+							nonPokemon.className = "fade-out"
+
+							setTimeout(() => {
+								nonPokemon.style.display = "none"
+							}, 1000)
+						}
+					})
 				})
 		}
 	}
 
-	//* Cerrar los popups
-	function closePopupWrong(e) {
-		wrongPopupRef.current.classList.remove("active")
-	}
-	function closePopupRepeated(e) {
-		repeatedPopupRef.current.classList.remove("active")
+	//* BONUS: traer muchos pokemones para testear
+	function handleFullPokemons(e) {
+		e.preventDefault()
+		dispatch(addPokemonRedux())
 	}
 
 	return (
 		<div className="searchBar">
-			<div className="wrong-popup" ref={wrongPopupRef}>
-				<div>
-					<button onClick={closePopupWrong}> ❌ </button>
-					<p>
-						EL NOMBRE INGRESADO <br /> NO PERTENECE A NINGUN POKEMON :&#41;
-					</p>
-				</div>
-			</div>
-			<div className="repeated-popup" ref={repeatedPopupRef}>
-				<div>
-					<button onClick={closePopupRepeated}> ❌ </button>
-					<p>ESE POKEMON YA ESTA AÑADIDO!</p>
-				</div>
-			</div>
 			<p>Aquí puedes buscar Pokemones por su nombre:</p>
 			<input
 				type="text"
@@ -90,6 +128,7 @@ function SearchBar() {
 				required
 			/>
 			<FaSearch className="searchIcon" onClick={handleClick} />
+			{<GiBatteryPack className="searchIcon" onClick={handleFullPokemons} />}
 		</div>
 	)
 }
