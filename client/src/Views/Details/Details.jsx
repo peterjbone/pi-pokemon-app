@@ -1,21 +1,21 @@
-import "./Details.css"
-import axios from "axios"
-import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import "./Details.css";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 function Details() {
-	const { id } = useParams()
-	const URLGetPokemonById = "http://localhost:3001/pokemons/"
-	const [currentPokemon, setCurrentPokemon] = useState({})
+	const { id } = useParams();
+	const URLGetPokemonById = "http://localhost:3001/pokemons/";
+	const [currentPokemon, setCurrentPokemon] = useState({});
 
 	//* Obteniendo el Pokemon al montar el componente
 	useEffect(() => {
 		async function getCurrentPokemon() {
-			const { data } = await axios.get(`${URLGetPokemonById}${id}`)
-			setCurrentPokemon(data)
+			const { data } = await axios.get(`${URLGetPokemonById}${id}`);
+			setCurrentPokemon(data);
 		}
-		getCurrentPokemon()
-	}, [id])
+		getCurrentPokemon();
+	}, [id]);
 
 	return (
 		<div className="details">
@@ -78,7 +78,7 @@ function Details() {
 				) : null}
 			</div>
 		</div>
-	)
+	);
 }
 
-export default Details
+export default Details;
