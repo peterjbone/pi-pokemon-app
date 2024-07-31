@@ -1,41 +1,40 @@
-import "./Cards.css"
-import { useSelector, useDispatch } from "react-redux"
+import "./Cards.css";
+import { useSelector, useDispatch } from "react-redux";
 import {
 	filterByOrigin,
 	filterByType,
 	orderByAlpha,
 	orderByAttack
-} from "../../Redux/Actions"
-import CardTwo from "../CardTwo/CardTwo.jsx"
-import { useLocation } from "react-router-dom"
-import Paginado from "../Paginado/Paginado.jsx"
+} from "../../Redux/Actions";
+import CardTwo from "../CardTwo/CardTwo.jsx";
+import { useLocation } from "react-router-dom";
 
 function Cards() {
 	//! AVERIGUAR EN QUE RUTA ESTAS PARA PODER MAPEAR CARDS
-	const path = useLocation().pathname
+	const path = useLocation().pathname;
 
-	const selectedPokemons = useSelector((state) => state.selectedPokemons)
+	const selectedPokemons = useSelector((state) => state.selectedPokemons);
 
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
 
 	function handleAlphaOrder(event) {
-		const { value } = event.target
-		dispatch(orderByAlpha(value))
+		const { value } = event.target;
+		dispatch(orderByAlpha(value));
 	}
 
 	function handleAttackOrder(event) {
-		const { value } = event.target
-		dispatch(orderByAttack(value))
+		const { value } = event.target;
+		dispatch(orderByAttack(value));
 	}
 
 	function handleTypeFilter(event) {
-		const { value } = event.target
-		dispatch(filterByType(value))
+		const { value } = event.target;
+		dispatch(filterByType(value));
 	}
 
 	function handleOriginFilter(event) {
-		const { value } = event.target
-		dispatch(filterByOrigin(value))
+		const { value } = event.target;
+		dispatch(filterByOrigin(value));
 	}
 
 	return (
@@ -122,27 +121,26 @@ function Cards() {
 				<div className="yes-pokemons">
 					{selectedPokemons.map((pokemon, index) => {
 						if (path === "/home" && index <= 11) {
-							return <CardTwo key={index + 1} pokemon={pokemon} />
+							return <CardTwo key={index + 1} pokemon={pokemon} />;
 						}
 
 						if (path.includes("/home/page/2") && index > 11 && index <= 23) {
-							return <CardTwo key={index + 1} pokemon={pokemon} />
+							return <CardTwo key={index + 1} pokemon={pokemon} />;
 						}
 						if (path.includes("/home/page/3") && index > 23 && index <= 35) {
-							return <CardTwo key={index + 1} pokemon={pokemon} />
+							return <CardTwo key={index + 1} pokemon={pokemon} />;
 						}
 						if (path.includes("/home/page/4") && index > 35 && index <= 47) {
-							return <CardTwo key={index + 1} pokemon={pokemon} />
+							return <CardTwo key={index + 1} pokemon={pokemon} />;
 						}
 						if (path.includes("/home/page/5") && index > 47 && index <= 59) {
-							return <CardTwo key={index + 1} pokemon={pokemon} />
+							return <CardTwo key={index + 1} pokemon={pokemon} />;
 						}
 					})}
 				</div>
 			)}
-			<Paginado />
 		</div>
-	)
+	);
 }
 
-export default Cards
+export default Cards;
