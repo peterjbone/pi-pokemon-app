@@ -1,23 +1,22 @@
-import "./SearchBar.css"
-import axios from "axios"
-import { FaSearch } from "react-icons/fa"
-import { GiBatteryPack } from "react-icons/gi"
-import { useState, useRef } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { addPokemonByName, addPokemonRedux } from "../../Redux/Actions"
+import "./SearchBar.css";
+import axios from "axios";
+import { FaSearch } from "react-icons/fa";
+import { useState, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addPokemonByName, addPokemonRedux } from "../../Redux/Actions";
 
 function SearchBar() {
-	const [pokeName, setPokeName] = useState("")
+	const [pokeName, setPokeName] = useState("");
 
 	//* Para cachar el valor del input
 	function handleChange(e) {
-		const { value } = e.target
-		setPokeName(value)
+		const { value } = e.target;
+		setPokeName(value);
 	}
 
-	const selectedPokemons = useSelector((state) => state.selectedPokemons)
-	const dispatch = useDispatch()
-	const searchInput = useRef(null)
+	const selectedPokemons = useSelector((state) => state.selectedPokemons);
+	const dispatch = useDispatch();
+	const searchInput = useRef(null);
 
 	//* Esta función hace 4 cosas
 	//* 1) Evita ingresos nulos
@@ -25,94 +24,90 @@ function SearchBar() {
 	//* 3) Evita existentes
 	//* 4) Si todo es correcto agrega un pokemon nuevo
 	function handleClick(e) {
-		e.preventDefault()
+		e.preventDefault();
 
-		if (!pokeName) return alert("No haz ingresado nada!")
+		if (!pokeName) return alert("No haz ingresado nada!");
 
-		const pokeNameFix = pokeName.trim().toLowerCase()
+		const pokeNameFix = pokeName.trim().toLowerCase();
 
 		//! Evitar repetidos en el estado globlal de REDUX
 		//! Recuerda que los pokemons en REDUX ya estan en POSTGRESQL
 		const repeatedPokemon = selectedPokemons.find(
 			(pokemon) => pokemon.nombre === pokeNameFix
-		)
+		);
 		if (repeatedPokemon) {
 			if (document.getElementById("repeatedPoke") === null) {
-				const repeatedPoke = document.createElement("div")
-				repeatedPoke.id = "repeatedPoke"
-				repeatedPoke.style.display = "none"
+				const repeatedPoke = document.createElement("div");
+				repeatedPoke.id = "repeatedPoke";
+				repeatedPoke.style.display = "none";
 				document
 					.querySelector("body")
-					.insertAdjacentElement("afterend", repeatedPoke)
+					.insertAdjacentElement("afterend", repeatedPoke);
 			}
-			const repeatedPoke = document.getElementById("repeatedPoke")
+			const repeatedPoke = document.getElementById("repeatedPoke");
 			repeatedPoke.innerHTML = `
             <div>
               <p>Ya tienes a ese Pokemon agregado a tu colección!</p>
               <img src="../../../public/ash-y-pika.png" alt="repeated pokemon">
               <span class="clue">(Haz click en cualquier sitio para eliminar este mensaje)</span>
             </div>
-          `
-			repeatedPoke.className = "error fade-in"
-			repeatedPoke.style.display = "flex"
+          `;
+			repeatedPoke.className = "error fade-in";
+			repeatedPoke.style.display = "flex";
 
 			document.getElementById("repeatedPoke").addEventListener("click", (e) => {
 				if ("flex" === repeatedPoke.style.display) {
-					repeatedPoke.className = "fade-out"
+					repeatedPoke.className = "fade-out";
 
 					setTimeout(() => {
-						repeatedPoke.style.display = "none"
-					}, 1000)
+						repeatedPoke.style.display = "none";
+					}, 1000);
 				}
-			})
+			});
 		} else {
-			dispatch(addPokemonByName(pokeNameFix))
-			searchInput.current.value = ""
-			setPokeName("")
+			dispatch(addPokemonByName(pokeNameFix));
+			searchInput.current.value = "";
+			setPokeName("");
 
 			//! Por si el nombre del pokemon no existe en la API
 			axios
 				.get(`https://pokeapi.co/api/v2/pokemon/${pokeNameFix}`)
 				.then(({ data }) => console.log("👍"))
 				.catch((error) => {
-					console.log("👎")
+					console.log("👎");
 
 					if (document.getElementById("nonPokemon") === null) {
-						const nonPokemon = document.createElement("div")
-						nonPokemon.id = "nonPokemon"
-						nonPokemon.style.display = "none"
+						const nonPokemon = document.createElement("div");
+						nonPokemon.id = "nonPokemon";
+						nonPokemon.style.display = "none";
 						document
 							.querySelector("body")
-							.insertAdjacentElement("afterend", nonPokemon)
+							.insertAdjacentElement("afterend", nonPokemon);
 					}
-					const nonPokemon = document.getElementById("nonPokemon")
+					const nonPokemon = document.getElementById("nonPokemon");
 					nonPokemon.innerHTML = `
             <div>
               <p>El nombre de ese Pokemon no fue encontrado!</p>
               <img src="../../../public/pika-sorprendido.png" alt="no pokemon">
               <span class="clue">(Haz click en cualquier sitio para eliminar este mensaje)</span>
             </div>
-          `
-					nonPokemon.className = "error fade-in"
-					nonPokemon.style.display = "flex"
+          `;
+					nonPokemon.className = "error fade-in";
+					nonPokemon.style.display = "flex";
 
-					document.getElementById("nonPokemon").addEventListener("click", (e) => {
-						if ("flex" === nonPokemon.style.display) {
-							nonPokemon.className = "fade-out"
+					document
+						.getElementById("nonPokemon")
+						.addEventListener("click", (e) => {
+							if ("flex" === nonPokemon.style.display) {
+								nonPokemon.className = "fade-out";
 
-							setTimeout(() => {
-								nonPokemon.style.display = "none"
-							}, 1000)
-						}
-					})
-				})
+								setTimeout(() => {
+									nonPokemon.style.display = "none";
+								}, 1000);
+							}
+						});
+				});
 		}
-	}
-
-	//* BONUS: traer muchos pokemones para testear
-	function handleFullPokemons(e) {
-		e.preventDefault()
-		dispatch(addPokemonRedux())
 	}
 
 	return (
@@ -128,9 +123,8 @@ function SearchBar() {
 				required
 			/>
 			<FaSearch className="searchIcon" onClick={handleClick} />
-			{<GiBatteryPack className="searchIcon" onClick={handleFullPokemons} />}
 		</div>
-	)
+	);
 }
 
-export default SearchBar
+export default SearchBar;
