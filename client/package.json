@@ -21,13 +21,15 @@
 		"redux-thunk": "^3.1.0"
 	},
 	"devDependencies": {
-		"@types/react": "^18.2.43",
-		"@types/react-dom": "^18.2.17",
+		"@types/node": "^22.0.2",
+		"@types/react": "^18.3.3",
+		"@types/react-dom": "^18.3.0",
 		"@vitejs/plugin-react": "^4.2.1",
 		"eslint": "^8.55.0",
 		"eslint-plugin-react": "^7.33.2",
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"eslint-plugin-react-refresh": "^0.4.5",
+		"typescript": "^5.5.4",
 		"vite": "^5.0.8",
 		"vite-plugin-svgr": "^4.2.0"
 	}
