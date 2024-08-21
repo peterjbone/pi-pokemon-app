@@ -1,5 +1,10 @@
 /*** no estilos en body, ul o las li***/
 
+.subtitulo {
+	color: var(--main-clr);
+	text-align: center;
+}
+
 .scroller {
 	max-width: 1200px;
 	margin: 2rem auto 0.5rem;

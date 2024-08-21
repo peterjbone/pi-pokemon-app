@@ -1,10 +1,12 @@
 FALTA en el proyecto:
 - Arreglar problemas de la coincidencias de ID (en su lugar usar UUID)
 - Agregar posibilidad de que los usuarios agreguen pokemones por tipos ( almacenar en Redux y BD)
+- Eliminar proyecto y crear uno nuevo (o no borrar y trabajar en otro repositorio)
 
 
 INFO sobre el sitio web:
 Bienvenida a Nuestra Página de Pokémon
+
 ¿Qué es el Anime de Pokémon?
 Pokémon es una serie de anime que sigue las aventuras de Ash Ketchum, un entrenador Pokémon que viaja por el mundo capturando y entrenando criaturas llamadas Pokémon para competir en batallas y convertirse en un Maestro Pokémon.
 
