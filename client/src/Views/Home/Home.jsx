@@ -1,17 +1,13 @@
-import "./Home.css";
+import styles from "./Home.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
 import { Link } from "react-router-dom";
 import { FaArrowUp } from "react-icons/fa";
-import { TiArrowDownThick } from "react-icons/ti";
 import SearchBar from "../../Components/SearchBar/SearchBar.jsx";
 import DarkMode from "../../Components/DarkMode/DarkMode.jsx";
-import Carousel from "../../Components/Carousel/Carousel";
 import Cards from "../../Components/Cards/Cards.jsx";
 
 function Home() {
-	//******** llamando a los pokemones iniciales y guardando todos los tipos en la DB
 	const URLGetAllTypes = "http://localhost:3001/types";
 	const URLGetAllPokemons = "http://localhost:3001/pokemons";
 	const [defaultPokemons, setDefaultPokemons] = useState([]);
@@ -19,9 +15,9 @@ function Home() {
 	useEffect(() => {
 		async function fetchPokemones() {
 			try {
-				const { data } = await axios.get(URLGetAllPokemons);
-				setDefaultPokemons(data);
-				await axios.get(URLGetAllTypes);
+				const { data } = await axios.get(URLGetAllPokemons); //* obtiene a todos los pokemons de ¿?
+				setDefaultPokemons(data); //* guardando todos los pokemons en el estado local
+				await axios.get(URLGetAllTypes); //* guardar todos los tipos en BD al cargar home
 			} catch (error) {
 				console.error(
 					"Error al obtener a los pokemones y/o los tipos:",
@@ -32,30 +28,23 @@ function Home() {
 
 		fetchPokemones();
 	}, []);
-	//*******************************************************************
 
+	//************************************COMPONENT HOME******************/
 	return (
-		<div className="home">
-			{/* DARK MODE TOGGLE */}
+		<div className={styles.home}>
+			{/* MODO OSCURO */}
 			<DarkMode />
-			{/* SEARCH BAR */}
+			{/* BARRA DE BUSQUEDA */}
 			<SearchBar />
-			{/* FORM LINK */}
-			<div className="form-link">
+			{/* CREAR TU POKEMON - FORMULARIO */}
+			<div className={styles.formLink}>
 				<Link to="/form">
 					<img src="../../../public/pokebola.png" alt="Pokebola"></img>
 				</Link>
 				<FaArrowUp />
 				<p>Crea tu Pokemon</p>
 			</div>
-			{/*  CAROUSEL */}
-			<Carousel defaultPokemons={defaultPokemons} />
-			{/*  USER CLUE */}
-			<div className="user-clue-1">
-				<h2>Los pokemones que agregues comenzaran mostrarse aquí</h2>
-				<TiArrowDownThick className="icon" />
-			</div>
-			{/*  CARDS */}
+			{/* CARDS */}
 			<Cards />
 		</div>
 	);

@@ -1,4 +1,4 @@
-import "./Card.module.css";
+import styles from "./Card.module.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deletePokemon } from "../../Redux/Actions";

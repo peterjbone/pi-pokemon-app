@@ -1,0 +1,22 @@
+.home {
+	color: var(--second-clr);
+	background-color: var(--fourth-clr);
+	transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.formLink {
+	position: absolute;
+	z-index: 5;
+	top: 3vh;
+	left: 3vw;
+
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	gap: 0.4rem;
+}
+
+.formLink img {
+	width: 40px;
+	height: 40px;
+}
