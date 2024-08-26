@@ -10,13 +10,13 @@ import CardTwo from "../CardTwo/CardTwo.jsx";
 import { useLocation } from "react-router-dom";
 
 function Cards() {
-	//! AVERIGUAR EN QUE RUTA ESTAS PARA PODER MAPEAR CARDS
-	const path = useLocation().pathname;
+	const path = useLocation().pathname; //* para saber la ruta
 
-	const selectedPokemons = useSelector((state) => state.selectedPokemons);
+	const selectedPokemons = useSelector((state) => state.selectedPokemons); //* pokemones guardados en redux
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch(); //* dispatch para redux
 
+	//* Filtros y orden
 	function handleAlphaOrder(event) {
 		const { value } = event.target;
 		dispatch(orderByAlpha(value));

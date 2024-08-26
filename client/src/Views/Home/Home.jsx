@@ -56,7 +56,7 @@ function Home() {
 				<TiArrowDownThick className="icon" />
 			</div>
 			{/*  CARDS */}
-			<Cards allPokemons={defaultPokemons} />
+			<Cards />
 		</div>
 	);
 }
