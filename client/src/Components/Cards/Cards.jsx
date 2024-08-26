@@ -6,15 +6,14 @@ import {
 	orderByAlpha,
 	orderByAttack
 } from "../../Redux/Actions";
-import CardTwo from "../CardTwo/CardTwo.jsx";
-import { useLocation } from "react-router-dom";
+import Card from "../Card/Card";
 
-function Cards() {
-	const path = useLocation().pathname; //* para saber la ruta
+const Cards = () => {
+	//* pokemones guardados en redux
+	const selectedPokemons = useSelector((state) => state.selectedPokemons);
 
-	const selectedPokemons = useSelector((state) => state.selectedPokemons); //* pokemones guardados en redux
-
-	const dispatch = useDispatch(); //* dispatch para redux
+	//* dispatch para enviar actions a redux
+	const dispatch = useDispatch();
 
 	//* Filtros y orden
 	function handleAlphaOrder(event) {
@@ -37,6 +36,7 @@ function Cards() {
 		dispatch(filterByOrigin(value));
 	}
 
+	//************************************* COMPONENTE CARDS**************************/
 	return (
 		<div className="cards">
 			{/* FILTERS AND ORDER CONTAINERS */}
@@ -120,12 +120,12 @@ function Cards() {
 			) : (
 				<div className="yes-pokemons">
 					{selectedPokemons.map((pokemon, index) => (
-						<CardTwo key={index + 1} pokemon={pokemon} />
+						<Card key={index + 1} pokemon={pokemon} />
 					))}
 				</div>
 			)}
 		</div>
 	);
-}
+};
 
 export default Cards;
