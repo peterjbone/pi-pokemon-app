@@ -119,24 +119,9 @@ function Cards() {
 				</div>
 			) : (
 				<div className="yes-pokemons">
-					{selectedPokemons.map((pokemon, index) => {
-						if (path === "/home" && index <= 11) {
-							return <CardTwo key={index + 1} pokemon={pokemon} />;
-						}
-
-						if (path.includes("/home/page/2") && index > 11 && index <= 23) {
-							return <CardTwo key={index + 1} pokemon={pokemon} />;
-						}
-						if (path.includes("/home/page/3") && index > 23 && index <= 35) {
-							return <CardTwo key={index + 1} pokemon={pokemon} />;
-						}
-						if (path.includes("/home/page/4") && index > 35 && index <= 47) {
-							return <CardTwo key={index + 1} pokemon={pokemon} />;
-						}
-						if (path.includes("/home/page/5") && index > 47 && index <= 59) {
-							return <CardTwo key={index + 1} pokemon={pokemon} />;
-						}
-					})}
+					{selectedPokemons.map((pokemon, index) => (
+						<CardTwo key={index + 1} pokemon={pokemon} />
+					))}
 				</div>
 			)}
 		</div>

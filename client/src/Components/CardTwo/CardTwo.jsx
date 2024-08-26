@@ -1,17 +1,17 @@
-import "./CardTwo.css"
-import { Link } from "react-router-dom"
-import { useDispatch } from "react-redux"
-import { deletePokemon } from "../../Redux/Actions"
+import "./CardTwo.css";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { deletePokemon } from "../../Redux/Actions";
 
 function CardTwo({ pokemon }) {
-	const { id, nombre, ataque, imagen, Types } = pokemon
+	const { id, nombre, ataque, imagen, Types } = pokemon;
 
 	//* Dispatch para eliminar al pokemon actual de REDUX y POSTGRESQL
-	const dispatch = useDispatch()
-	function closeCard(e) {
-		e.preventDefault()
-		dispatch(deletePokemon(nombre))
-	}
+	const dispatch = useDispatch();
+	const closeCard = (e) => {
+		e.preventDefault();
+		dispatch(deletePokemon(nombre));
+	};
 
 	return (
 		<div className="card two">
@@ -23,12 +23,12 @@ function CardTwo({ pokemon }) {
 				<h4>Pokemon tipo:</h4>
 				<ul>
 					{Types.map((type, index) => {
-						return <li key={index + 1}> {type.nombre} </li>
+						return <li key={index + 1}> {type.nombre} </li>;
 					})}
 				</ul>
 			</Link>
 		</div>
-	)
+	);
 }
 
-export default CardTwo
+export default CardTwo;
