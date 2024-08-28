@@ -3,7 +3,7 @@ import axios from "axios";
 import { FaSearch } from "react-icons/fa";
 import { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPokemonByName, addPokemonRedux } from "../../Redux/Actions";
+import { addPokemonByName } from "../../Redux/Actions";
 
 function SearchBar() {
 	const [pokeName, setPokeName] = useState("");

@@ -10,10 +10,10 @@ const createPokemon = require("./controllers/createPokemon.js");
 const deletePokemon = require("./controllers/deletePokemon.js");
 
 //* Manejar las peticiones HTTP
-rootRouter.get("/types", getAllTypes); //? FINALIZADO (devuelve los tipos y los guarda en BD)
+rootRouter.get("/types", getAllTypes); //? FINALIZADO (busca en la API, devuelve los tipos y los guarda en BD)
 
-rootRouter.get("/pokemons", getAllPokemons); //? FINALIZADO (devuelve 40 pokemones y NO guardar en BD)
-rootRouter.post("/pokemons", createPokemon); //? FINALIZADO (me devuelve el pokemon nuevo y lo guardar en BD)
+rootRouter.get("/pokemons", getAllPokemons); //? FINALIZADO (devuelve 40 pokemones, hace las asociaciones de tipos y NO guarda en BD)
+rootRouter.post("/pokemons", createPokemon); //? FINALIZADO (crea un nuevo pokemon, devuelve el pokemon nuevo y lo guarda en BD)
 rootRouter.get("/pokemons/:id", getPokemonById); //? FINALIZADO (me devuelve el pokemon del id q busque y NO guardar en BD)
 rootRouter.delete("/pokemons/:nombre", deletePokemon); //? FINALIZADO (me devuelve todos los pokemones que quedan en la BD)
 
