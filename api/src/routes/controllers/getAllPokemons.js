@@ -1,13 +1,14 @@
-const axios = require("axios")
+const axios = require("axios");
 
+//* esta ruta fue usada para el CARRUSEL de pokemones del home
 async function getAllPokemons(req, res) {
 	try {
-		const response1 = await axios.get("https://pokeapi.co/api/v2/pokemon")
+		const response1 = await axios.get("https://pokeapi.co/api/v2/pokemon");
 
 		const packPokemons1 = await Promise.all(
 			response1.data.results.map(async (pokemon) => {
-				const { data } = await axios.get(pokemon.url)
-				const { id, forms, stats, sprites, height, weight, types } = data
+				const { data } = await axios.get(pokemon.url);
+				const { id, forms, stats, sprites, height, weight, types } = data;
 				const newPokemon = {
 					id,
 					nombre: forms[0].name,
@@ -19,20 +20,20 @@ async function getAllPokemons(req, res) {
 					altura: height,
 					peso: weight,
 					tipos: types.map((el) => el.type.name)
-				}
+				};
 
-				return newPokemon
+				return newPokemon;
 			})
-		)
+		);
 
 		const response2 = await axios.get(
 			"https://pokeapi.co/api/v2/pokemon?offset=20&limit=20"
-		)
+		);
 
 		const packPokemons2 = await Promise.all(
 			response2.data.results.map(async (pokemon) => {
-				const { data } = await axios.get(pokemon.url)
-				const { id, forms, stats, sprites, height, weight, types } = data
+				const { data } = await axios.get(pokemon.url);
+				const { id, forms, stats, sprites, height, weight, types } = data;
 				const newPokemon = {
 					id,
 					nombre: forms[0].name,
@@ -44,17 +45,17 @@ async function getAllPokemons(req, res) {
 					altura: height,
 					peso: weight,
 					tipos: types.map((el) => el.type.name)
-				}
+				};
 
-				return newPokemon
+				return newPokemon;
 			})
-		)
+		);
 
-		const fullPokemons = packPokemons1.concat(packPokemons2)
-		return res.status(200).json(fullPokemons)
+		const fullPokemons = packPokemons1.concat(packPokemons2);
+		return res.status(200).json(fullPokemons);
 	} catch (error) {
-		return res.status(500).send(error.message)
+		return res.status(500).send(error.message);
 	}
 }
 
-module.exports = getAllPokemons
+module.exports = getAllPokemons;
