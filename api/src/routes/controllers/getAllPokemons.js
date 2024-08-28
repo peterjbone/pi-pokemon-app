@@ -19,7 +19,7 @@ async function getAllPokemons(req, res) {
 					velocidad: stats[5]["base_stat"],
 					altura: height,
 					peso: weight,
-					tipos: types.map((el) => el.type.name)
+					tipos: types.map((el) => el.type.name) //? solo trae el tipo desde la API
 				};
 
 				return newPokemon;
