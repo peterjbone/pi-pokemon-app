@@ -47,6 +47,7 @@ async function getPokemonByName(req, res) {
 			);
 			console.log(TypesId);
 
+			//* AQUI CREA AL POKEMON EN BD, HACE LA RELACION DE TIPO Y LUEGO LO VUELVE A BUSCAR EN BD
 			let DBPokemon = await Pokemon.create(newPokemon);
 			await DBPokemon.addType(TypesId);
 			DBPokemon = await Pokemon.findOne({
@@ -60,7 +61,7 @@ async function getPokemonByName(req, res) {
 
 			//* agrego la info de donde vino este Pokemon
 			DBPokemon.dataValues.source = "api";
-			return res.status(200).json(DBPokemon);
+			return res.status(200).json(DBPokemon); //* devuelve el pokemon solicitado
 		} catch (error) {
 			console.error(error.message);
 			return res.status(404).send("Pokemon not founded");

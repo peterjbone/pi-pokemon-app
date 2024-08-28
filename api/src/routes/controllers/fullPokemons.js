@@ -4,6 +4,8 @@ const { Type } = require("../../db.js");
 //* esta ruta fue usada para rellenar el GRID DEL HOME y hacer que el PAGINADO funcione
 //* trate de emular las relaciones que crea la ruta GET /pokename?name=pikachu
 //* No sirve pq no hace las relaciones en Postgres, fallo rotundo y no sirve para filtrar u ordenar los pokemones
+//* es un mal falseo
+//* no funciona pq el front necesita q tenga las relaciones en BD
 async function fullPokemons(req, res) {
 	try {
 		const response1 = await axios.get("https://pokeapi.co/api/v2/pokemon");
