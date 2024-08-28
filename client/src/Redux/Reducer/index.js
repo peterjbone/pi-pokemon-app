@@ -5,12 +5,12 @@ import {
 	FILTER_TYPE,
 	ORDER_ALPHA,
 	ORDER_ATTACK
-} from "../Actions/actions-types.js"
+} from "../Actions/actions-types.js";
 
 let initialState = {
 	selectedPokemons: [],
 	allPokemons: []
-}
+};
 
 function rootReducer(state = initialState, { type, payload }) {
 	switch (type) {
@@ -19,41 +19,41 @@ function rootReducer(state = initialState, { type, payload }) {
 				...state,
 				selectedPokemons: [payload, ...state.allPokemons],
 				allPokemons: [payload, ...state.allPokemons]
-			}
+			};
 
 		case REMOVE_POKE: {
 			const pokemonsLeft = state.allPokemons.filter(
 				(pokemon) => pokemon.nombre !== payload
-			)
+			);
 
 			return {
 				...state,
 				selectedPokemons: pokemonsLeft,
 				allPokemons: pokemonsLeft
-			}
+			};
 		}
 
 		case FILTER_ORIGIN: {
 			if (payload === "api") {
 				const apiPokemons = state.allPokemons.filter(
 					(pokemon) => pokemon.source === "api"
-				)
+				);
 				return {
 					...state,
 					selectedPokemons: apiPokemons,
 					allPokemons: [...state.allPokemons]
-				}
+				};
 			}
 
 			if (payload === "db") {
 				const dbPokemons = state.allPokemons.filter(
 					(pokemon) => pokemon.source === "database"
-				)
+				);
 				return {
 					...state,
 					selectedPokemons: dbPokemons,
 					allPokemons: [...state.allPokemons]
-				}
+				};
 			}
 
 			if (payload === "all") {
@@ -61,7 +61,7 @@ function rootReducer(state = initialState, { type, payload }) {
 					...state,
 					selectedPokemons: [...state.allPokemons],
 					allPokemons: [...state.allPokemons]
-				}
+				};
 			}
 		}
 
@@ -71,20 +71,20 @@ function rootReducer(state = initialState, { type, payload }) {
 					...state,
 					selectedPokemons: [...state.allPokemons],
 					allPokemons: [...state.allPokemons]
-				}
+				};
 			}
 
 			if (payload === "normal") {
-				const normalPokemons = []
+				const normalPokemons = [];
 
 				state.allPokemons.forEach((pokemon) => {
-					const newPoke = pokemon
+					const newPoke = pokemon;
 					pokemon.Types.forEach((tipo) => {
 						if (tipo.nombre === "normal") {
-							normalPokemons.push(newPoke)
+							normalPokemons.push(newPoke);
 						}
-					})
-				})
+					});
+				});
 
 				return !normalPokemons.length
 					? {
@@ -96,20 +96,20 @@ function rootReducer(state = initialState, { type, payload }) {
 							...state,
 							selectedPokemons: normalPokemons,
 							allPokemons: [...state.allPokemons]
-					  }
+					  };
 			}
 
 			if (payload === "fighting") {
-				const fightingPokemons = []
+				const fightingPokemons = [];
 
 				state.allPokemons.forEach((pokemon) => {
-					const newPoke = pokemon
+					const newPoke = pokemon;
 					pokemon.Types.forEach((tipo) => {
 						if (tipo.nombre === "fighting") {
-							fightingPokemons.push(newPoke)
+							fightingPokemons.push(newPoke);
 						}
-					})
-				})
+					});
+				});
 
 				return !fightingPokemons.length
 					? {
@@ -121,20 +121,20 @@ function rootReducer(state = initialState, { type, payload }) {
 							...state,
 							selectedPokemons: fightingPokemons,
 							allPokemons: [...state.allPokemons]
-					  }
+					  };
 			}
 
 			if (payload === "flying") {
-				const flyingPokemons = []
+				const flyingPokemons = [];
 
 				state.allPokemons.forEach((pokemon) => {
-					const newPoke = pokemon
+					const newPoke = pokemon;
 					pokemon.Types.forEach((tipo) => {
 						if (tipo.nombre === "flying") {
-							flyingPokemons.push(newPoke)
+							flyingPokemons.push(newPoke);
 						}
-					})
-				})
+					});
+				});
 
 				return !flyingPokemons.length
 					? {
@@ -146,20 +146,20 @@ function rootReducer(state = initialState, { type, payload }) {
 							...state,
 							selectedPokemons: flyingPokemons,
 							allPokemons: [...state.allPokemons]
-					  }
+					  };
 			}
 
 			if (payload === "poison") {
-				const poisonPokemons = []
+				const poisonPokemons = [];
 
 				state.allPokemons.forEach((pokemon) => {
-					const newPoke = pokemon
+					const newPoke = pokemon;
 					pokemon.Types.forEach((tipo) => {
 						if (tipo.nombre === "poison") {
-							poisonPokemons.push(newPoke)
+							poisonPokemons.push(newPoke);
 						}
-					})
-				})
+					});
+				});
 
 				return !poisonPokemons.length
 					? {
@@ -171,20 +171,20 @@ function rootReducer(state = initialState, { type, payload }) {
 							...state,
 							selectedPokemons: poisonPokemons,
 							allPokemons: [...state.allPokemons]
-					  }
+					  };
 			}
 
 			if (payload === "ground") {
-				const groundPokemons = []
+				const groundPokemons = [];
 
 				state.allPokemons.forEach((pokemon) => {
-					const newPoke = pokemon
+					const newPoke = pokemon;
 					pokemon.Types.forEach((tipo) => {
 						if (tipo.nombre === "ground") {
-							groundPokemons.push(newPoke)
+							groundPokemons.push(newPoke);
 						}
-					})
-				})
+					});
+				});
 
 				return !groundPokemons.length
 					? {
@@ -196,20 +196,20 @@ function rootReducer(state = initialState, { type, payload }) {
 							...state,
 							selectedPokemons: groundPokemons,
 							allPokemons: [...state.allPokemons]
-					  }
+					  };
 			}
 
 			if (payload === "rock") {
-				const rockPokemons = []
+				const rockPokemons = [];
 
 				state.allPokemons.forEach((pokemon) => {
-					const newPoke = pokemon
+					const newPoke = pokemon;
 					pokemon.Types.forEach((tipo) => {
 						if (tipo.nombre === "rock") {
-							rockPokemons.push(newPoke)
+							rockPokemons.push(newPoke);
 						}
-					})
-				})
+					});
+				});
 
 				return !rockPokemons.length
 					? {
@@ -221,20 +221,20 @@ function rootReducer(state = initialState, { type, payload }) {
 							...state,
 							selectedPokemons: rockPokemons,
 							allPokemons: [...state.allPokemons]
-					  }
+					  };
 			}
 
 			if (payload === "bug") {
-				const bugPokemons = []
+				const bugPokemons = [];
 
 				state.allPokemons.forEach((pokemon) => {
-					const newPoke = pokemon
+					const newPoke = pokemon;
 					pokemon.Types.forEach((tipo) => {
 						if (tipo.nombre === "bug") {
-							bugPokemons.push(newPoke)
+							bugPokemons.push(newPoke);
 						}
-					})
-				})
+					});
+				});
 
 				return !bugPokemons.length
 					? {
@@ -246,20 +246,20 @@ function rootReducer(state = initialState, { type, payload }) {
 							...state,
 							selectedPokemons: bugPokemons,
 							allPokemons: [...state.allPokemons]
-					  }
+					  };
 			}
 
 			if (payload === "ghost") {
-				const ghostPokemons = []
+				const ghostPokemons = [];
 
 				state.allPokemons.forEach((pokemon) => {
-					const newPoke = pokemon
+					const newPoke = pokemon;
 					pokemon.Types.forEach((tipo) => {
 						if (tipo.nombre === "ghost") {
-							ghostPokemons.push(newPoke)
+							ghostPokemons.push(newPoke);
 						}
-					})
-				})
+					});
+				});
 
 				return !ghostPokemons.length
 					? {
@@ -271,20 +271,20 @@ function rootReducer(state = initialState, { type, payload }) {
 							...state,
 							selectedPokemons: ghostPokemons,
 							allPokemons: [...state.allPokemons]
-					  }
+					  };
 			}
 
 			if (payload === "steel") {
-				const steelPokemons = []
+				const steelPokemons = [];
 
 				state.allPokemons.forEach((pokemon) => {
-					const newPoke = pokemon
+					const newPoke = pokemon;
 					pokemon.Types.forEach((tipo) => {
 						if (tipo.nombre === "steel") {
-							steelPokemons.push(newPoke)
+							steelPokemons.push(newPoke);
 						}
-					})
-				})
+					});
+				});
 
 				return !steelPokemons.length
 					? {
@@ -296,20 +296,20 @@ function rootReducer(state = initialState, { type, payload }) {
 							...state,
 							selectedPokemons: steelPokemons,
 							allPokemons: [...state.allPokemons]
-					  }
+					  };
 			}
 
 			if (payload === "fire") {
-				const firePokemons = []
+				const firePokemons = [];
 
 				state.allPokemons.forEach((pokemon) => {
-					const newPoke = pokemon
+					const newPoke = pokemon;
 					pokemon.Types.forEach((tipo) => {
 						if (tipo.nombre === "fire") {
-							firePokemons.push(newPoke)
+							firePokemons.push(newPoke);
 						}
-					})
-				})
+					});
+				});
 
 				return !firePokemons.length
 					? {
@@ -321,20 +321,20 @@ function rootReducer(state = initialState, { type, payload }) {
 							...state,
 							selectedPokemons: firePokemons,
 							allPokemons: [...state.allPokemons]
-					  }
+					  };
 			}
 
 			if (payload === "water") {
-				const waterPokemons = []
+				const waterPokemons = [];
 
 				state.allPokemons.forEach((pokemon) => {
-					const newPoke = pokemon
+					const newPoke = pokemon;
 					pokemon.Types.forEach((tipo) => {
 						if (tipo.nombre === "water") {
-							waterPokemons.push(newPoke)
+							waterPokemons.push(newPoke);
 						}
-					})
-				})
+					});
+				});
 
 				return !waterPokemons.length
 					? {
@@ -346,20 +346,20 @@ function rootReducer(state = initialState, { type, payload }) {
 							...state,
 							selectedPokemons: waterPokemons,
 							allPokemons: [...state.allPokemons]
-					  }
+					  };
 			}
 
 			if (payload === "grass") {
-				const grassPokemons = []
+				const grassPokemons = [];
 
 				state.allPokemons.forEach((pokemon) => {
-					const newPoke = pokemon
+					const newPoke = pokemon;
 					pokemon.Types.forEach((tipo) => {
 						if (tipo.nombre === "grass") {
-							grassPokemons.push(newPoke)
+							grassPokemons.push(newPoke);
 						}
-					})
-				})
+					});
+				});
 
 				return !grassPokemons.length
 					? {
@@ -371,20 +371,20 @@ function rootReducer(state = initialState, { type, payload }) {
 							...state,
 							selectedPokemons: grassPokemons,
 							allPokemons: [...state.allPokemons]
-					  }
+					  };
 			}
 
 			if (payload === "electric") {
-				const electricPokemons = []
+				const electricPokemons = [];
 
 				state.allPokemons.forEach((pokemon) => {
-					const newPoke = pokemon
+					const newPoke = pokemon;
 					pokemon.Types.forEach((tipo) => {
 						if (tipo.nombre === "electric") {
-							electricPokemons.push(newPoke)
+							electricPokemons.push(newPoke);
 						}
-					})
-				})
+					});
+				});
 
 				return !electricPokemons.length
 					? {
@@ -396,20 +396,20 @@ function rootReducer(state = initialState, { type, payload }) {
 							...state,
 							selectedPokemons: electricPokemons,
 							allPokemons: [...state.allPokemons]
-					  }
+					  };
 			}
 
 			if (payload === "psychic") {
-				const psychicPokemons = []
+				const psychicPokemons = [];
 
 				state.allPokemons.forEach((pokemon) => {
-					const newPoke = pokemon
+					const newPoke = pokemon;
 					pokemon.Types.forEach((tipo) => {
 						if (tipo.nombre === "psychic") {
-							psychicPokemons.push(newPoke)
+							psychicPokemons.push(newPoke);
 						}
-					})
-				})
+					});
+				});
 
 				return !psychicPokemons.length
 					? {
@@ -421,20 +421,20 @@ function rootReducer(state = initialState, { type, payload }) {
 							...state,
 							selectedPokemons: psychicPokemons,
 							allPokemons: [...state.allPokemons]
-					  }
+					  };
 			}
 
 			if (payload === "ice") {
-				const icePokemons = []
+				const icePokemons = [];
 
 				state.allPokemons.forEach((pokemon) => {
-					const newPoke = pokemon
+					const newPoke = pokemon;
 					pokemon.Types.forEach((tipo) => {
 						if (tipo.nombre === "ice") {
-							icePokemons.push(newPoke)
+							icePokemons.push(newPoke);
 						}
-					})
-				})
+					});
+				});
 
 				return !icePokemons.length
 					? {
@@ -446,20 +446,20 @@ function rootReducer(state = initialState, { type, payload }) {
 							...state,
 							selectedPokemons: icePokemons,
 							allPokemons: [...state.allPokemons]
-					  }
+					  };
 			}
 
 			if (payload === "dragon") {
-				const dragonPokemons = []
+				const dragonPokemons = [];
 
 				state.allPokemons.forEach((pokemon) => {
-					const newPoke = pokemon
+					const newPoke = pokemon;
 					pokemon.Types.forEach((tipo) => {
 						if (tipo.nombre === "dragon") {
-							dragonPokemons.push(newPoke)
+							dragonPokemons.push(newPoke);
 						}
-					})
-				})
+					});
+				});
 
 				return !dragonPokemons.length
 					? {
@@ -471,20 +471,20 @@ function rootReducer(state = initialState, { type, payload }) {
 							...state,
 							selectedPokemons: dragonPokemons,
 							allPokemons: [...state.allPokemons]
-					  }
+					  };
 			}
 
 			if (payload === "dark") {
-				const darkPokemons = []
+				const darkPokemons = [];
 
 				state.allPokemons.forEach((pokemon) => {
-					const newPoke = pokemon
+					const newPoke = pokemon;
 					pokemon.Types.forEach((tipo) => {
 						if (tipo.nombre === "dark") {
-							darkPokemons.push(newPoke)
+							darkPokemons.push(newPoke);
 						}
-					})
-				})
+					});
+				});
 
 				return !darkPokemons.length
 					? {
@@ -496,20 +496,20 @@ function rootReducer(state = initialState, { type, payload }) {
 							...state,
 							selectedPokemons: darkPokemons,
 							allPokemons: [...state.allPokemons]
-					  }
+					  };
 			}
 
 			if (payload === "fairy") {
-				const fairyPokemons = []
+				const fairyPokemons = [];
 
 				state.allPokemons.forEach((pokemon) => {
-					const newPoke = pokemon
+					const newPoke = pokemon;
 					pokemon.Types.forEach((tipo) => {
 						if (tipo.nombre === "fairy") {
-							fairyPokemons.push(newPoke)
+							fairyPokemons.push(newPoke);
 						}
-					})
-				})
+					});
+				});
 
 				return !fairyPokemons.length
 					? {
@@ -521,20 +521,20 @@ function rootReducer(state = initialState, { type, payload }) {
 							...state,
 							selectedPokemons: fairyPokemons,
 							allPokemons: [...state.allPokemons]
-					  }
+					  };
 			}
 
 			if (payload === "unknown") {
-				const unknownPokemons = []
+				const unknownPokemons = [];
 
 				state.allPokemons.forEach((pokemon) => {
-					const newPoke = pokemon
+					const newPoke = pokemon;
 					pokemon.Types.forEach((tipo) => {
 						if (tipo.nombre === "unknown") {
-							unknownPokemons.push(newPoke)
+							unknownPokemons.push(newPoke);
 						}
-					})
-				})
+					});
+				});
 
 				return !unknownPokemons.length
 					? {
@@ -546,20 +546,20 @@ function rootReducer(state = initialState, { type, payload }) {
 							...state,
 							selectedPokemons: unknownPokemons,
 							allPokemons: [...state.allPokemons]
-					  }
+					  };
 			}
 
 			if (payload === "shadow") {
-				const shadowPokemons = []
+				const shadowPokemons = [];
 
 				state.allPokemons.forEach((pokemon) => {
-					const newPoke = pokemon
+					const newPoke = pokemon;
 					pokemon.Types.forEach((tipo) => {
 						if (tipo.nombre === "shadow") {
-							shadowPokemons.push(newPoke)
+							shadowPokemons.push(newPoke);
 						}
-					})
-				})
+					});
+				});
 
 				return !shadowPokemons.length
 					? {
@@ -571,7 +571,7 @@ function rootReducer(state = initialState, { type, payload }) {
 							...state,
 							selectedPokemons: shadowPokemons,
 							allPokemons: [...state.allPokemons]
-					  }
+					  };
 			}
 		}
 
@@ -581,24 +581,24 @@ function rootReducer(state = initialState, { type, payload }) {
 					...state,
 					selectedPokemons: [...state.allPokemons],
 					allPokemons: [...state.allPokemons]
-				}
+				};
 			}
 
-			const pokemonsCopy = [...structuredClone(state.selectedPokemons)]
+			const pokemonsCopy = [...structuredClone(state.selectedPokemons)];
 
 			if (payload === "A") {
-				pokemonsCopy.sort((a, b) => a.nombre.localeCompare(b.nombre))
+				pokemonsCopy.sort((a, b) => a.nombre.localeCompare(b.nombre));
 			}
 
 			if (payload === "D") {
-				pokemonsCopy.sort((a, b) => b.nombre.localeCompare(a.nombre))
+				pokemonsCopy.sort((a, b) => b.nombre.localeCompare(a.nombre));
 			}
 
 			return {
 				...state,
 				selectedPokemons: pokemonsCopy,
 				allPokemons: [...state.allPokemons]
-			}
+			};
 		}
 
 		case ORDER_ATTACK: {
@@ -607,36 +607,29 @@ function rootReducer(state = initialState, { type, payload }) {
 					...state,
 					selectedPokemons: [...state.allPokemons],
 					allPokemons: [...state.allPokemons]
-				}
+				};
 			}
 
-			const pokemonsCopy = [...structuredClone(state.selectedPokemons)]
+			const pokemonsCopy = [...structuredClone(state.selectedPokemons)];
 
 			if (payload === "A") {
-				pokemonsCopy.sort((a, b) => a.ataque - b.ataque)
+				pokemonsCopy.sort((a, b) => a.ataque - b.ataque);
 			}
 
 			if (payload === "D") {
-				pokemonsCopy.sort((a, b) => b.ataque - a.ataque)
+				pokemonsCopy.sort((a, b) => b.ataque - a.ataque);
 			}
 
 			return {
 				...state,
 				selectedPokemons: pokemonsCopy,
 				allPokemons: [...state.allPokemons]
-			}
+			};
 		}
 
-		case "ADD_FULL":
-			return {
-				...state,
-				selectedPokemons: [...payload, ...state.allPokemons],
-				allPokemons: [...payload, ...state.allPokemons]
-			}
-
 		default:
-			return { ...state }
+			return { ...state };
 	}
 }
 
-export default rootReducer
+export default rootReducer;

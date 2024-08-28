@@ -40,12 +40,12 @@ async function getPokemonByName(req, res) {
 			const TypesId = await Promise.all(
 				types.map(async (el) => {
 					const DBType = await Type.findOne({
-						where: { nombre: el.type.name }
+						where: { nombre: el.type.name } //?busca coincidencia con el tipo de pokemon
 					});
-					return DBType.id;
+					return DBType.id; //? solo devuelve el id del tipo (númerico)
 				})
 			);
-			console.log(TypesId);
+			//console.log(TypesId);
 
 			//* AQUI CREA AL POKEMON EN BD, HACE LA RELACION DE TIPO Y LUEGO LO VUELVE A BUSCAR EN BD
 			let DBPokemon = await Pokemon.create(newPokemon);

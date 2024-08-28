@@ -6,6 +6,7 @@ const { Type } = require("../../db.js");
 //* No sirve pq no hace las relaciones en Postgres, fallo rotundo y no sirve para filtrar u ordenar los pokemones
 //* es un mal falseo
 //* no funciona pq el front necesita q tenga las relaciones en BD
+//* o no funcionaba pq no guardaba los pokemons en REDUX
 async function fullPokemons(req, res) {
 	try {
 		const response1 = await axios.get("https://pokeapi.co/api/v2/pokemon");
