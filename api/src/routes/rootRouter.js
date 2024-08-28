@@ -17,7 +17,7 @@ rootRouter.post("/pokemons", createPokemon); //? FINALIZADO (me devuelve el poke
 rootRouter.get("/pokemons/:id", getPokemonById); //? FINALIZADO (me devuelve el pokemon del id q busque y NO guardar en BD)
 rootRouter.delete("/pokemons/:nombre", deletePokemon); //? FINALIZADO (me devuelve todos los pokemones que quedan en la BD)
 
-rootRouter.get("/pokename", getPokemonByName); //? FINALIZADO (tiene el query: "name", devuelve le pokemon buscado y lo guarda en BD)
+rootRouter.get("/pokename", getPokemonByName); //? FINALIZADO (tiene el query: "name", devuelve le pokemon buscado y LO GUARDA EN BD)
 
 const fullPokemons = require("./controllers/fullPokemons.js");
 rootRouter.get("/fullpokemons", fullPokemons);

@@ -8,7 +8,7 @@ function Pokemon(sequelize) {
 				type: DataTypes.INTEGER,
 				primaryKey: true,
 				autoIncrement: true,
-				allowNull: true
+				allowNull: false
 			},
 			nombre: {
 				type: DataTypes.STRING,
