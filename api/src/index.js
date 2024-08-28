@@ -6,7 +6,7 @@ const { sqlz } = require("./db.js");
 
 server.listen(PORT, async () => {
 	try {
-		await sqlz.sync({ force: false });
+		await sqlz.sync({ force: true }); //? si esta en true, en cada cambio, BORRA LA BD
 		console.log(
 			`Connection established with the DB and Server raised on port: ${PORT}`
 		);
