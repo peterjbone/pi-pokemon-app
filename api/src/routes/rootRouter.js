@@ -15,7 +15,7 @@ rootRouter.get("/types", getAllTypes); //? FINALIZADO (busca en la API, devuelve
 rootRouter.get("/pokemons", getAllPokemons); //? FINALIZADO (devuelve 40 pokemones, hace las relaciones de tipos, tipos es un array de strings y NO lo guarda en BD)
 rootRouter.post("/pokemons", createPokemon); //? FINALIZADO (crea un nuevo pokemon, devuelve el pokemon nuevo y SI LO GUARDA EN BD)
 rootRouter.get("/pokemons/:id", getPokemonById); //? FINALIZADO (tiene un params, devuelve el pokemon del id q busque y NO lo guarda en BD)
-rootRouter.delete("/pokemons/:nombre", deletePokemon); //? FINALIZADO (tiene un params, devuelve todos los pokemones que quedan en la BD)
+rootRouter.delete("/pokemons/:nombre", deletePokemon); //? FINALIZADO (tiene un params, elimina al pokemon de la BD y devuelve todos los pokemones que quedan en la BD)
 
 rootRouter.get("/pokename", getPokemonByName); //? FINALIZADO (tiene el query: "name", devuelve le pokemon buscado y SI LO GUARDA EN BD)
 
