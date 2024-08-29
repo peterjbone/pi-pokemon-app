@@ -4,7 +4,7 @@
 //* 3) Guardar en Redux y Postgresql
 //* 4) NO hagas petición a API
 
-const { Pokemon, Type } = require("../../db.js")
+const { Pokemon, Type } = require("../../db.js");
 
 async function createPokemon(req, res) {
 	//prettier-ignore
@@ -19,15 +19,15 @@ async function createPokemon(req, res) {
 				attributes: ["id", "nombre"],
 				through: { attributes: [] }
 			}
-		})
+		});
 
 		//* La info SI esta completa y SI esta en BD
 		if (DBPokemon) {
-			console.log("Pokemon already existed.")
-			DBPokemon.dataValues.imagen = imagen
-			DBPokemon.dataValues.source = source
-			return res.status(200).json(DBPokemon)
-			//! imposible que llegue aca por las validaciones del frontend
+			console.log("Pokemon already existed.");
+			DBPokemon.dataValues.imagen = imagen;
+			DBPokemon.dataValues.source = source;
+			return res.status(200).json(DBPokemon);
+			//! creo que es imposible que llegue aca por las validaciones del frontend
 		} else {
 			//* La info SI esta completa pero el pokemon NO esta en BD
 			try {
@@ -40,18 +40,19 @@ async function createPokemon(req, res) {
 					velocidad,
 					altura,
 					peso
-				}
+				};
 
-				//? Creando los TypesId para crear relaciones
+				//* consiguiendo los id de los tipos al buscar coincidencias con el nombre en la BD
 				const TypesId = await Promise.all(
 					Types.map(async (type) => {
-						const DBType = await Type.findOne({ where: { nombre: type } })
-						return DBType.id
+						const DBType = await Type.findOne({ where: { nombre: type } });
+						return DBType.id;
 					})
-				)
+				);
 
-				let DBPokemon = await Pokemon.create(newPokemon)
-				await DBPokemon.addType(TypesId)
+				//* AQUI CREA AL POKEMON EN BD, HACE LA RELACION DE TIPO Y LUEGO LO VUELVE A BUSCAR EN BD
+				let DBPokemon = await Pokemon.create(newPokemon);
+				await DBPokemon.addType(TypesId);
 				DBPokemon = await Pokemon.findOne({
 					where: { nombre },
 					include: {
@@ -59,23 +60,23 @@ async function createPokemon(req, res) {
 						attributes: ["id", "nombre"],
 						through: { attributes: [] }
 					}
-				})
+				});
 
-				console.log("Pokemon has been created.")
-				DBPokemon.dataValues.source = source
-				return res.status(201).json(DBPokemon)
+				console.log("Pokemon has been created.");
+				DBPokemon.dataValues.source = source;
+				return res.status(201).json(DBPokemon);
 			} catch (error) {
 				//* 1) Algun valor de un atributo puede estar mal
 				//* 2) Algun error interno de Sequelize
 				//! imposible que llegue aca por las validaciones del frontend
-				return res.status(500).send(error.message)
+				return res.status(500).send(error.message);
 			}
 		}
 	} else {
 		//* si entra al ELSE la info esta incompleta
 		//! imposible que llegue aca por las validaciones del frontend
-		return res.status(400).send("Information is missing")
+		return res.status(400).send("Information is missing");
 	}
 }
 
-module.exports = createPokemon
+module.exports = createPokemon;

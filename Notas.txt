@@ -4,3 +4,4 @@ FALTA en el proyecto:
 - Agregar posibilidad de que los usuarios agreguen pokemones por tipos (almacenar en Redux y BD)
 - Cambiar el uso de redux con ZUNTAG
 - Inspiración del proyecto: https://pokestats.gg/
+- Revisar y descargar version anterior del proyecto para ver su funcionamiento (REDUX front y rutas back)
