@@ -4,6 +4,7 @@ const morgan = require("morgan");
 
 //* Importando rutas
 const rootRouter = require("./routes/rootRouter.js");
+const pokemonRouter = require("./routes/pokemonRouter.js");
 
 server.use((req, res, next) => {
 	res.header("Access-Control-Allow-Origin", "*");

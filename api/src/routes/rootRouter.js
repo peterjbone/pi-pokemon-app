@@ -12,10 +12,10 @@ const deletePokemon = require("./controllers/deletePokemon.js");
 //* Manejar las peticiones HTTP
 rootRouter.get("/types", getAllTypes); //? FINALIZADO (busca en la API, devuelve los tipos y SI los guarda en BD)
 
-rootRouter.get("/pokemons", getAllPokemons); //? FINALIZADO (devuelve 40 pokemones, "tipos" es un array de strings, NO crea relaciones y NO lo guarda en BD)
-rootRouter.post("/pokemons", createPokemon); //? FINALIZADO (crea un nuevo pokemon, devuelve el pokemon nuevo y SI LO GUARDA EN BD)
-rootRouter.get("/pokemons/:id", getPokemonById); //? FINALIZADO (tiene un params, devuelve el pokemon del id q busque y NO lo guarda en BD)
-rootRouter.delete("/pokemons/:nombre", deletePokemon); //? FINALIZADO (tiene un params, elimina al pokemon de la BD y devuelve todos los pokemones que quedan en la BD)
+/* rootRouter.get("/pokemons", getAllPokemons);
+rootRouter.post("/pokemons", createPokemon);
+rootRouter.get("/pokemons/:id", getPokemonById);
+rootRouter.delete("/pokemons/:nombre", deletePokemon); */
 
 rootRouter.get("/pokename", getPokemonByName); //? FINALIZADO (tiene el query: "name", devuelve le pokemon buscado y SI LO GUARDA EN BD)
 
