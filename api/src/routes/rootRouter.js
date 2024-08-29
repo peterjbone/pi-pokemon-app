@@ -3,9 +3,9 @@ const rootRouter = Router();
 
 //* Importar los controladores de rootRouter
 const getAllTypes = require("./controllers/getAllTypes.js");
+const getPokemonByName = require("./controllers/getPokemonByName.js");
 const getAllPokemons = require("./controllers/getAllPokemons.js");
 const getPokemonById = require("./controllers/getPokemonById.js");
-const getPokemonByName = require("./controllers/getPokemonByName.js");
 const createPokemon = require("./controllers/createPokemon.js");
 const deletePokemon = require("./controllers/deletePokemon.js");
 
