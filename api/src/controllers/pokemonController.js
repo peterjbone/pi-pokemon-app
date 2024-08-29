@@ -1,8 +1,8 @@
 const axios = require("axios");
 const { Pokemon, Type } = require("../db.js");
-const APIendpoint = "https://pokeapi.co/api/v2/pokemon/";
+const APIendpoint = "https://pokeapi.co/api/v2/pokemon/"; //* para buscar por ID
 
-export const getAllPokemons = async (req, res) => {
+const getAllPokemons = async (req, res) => {
 	try {
 		const response1 = await axios.get("https://pokeapi.co/api/v2/pokemon");
 
@@ -59,7 +59,7 @@ export const getAllPokemons = async (req, res) => {
 	}
 };
 
-export const createPokemon = async (req, res) => {
+const createPokemon = async (req, res) => {
 	//prettier-ignore
 	const { nombre, imagen, vida, ataque, defensa, velocidad, altura, peso, Types, source} = req.body
 
@@ -132,7 +132,7 @@ export const createPokemon = async (req, res) => {
 	}
 };
 
-export const getPokemonById = async (req, res) => {
+const getPokemonById = async (req, res) => {
 	const { id } = req.params;
 	const paramsId = id;
 	const pokemonWanted = await Pokemon.findOne({
@@ -203,4 +203,33 @@ export const getPokemonById = async (req, res) => {
 			return res.status(404).send("Pokemon not Founded.");
 		}
 	}
+};
+
+const deletePokemon = async (req, res) => {
+	const { nombre } = req.params;
+
+	try {
+		const deletedRegisters = await Pokemon.destroy({ where: { nombre } });
+
+		if (deletedRegisters > 0) {
+			return res.status(200).send(`Se ha eliminado a ${nombre} de la BD.`);
+		} else {
+			return res
+				.status(404)
+				.send(
+					`No se encontro el Pokemon con el id: ${id} o ya ha sido eliminado.`
+				);
+		}
+	} catch (error) {
+		//* Erro interno de sequelize
+		console.log("Entro al catch del deletePokemon");
+		return res.status(500).send(error.message);
+	}
+};
+
+module.exports = {
+	getAllPokemons,
+	createPokemon,
+	getPokemonById,
+	deletePokemon
 };

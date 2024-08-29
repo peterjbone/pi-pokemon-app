@@ -22,6 +22,6 @@ server.use(express.json());
 server.use(morgan("dev"));
 
 server.use("/", rootRouter);
-server.use("/pokemons", rootRouter);
+server.use("/pokemons", pokemonRouter);
 
 module.exports = server;
