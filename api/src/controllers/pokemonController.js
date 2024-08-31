@@ -1,6 +1,7 @@
 const axios = require("axios");
 const { Pokemon, Type } = require("../db.js");
 const APIendpoint = "https://pokeapi.co/api/v2/pokemon/"; //* para buscar por ID
+//const { v4: uuidv4 } = require("uuid");
 
 const getAllPokemons = async (req, res) => {
 	try {

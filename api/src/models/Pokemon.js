@@ -5,9 +5,10 @@ function Pokemon(sequelize) {
 		"Pokemon",
 		{
 			id: {
-				type: DataTypes.UUIDV4,
+				type: DataTypes.UUID,
+				defaultValue: DataTypes.UUIDV4,
 				primaryKey: true,
-				autoIncrement: true,
+				//autoIncrement: true,
 				allowNull: false
 			},
 			nombre: {
