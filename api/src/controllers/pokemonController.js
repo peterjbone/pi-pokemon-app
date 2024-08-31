@@ -205,6 +205,8 @@ const getPokemonById = async (req, res) => {
 	}
 };
 
+const getPokemonByName = async (req, res) => {};
+
 const deletePokemon = async (req, res) => {
 	const { nombre } = req.params;
 
