@@ -77,7 +77,7 @@ const createPokemon = async (req, res) => {
 
 		//* La info SI esta completa y SI esta en BD
 		if (DBPokemon) {
-			console.log("Pokemon already existed.");
+			console.log(`${DBPokemon.nombre.toUpperCase()} already existed.`);
 			DBPokemon.dataValues.imagen = imagen;
 			DBPokemon.dataValues.source = source;
 			return res.status(200).json(DBPokemon);
