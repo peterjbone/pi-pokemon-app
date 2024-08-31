@@ -206,8 +206,10 @@ const getPokemonById = async (req, res) => {
 };
 
 const getPokemonByName = async (req, res) => {
-	const { nombre } = req.query;
-	const queryName = nombre.trim().toLowerCase();
+	const { name } = req.query;
+	console.log(name.toUpperCase());
+
+	const queryName = name.trim().toLowerCase();
 	const pokemonWanted = await Pokemon.findOne({
 		where: { nombre: queryName },
 		include: {
@@ -298,5 +300,6 @@ module.exports = {
 	getAllPokemons,
 	createPokemon,
 	getPokemonById,
+	getPokemonByName,
 	deletePokemon
 };
