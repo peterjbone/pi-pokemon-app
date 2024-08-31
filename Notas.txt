@@ -1,6 +1,6 @@
 FALTA en el proyecto:
-- Reestructurar el backend y sus rutas
-- Arreglar problemas de la coincidencias de ID (en su lugar usar UUID)
+- Reestructurar el backend y sus rutas 
+- Arreglar problemas de la coincidencias de ID (en su lugar usar UUID) 👀
 - Agregar posibilidad de que los usuarios agreguen pokemones por tipos (almacenar en Redux y BD)
 - Cambiar el uso de redux con ZUNTAG
 - Inspiración del proyecto: https://pokestats.gg/

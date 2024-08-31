@@ -26,7 +26,7 @@ const getPokemonByName = async (req, res) => {
 			const { data } = await axios.get(`${APIendpoint}${queryName}`);
 			const { id, name, stats, sprites, height, weight, types } = data;
 			const newPokemon = {
-				id,
+				id, //! Usar UUID, no usar el ID de la API
 				nombre: name,
 				imagen: sprites.other["official-artwork"]["front_default"],
 				vida: stats[0]["base_stat"],
