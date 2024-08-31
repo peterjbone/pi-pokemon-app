@@ -2,6 +2,10 @@ const axios = require("axios");
 const APIendpoint = "https://pokeapi.co/api/v2/type";
 const { Type } = require("../db.js");
 
+//* 1) Validar que la entidad / tabla "Types" este vacío
+//* 2) si lo esta debera consumir la API, guardar en BD y responder
+//* 3) Sino La sgt vez que se pidan los favoritos se consumiran de la BD y responde
+
 const getAllTypes = async (req, res) => {
 	const registersCount = await Type.count();
 

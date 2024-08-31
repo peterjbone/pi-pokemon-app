@@ -1,13 +1,11 @@
 const { Router } = require("express");
 const rootRouter = Router();
 
-//* Importar los controladores de rootRouter
-const getAllTypes = require("./controllers/getAllTypes.js");
+//const getAllTypes = require("./controllers/getAllTypes.js");
 const getPokemonByName = require("./controllers/getPokemonByName.js");
 const fullPokemons = require("./controllers/fullPokemons.js");
 
-//* Manejar las peticiones HTTP
-rootRouter.get("/types", getAllTypes); //? FINALIZADO (busca en la API, devuelve los tipos y SI los guarda en BD)
+//rootRouter.get("/types", getAllTypes);
 rootRouter.get("/pokename", getPokemonByName); //? FINALIZADO (tiene el query: "name", devuelve le pokemon buscado y SI LO GUARDA EN BD)
 rootRouter.get("/fullpokemons", fullPokemons); //? FINALIZADO (devuelve 40 pokemones, FALSEA las relaciones de tipos, tipos es un array de objetos y NO guarda en BD)
 
