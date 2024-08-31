@@ -5,11 +5,13 @@ const APIendpoint = "https://pokeapi.co/api/v2/pokemon/"; //* para buscar por no
 const getPokemonByName = async (req, res) => {
 	const { name } = req.query;
 	const queryName = name.trim().toLowerCase();
+	//* reviso si el pokemon no se encuentra en BD
 	const pokemonWanted = await Pokemon.findOne({
 		where: { nombre: queryName },
 		include: {
+			//* con esto puebla el campo de Types
 			model: Type,
-			attributes: ["nombre"],
+			attributes: ["id", "nombre"],
 			through: { attributes: [] }
 		}
 	});
@@ -24,9 +26,8 @@ const getPokemonByName = async (req, res) => {
 		try {
 			console.log("Search made in API");
 			const { data } = await axios.get(`${APIendpoint}${queryName}`);
-			const { id, name, stats, sprites, height, weight, types } = data;
+			const { name, stats, sprites, height, weight, types } = data;
 			const newPokemon = {
-				id, //! Usar UUID, no usar el ID de la API
 				nombre: name,
 				imagen: sprites.other["official-artwork"]["front_default"],
 				vida: stats[0]["base_stat"],
@@ -51,7 +52,7 @@ const getPokemonByName = async (req, res) => {
 			let DBPokemon = await Pokemon.create(newPokemon);
 			await DBPokemon.addType(TypesId);
 			DBPokemon = await Pokemon.findOne({
-				where: { id },
+				where: { nombre: name },
 				include: {
 					model: Type,
 					attributes: ["id", "nombre"],
@@ -63,6 +64,7 @@ const getPokemonByName = async (req, res) => {
 			DBPokemon.dataValues.source = "api";
 			return res.status(200).json(DBPokemon); //* devuelve el pokemon solicitado
 		} catch (error) {
+			console.log(error);
 			console.error(error.message);
 			return res.status(404).send("Pokemon not founded");
 		}
