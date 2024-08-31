@@ -3,7 +3,7 @@ const server = express();
 const morgan = require("morgan");
 
 //* Importando rutas
-const rootRouter = require("./routes/rootRouter.js");
+//const rootRouter = require("./routes/rootRouter.js");
 const pokemonRouter = require("./routes/pokemonRouter.js");
 const typeRouter = require("./routes/typeRouter.js");
 
@@ -22,7 +22,7 @@ server.use(express.json());
 
 server.use(morgan("dev"));
 
-server.use("/", rootRouter);
+//server.use("/", rootRouter);
 server.use("/pokemons", pokemonRouter);
 server.use("/types", typeRouter);
 
