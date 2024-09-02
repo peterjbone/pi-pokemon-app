@@ -150,6 +150,5 @@ const deletePokemon = async (req, res) => {
 module.exports = {
 	getAllPokemons,
 	createPokemon,
-	getPokemonById,
 	deletePokemon
 };
