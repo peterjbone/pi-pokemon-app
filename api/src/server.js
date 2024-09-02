@@ -7,6 +7,7 @@ const pokemonRouter = require("./routes/pokemonRouter.js");
 const typeRouter = require("./routes/typeRouter.js");
 const pokenameRouter = require("./routes/pokenameRouter.js");
 
+//* Middlewares generales
 server.use((req, res, next) => {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Credentials", "true");
@@ -17,11 +18,10 @@ server.use((req, res, next) => {
 	res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
 	next();
 });
-
 server.use(express.json());
-
 server.use(morgan("dev"));
 
+//* Middlewares de rutas
 server.use("/pokemons", pokemonRouter);
 server.use("/types", typeRouter);
 server.use("/pokename", pokenameRouter);

@@ -8,7 +8,7 @@ const {
 	deletePokemon
 } = require("../controllers/pokemonController.js");
 
-router.get("/", getAllPokemons); //? FINALIZADO (devuelve 40 pokemones, "tipos" es un array de strings, NO crea relaciones y NO lo guarda en BD)
+router.get("/", getAllPokemons); //? FINALIZADO (devuelve 20 pokemones, "tipos" es un array de strings, NO crea relaciones y NO lo guarda en BD)
 
 router.post("/", createPokemon); //? FINALIZADO (crea un nuevo pokemon, devuelve el pokemon nuevo y SI LO GUARDA EN BD)
 

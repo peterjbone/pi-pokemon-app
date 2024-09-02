@@ -1,24 +1,24 @@
 const axios = require("axios");
 const { Pokemon, Type } = require("../db.js");
+const APIendpoint = "https://pokeapi.co/api/v2/pokemon";
 
 const getAllPokemons = async (req, res) => {
 	try {
-		const response = await axios.get("https://pokeapi.co/api/v2/pokemon");
+		const response = await axios.get(APIendpoint);
 
 		const pokemons = await Promise.all(
 			response.data.results.map(async (pokemon) => {
 				const { data } = await axios.get(pokemon.url);
-				const { forms, stats, sprites, height, weight, types } = data;
+				const { name, stats, sprites, height, weight, types } = data;
 				const newPokemon = {
-					nombre: forms[0].name,
+					nombre: name,
 					imagen: sprites.other["official-artwork"]["front_default"],
 					vida: stats[0]["base_stat"],
 					ataque: stats[1]["base_stat"],
 					defensa: stats[2]["base_stat"],
 					velocidad: stats[5]["base_stat"],
 					altura: height,
-					peso: weight,
-					tipos: types.map((el) => el.type.name) //? solo trae el tipo desde la API
+					peso: weight
 				};
 
 				return newPokemon;
