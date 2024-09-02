@@ -21,7 +21,28 @@ const getAllPokemons = async (req, res) => {
 					peso: weight
 				};
 
-				return newPokemon;
+				const TypesId = await Promise.all(
+					types.map(async (el) => {
+						const DBType = await Type.findOne({
+							where: { nombre: el.type.name } //?busca coincidencia con el tipo de pokemon
+						});
+						return DBType.id; //? solo devuelve el id del tipo (númerico)
+					})
+				);
+
+				//* AQUI CREA AL POKEMON EN BD, HACE LA RELACION DE TIPO Y LUEGO LO VUELVE A BUSCAR EN BD
+				let DBPokemon = await Pokemon.create(newPokemon);
+				await DBPokemon.addType(TypesId);
+				DBPokemon = await Pokemon.findOne({
+					where: { nombre: name },
+					include: {
+						model: Type,
+						attributes: ["id", "nombre"],
+						through: { attributes: [] }
+					}
+				});
+
+				return DBPokemon;
 			})
 		);
 
