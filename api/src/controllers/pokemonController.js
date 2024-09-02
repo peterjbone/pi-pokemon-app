@@ -1,9 +1,12 @@
+require("dotenv").config();
 const axios = require("axios");
 const { Pokemon, Type } = require("../db.js");
-const APIendpoint = "https://pokeapi.co/api/v2/pokemon";
+const { APIendpoint } = process.env;
 
 const getAllPokemons = async (req, res) => {
 	try {
+		const offset = req.query.offset || 0;
+		const limit = 40;
 		const response = await axios.get(APIendpoint);
 
 		const pokemons = await Promise.all(
