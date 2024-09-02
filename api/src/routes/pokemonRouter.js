@@ -5,7 +5,6 @@ const router = Router();
 const {
 	getAllPokemons,
 	createPokemon,
-	getPokemonById,
 	deletePokemon
 } = require("../controllers/pokemonController.js");
 
