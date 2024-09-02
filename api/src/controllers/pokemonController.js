@@ -5,29 +5,30 @@ const { APIendpoint } = process.env;
 
 const getAllPokemons = async (req, res) => {
 	try {
-		const offset = req.query.offset || 0;
+		const offset = parseInt(req.query.offset) || 0;
 		const limit = 40;
 		let response1;
 		let response2;
 		let apiPokemons;
 
 		if (offset === 0) {
-			response1 = await axios.get(
-				`${APIendpoint}?offset=${offset}&limit=${limit}`
-			);
-			response2 = await axios.get(
-				`${APIendpoint}?offset=${offset}&limit=${limit}`
-			);
+			//* Para la primera petición
+			response1 = await axios.get(`${APIendpoint}?offset=${0}&limit=${20}`);
+			response2 = await axios.get(`${APIendpoint}?offset=${20}&limit=${20}`);
 			apiPokemons = response1.data.results.concat(response2.data.results);
 		} else {
+			//* Para el resto de la peticiones
 			response1 = await axios.get(
-				`${APIendpoint}?offset=${off}&limit=${limit}`
+				`${APIendpoint}?offset=${offset}&limit=${20}`
 			);
-			response2 = await axios.get(`${APIendpoint}`);
+			response2 = await axios.get(
+				`${APIendpoint}?offset=${offset + 20}&limit=${20}`
+			);
+			apiPokemons = response1.data.results.concat(response2.data.results);
 		}
 
 		const pokemons = await Promise.all(
-			response.data.results.map(async (pokemon) => {
+			apiPokemons.map(async (pokemon) => {
 				const { data } = await axios.get(pokemon.url);
 				const { name, stats, sprites, height, weight, types } = data;
 				const newPokemon = {
@@ -66,8 +67,12 @@ const getAllPokemons = async (req, res) => {
 			})
 		);
 
-		return res.status(200).json(pokemons);
+		return res.status(200).json({
+			nextOffset: offset + limit,
+			pokemons
+		});
 	} catch (error) {
+		console.log(error);
 		return res.status(500).send(error.message);
 	}
 };
