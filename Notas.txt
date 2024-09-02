@@ -1,9 +1,14 @@
 FALTA en el proyecto:
 - Reestructurar el backend y sus rutas ✅
 - Arreglar problemas de la coincidencias de ID (en su lugar usar UUID) ✅
+
 - Cambiar el uso de REDUX con ZUNTAG
-- Las unicas rutas que guarda en base de datos deberia ser "/types" y "pokemons"
-- Crear ruta que me traiga 40 pokemones cada vez (almacenar en ZUTANG y BD)
+
+- Las UNICAS RUTAS QUE VAN GUARDAR DATA EN BD son "/types" (osea los 20 tipos de pokemones)  y "/pokemons" (todo los pokemones)
+- Crear ruta que me traiga 40 pokemones cada vez que el usuario hace scroll (almacenar en ZUTANG y BD)
 - Crear ruta que me traiga todos los pokemones de cierto tipo (almacenar en ZUTANG y BD)
+- La ruta para los details va a ser "/pokename" y se envia la solicitud cuando el usuario lo tipea o hace click (NO guarda nada en BD, solo extrae la data desde la BD)
+
 - Inspiración del proyecto: https://pokestats.gg/
+
 - Revisar y descargar version anterior del proyecto para ver su funcionamiento (REDUX front y rutas back)

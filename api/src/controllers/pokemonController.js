@@ -175,27 +175,6 @@ const getPokemonById = async (req, res) => {
 				)
 			};
 
-			//? Creo este TypesId manualmente para crear la relación de pokemons_x_types (busco el indice del tipo en la BD)
-			// const TypesId = await Promise.all(
-			// 	types.map(async (el) => {
-			// 		const DBType = await Type.findOne({ where: { nombre: el.type.name } })
-			// 		return DBType.id
-			// 	})
-			// )
-
-			//? Guardando / Creando registro en BD y Creando la relación con Types
-			// let DBPokemon = await Pokemon.create(newPokemon)
-			// await DBPokemon.addType(TypesId)
-
-			//? Respuesta JSON
-			// DBPokemon = await Pokemon.findOne({
-			// 	where: { id },
-			// 	include: {
-			// 		model: Type,
-			// 		attributes: ["id", "nombre"],
-			// 		through: { attributes: [] }
-			// 	}
-			// })
 			return res.status(200).json(newPokemon);
 		} catch (error) {
 			//* 1) Se entra al catch pq el ID de params no esta entre 1 y 1302
