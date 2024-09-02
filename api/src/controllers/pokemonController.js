@@ -7,7 +7,24 @@ const getAllPokemons = async (req, res) => {
 	try {
 		const offset = req.query.offset || 0;
 		const limit = 40;
-		const response = await axios.get(APIendpoint);
+		let response1;
+		let response2;
+		let apiPokemons;
+
+		if (offset === 0) {
+			response1 = await axios.get(
+				`${APIendpoint}?offset=${offset}&limit=${limit}`
+			);
+			response2 = await axios.get(
+				`${APIendpoint}?offset=${offset}&limit=${limit}`
+			);
+			apiPokemons = response1.data.results.concat(response2.data.results);
+		} else {
+			response1 = await axios.get(
+				`${APIendpoint}?offset=${off}&limit=${limit}`
+			);
+			response2 = await axios.get(`${APIendpoint}`);
+		}
 
 		const pokemons = await Promise.all(
 			response.data.results.map(async (pokemon) => {
