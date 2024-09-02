@@ -27,6 +27,7 @@ const getAllPokemons = async (req, res) => {
 			apiPokemons = response1.data.results.concat(response2.data.results);
 		}
 
+		//* MAPEO EL ARRAY DE POKEMONS QUE ME DIO LA API
 		const pokemons = await Promise.all(
 			apiPokemons.map(async (pokemon) => {
 				const { data } = await axios.get(pokemon.url);
