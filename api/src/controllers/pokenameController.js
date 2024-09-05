@@ -19,7 +19,7 @@ const getPokemonByName = async (req, res) => {
 	//* si el pokemon SI existe en la BD, te lo devuelve sin volver a buscar en API
 	if (pokemonWanted) {
 		console.log(`${pokemonWanted.nombre.toUpperCase()} already in DB.`);
-		pokemonWanted.dataValues.source = "api";
+		pokemonWanted.dataValues.source = "DB";
 		return res.status(200).json(pokemonWanted);
 	} else {
 		//* si el pokemon NO existe en la BD, lo buscara en la API y luego lo guarda en BD

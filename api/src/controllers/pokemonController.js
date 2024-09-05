@@ -29,62 +29,60 @@ const getAllPokemons = async (req, res) => {
 
 		//* MAPEO EL ARRAY DE POKEMONS QUE ME DIO LA API
 		const pokemons = await Promise.all(
-			apiPokemons
-				.filter((pokemon) => pokemon.nombre !== "repetido")
-				.map(async (pokemon) => {
-					const { data } = await axios.get(pokemon.url);
-					const { name, stats, sprites, height, weight, types } = data;
+			apiPokemons.map(async (pokemon) => {
+				const { data } = await axios.get(pokemon.url);
+				const { name, stats, sprites, height, weight, types } = data;
 
-					//* reviso si el pokemon ya esta en BD
-					const checkingPokemon = Pokemon.findOne({
-						where: { nombre: name },
-						include: {
-							model: Type,
-							attributes: ["id", "nombre"],
-							through: { attributes: [] }
-						}
-					});
-					if (checkingPokemon) {
-						console.log(checkingPokemon);
-						//checkingPokemon.dataValues.source = "DB";
-						return checkingPokemon;
+				//* reviso si el pokemon ya esta en BD
+				const checkingPokemon = await Pokemon.findOne({
+					where: { nombre: name },
+					include: {
+						model: Type,
+						attributes: ["id", "nombre"],
+						through: { attributes: [] }
 					}
+				});
+				if (checkingPokemon) {
+					console.log(checkingPokemon);
+					checkingPokemon.dataValues.source = "DB";
+					return checkingPokemon;
+				}
 
-					//* creando nuevo pokemon
-					const newPokemon = {
-						nombre: name,
-						imagen: sprites.other["official-artwork"]["front_default"],
-						vida: stats[0]["base_stat"],
-						ataque: stats[1]["base_stat"],
-						defensa: stats[2]["base_stat"],
-						velocidad: stats[5]["base_stat"],
-						altura: height,
-						peso: weight
-					};
+				//* creando nuevo pokemon
+				const newPokemon = {
+					nombre: name,
+					imagen: sprites.other["official-artwork"]["front_default"],
+					vida: stats[0]["base_stat"],
+					ataque: stats[1]["base_stat"],
+					defensa: stats[2]["base_stat"],
+					velocidad: stats[5]["base_stat"],
+					altura: height,
+					peso: weight
+				};
 
-					const TypesId = await Promise.all(
-						types.map(async (el) => {
-							const DBType = await Type.findOne({
-								where: { nombre: el.type.name } //?busca coincidencia con el tipo de pokemon
-							});
-							return DBType.id; //? solo devuelve el id del tipo (númerico)
-						})
-					);
+				const TypesId = await Promise.all(
+					types.map(async (el) => {
+						const DBType = await Type.findOne({
+							where: { nombre: el.type.name } //?busca coincidencia con el tipo de pokemon
+						});
+						return DBType.id; //? solo devuelve el id del tipo (númerico)
+					})
+				);
 
-					//* AQUI CREA AL POKEMON EN BD, HACE LA RELACION DE TIPO Y LUEGO LO VUELVE A BUSCAR EN BD
-					let DBPokemon = await Pokemon.create(newPokemon);
-					await DBPokemon.addType(TypesId);
-					DBPokemon = await Pokemon.findOne({
-						where: { nombre: name },
-						include: {
-							model: Type,
-							attributes: ["id", "nombre"],
-							through: { attributes: [] }
-						}
-					});
-
-					return DBPokemon;
-				})
+				//* AQUI CREA AL POKEMON EN BD, HACE LA RELACION DE TIPO Y LUEGO LO VUELVE A BUSCAR EN BD
+				let DBPokemon = await Pokemon.create(newPokemon);
+				await DBPokemon.addType(TypesId);
+				DBPokemon = await Pokemon.findOne({
+					where: { nombre: name },
+					include: {
+						model: Type,
+						attributes: ["id", "nombre"],
+						through: { attributes: [] }
+					}
+				});
+				DBPokemon.dataValues.source = "api";
+				return DBPokemon;
+			})
 		);
 
 		console.log("40 pokemons were inserted in BD.");
