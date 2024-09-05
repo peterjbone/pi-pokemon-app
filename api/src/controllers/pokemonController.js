@@ -37,13 +37,17 @@ const getAllPokemons = async (req, res) => {
 
 					//* reviso si el pokemon ya esta en BD
 					const checkingPokemon = Pokemon.findOne({
-						where: { nombre: name }
+						where: { nombre: name },
+						include: {
+							model: Type,
+							attributes: ["id", "nombre"],
+							through: { attributes: [] }
+						}
 					});
 					if (checkingPokemon) {
-						console.log(
-							`${checkingPokemon.nombre.toUpperCase()} already in BD.`
-						);
-						return { nombre: "repetido" };
+						console.log(checkingPokemon);
+						//checkingPokemon.dataValues.source = "DB";
+						return checkingPokemon;
 					}
 
 					//* creando nuevo pokemon
