@@ -11,6 +11,7 @@ const getAllPokemons = async (req, res) => {
 		let response2;
 		let apiPokemons;
 
+		//* DEFINIENDO EL OFFSET Y EL LIMIT PARA HACER LA PETICION A LA API
 		if (offset === 0) {
 			//* Para la primera petición
 			response1 = await axios.get(`${APIendpoint}?offset=${0}&limit=${20}`);
@@ -43,7 +44,7 @@ const getAllPokemons = async (req, res) => {
 					}
 				});
 				if (checkingPokemon) {
-					console.log(checkingPokemon);
+					console.log(`${checkingPokemon.nombre.toUpperCase()} already in DB.`);
 					checkingPokemon.dataValues.source = "DB";
 					return checkingPokemon;
 				}
@@ -69,7 +70,7 @@ const getAllPokemons = async (req, res) => {
 					})
 				);
 
-				//* AQUI CREA AL POKEMON EN BD, HACE LA RELACION DE TIPO Y LUEGO LO VUELVE A BUSCAR EN BD
+				//* creo al nuevo pokemon en bd, crea la relación de tipo y traigo al pokemon de nuevo de la bd
 				let DBPokemon = await Pokemon.create(newPokemon);
 				await DBPokemon.addType(TypesId);
 				DBPokemon = await Pokemon.findOne({
@@ -85,7 +86,8 @@ const getAllPokemons = async (req, res) => {
 			})
 		);
 
-		console.log("40 pokemons were inserted in BD.");
+		//* DEVUELVO LA RESPUESTA SOLICITADA
+		console.log("40 more pokemons were inserted in BD.");
 		return res.status(200).json({
 			nextOffset: offset + limit,
 			pokemons
