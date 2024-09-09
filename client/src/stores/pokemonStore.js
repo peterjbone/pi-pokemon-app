@@ -1,5 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
+import {VITE_BACKEND_URL} from import.meta.env
+
 
 //* store
 export const usePokemonStore = create((set, get) => ({
@@ -8,7 +10,12 @@ export const usePokemonStore = create((set, get) => ({
 	selectedPokemons: [],
 	//* actions
 	getAllPokemons: async () => {
-		const endpoint = "";
-		const { data } = axios.get(`${endpoint}`);
+    const { data } = axios.get(`${VITE_BACKEND_URL}/pokemons`);
+    set((state) => (
+      {
+        allPokemons: [...state.allPokemons, data],
+        selectedPokemons: [...state.selectedPokemons, data]
+      }
+    ))
 	}
 }));
