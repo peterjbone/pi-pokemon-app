@@ -9,8 +9,8 @@ export const usePokemonStore = create((set, get) => ({
 	allPokemons: [],
 	selectedPokemons: [],
 	//* actions
-	getFortyPokemons: async () => {
-    const { data } = axios.get(`${VITE_BACKEND_URL}/pokemons`);
+	getFortyPokemons: async (offset) => {
+    const { data } = await axios.get(`${VITE_BACKEND_URL}/pokemons?offset=${offset}`);
     set((state) => (
       {
         allPokemons: [...state.allPokemons, ...data],
