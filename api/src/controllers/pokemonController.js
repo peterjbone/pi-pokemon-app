@@ -87,7 +87,7 @@ const getAllPokemons = async (req, res) => {
 		);
 
 		//* DEVUELVO LA RESPUESTA SOLICITADA
-		console.log("40 more pokemons were inserted in BD.");
+		console.log("40 more pokemons were inserted in BD");
 		return res.status(200).json({
 			nextOffset: offset + limit,
 			pokemons

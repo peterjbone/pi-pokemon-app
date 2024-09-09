@@ -13,7 +13,7 @@ export const usePokemonStore = create((set, get) => ({
   getFortyPokemons: async () => {
     const offset = get().offset; //? antiguo offset desde el estado global
     const { data } = await axios.get(`${VITE_BACKEND_URL}/pokemons?offset=${offset}`);
-    console.log(data);
+    //console.log(data);
     
     set((state) => (
       {
