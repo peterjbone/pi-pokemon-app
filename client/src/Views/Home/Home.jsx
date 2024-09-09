@@ -1,6 +1,6 @@
 import styles from "./Home.module.css";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaArrowUp } from "react-icons/fa";
 import SearchBar from "../../Components/SearchBar/SearchBar.jsx";
@@ -9,23 +9,19 @@ import Cards from "../../Components/Cards/Cards.jsx";
 import { usePokemonStore } from "../../stores/pokemonStore.js";
 
 function Home() {
-	//const URLGetAllTypes = "http://localhost:3001/types";
-	//const URLGetAllPokemons = "http://localhost:3001/pokemons";
-	//const [defaultPokemons, setDefaultPokemons] = useState([]);
 	const { VITE_BACKEND_URL } = import.meta.env;
+	const allPokemons = usePokemonStore((state) => state.allPokemons);
+	const selectedPokemons = usePokemonStore((state) => state.selectedPokemons);
 	const getFortyPokemons = usePokemonStore((state) => state.getFortyPokemons);
 
 	useEffect(() => {
 		async function getInitialPokemons() {
 			try {
-				await axios.get(`${VITE_BACKEND_URL}/types`); //* guardar todos los tipos en BD al cargar home
-				const { data } = await getFortyPokemons(); //* obtiene a todos 40 pokemons
-				setDefaultPokemons(data); //* guardando todos los pokemons en el estado local
+				await axios.get(`${VITE_BACKEND_URL}/types`); //* trae y guarda los tipos en BD
+				await getFortyPokemons(); //* obtiene 40 pokemons y los guarda en BD y en zustand
 			} catch (error) {
-				console.error(
-					"Error al obtener a los pokemones y/o los tipos:",
-					error.message
-				);
+				console.log(error);
+				console.log("Error de la función getInitialPokemons", error.message);
 			}
 		}
 
@@ -48,7 +44,7 @@ function Home() {
 				<p>Crea tu Pokemon</p>
 			</div>
 			{/* CARDS */}
-			<Cards />
+			<Cards pokemons={selectedPokemons} />
 		</div>
 	);
 }

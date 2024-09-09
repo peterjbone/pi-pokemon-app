@@ -8,7 +8,7 @@ import {
 } from "../../Redux/Actions";
 import Card from "../Card/Card";
 
-const Cards = () => {
+const Cards = ({ pokemons }) => {
 	//* pokemones guardados en redux
 	const selectedPokemons = useSelector((state) => state.selectedPokemons);
 
@@ -40,6 +40,7 @@ const Cards = () => {
 	return (
 		<div className="cards">
 			{/* FILTERS AND ORDER CONTAINERS */}
+			{/* si el estado de pokemons no esta vacio se muestra la barra de filtros y ordenadores */}
 			{!selectedPokemons.length ? null : (
 				<div className="filters-n-order-container">
 					{/* Order alpha  */}
@@ -112,14 +113,14 @@ const Cards = () => {
 			)}
 			{/* CARDS CONTAINER */}
 			{/* Mensaje si no hay pokemones y Cards de pokemons cuando sí haya */}
-			{!selectedPokemons.length ? (
+			{!pokemons.length ? (
 				<div className="no-pokemons">
-					<h1>No tienes pokemones agregados!</h1>
+					<h1>Hubo un error al mostrar a los pokemons :(</h1>
 					<img src="../../../../public/sad-pikachu.gif" alt="sad-pikachu" />
 				</div>
 			) : (
 				<div className="yes-pokemons">
-					{selectedPokemons.map((pokemon, index) => (
+					{pokemons.map((pokemon, index) => (
 						<Card key={index + 1} pokemon={pokemon} />
 					))}
 				</div>
