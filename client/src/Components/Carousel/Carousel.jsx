@@ -1,8 +1,8 @@
 import "./Carousel.css";
 import { useEffect } from "react";
-import CardOne from "../CardOne/CardOne.jsx";
+//import CardOne from "../CardOne/CardOne.jsx";
 
-function Carousel({ defaultPokemons }) {
+function Carousel({ pokemons }) {
 	//* EFECTO CARRUSEL - CÓDIGO JS
 	useEffect(() => {
 		//? Lo pongo en plural por si necesito seleccionar mas scrollers
@@ -38,8 +38,8 @@ function Carousel({ defaultPokemons }) {
 		<div className="scroller" data-direction="left" data-speed="slow">
 			<h2 className="subtitulo">Algunos pokemones de primera generación:</h2>
 			<ul className="cards-list scroller__inner">
-				{defaultPokemons.map((pokemon) => (
-					<li key={pokemon.id}>{<CardOne pokemon={pokemon} />}</li>
+				{pokemons.map((pokemon) => (
+					<li key={pokemon.id}>{/*<CardOne pokemon={pokemon} />*/}</li>
 				))}
 			</ul>
 		</div>
