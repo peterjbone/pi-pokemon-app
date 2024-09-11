@@ -12,3 +12,10 @@ FALTA en el proyecto:
 - Inspiración del proyecto: https://pokestats.gg/
 
 - Revisar y descargar version anterior del proyecto para ver su funcionamiento (REDUX front y rutas back)
+
+
+TECNOLOGIAS USADAS EN ESTE PROYECTO 
+- React (con javascript)
+- CSS modules y css puro (NO uso SASS, styled components, tailwindcss, bootstrap, shadcnui, etc)
+- Node y express
+- PostgreSQL y sequelize

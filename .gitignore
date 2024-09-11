@@ -27,6 +27,6 @@ dist-ssr
 .env
 
 # Others
-*/Notas.txt
+*/notas.txt
 *.txt
-./Notas.txt
+./notas.txt

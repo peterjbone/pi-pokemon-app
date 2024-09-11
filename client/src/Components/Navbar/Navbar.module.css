@@ -1,0 +1,31 @@
+.navbar {
+	width: 100%;
+	height: 100px;
+	padding: 0 20px;
+
+	color: var(--second-clr);
+	background-color: var(--fourth-clr);
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	transition: color 0.5s ease-in-out, color 0.5s ease-in-out,
+		background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+.navbarFormLink {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.navbarFormLink img {
+	width: 40px;
+	height: 40px;
+}
+
+.navbar h1 {
+	font-size: 2rem;
+}

@@ -9,9 +9,9 @@ function App() {
 	return (
 		<>
 			<Routes>
-				<Route path="/" element={<Landing />}></Route>
-				<Route path="/home" element={<Home />}></Route>
+				{/* 	<Route path="/" element={<Landing />}></Route> */}
 				{/* <Route path="/home/page/:numero" element={<Cards />}></Route> */}
+				<Route path="/" element={<Home />}></Route>
 				<Route path="/details/:id" element={<Details />}></Route>
 				<Route path="/form" element={<FormPokemon />}></Route>
 			</Routes>
