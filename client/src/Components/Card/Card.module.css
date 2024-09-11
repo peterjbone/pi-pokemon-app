@@ -1,9 +1,13 @@
 .card {
-	padding: 0.5rem;
-	border: 5px solid #f00;
+	padding: 0;
+	height: fit-content;
+	border: 3px solid #f00;
+
 	text-align: center;
+
 	color: var(--third-clr);
 	background-color: var(--main-clr);
+
 	transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 
@@ -17,10 +21,10 @@
 }
 
 .card img {
-	height: 60%;
+	height: 150px;
 }
 
-.card {
-	color: var(--fourth-clr);
-	background-color: var(--second-clr);
+.card p {
+	font-size: 1rem;
+	font-weight: 700;
 }
