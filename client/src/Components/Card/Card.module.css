@@ -1,25 +1,26 @@
-.card.two {
+.card {
 	padding: 0.5rem;
+	border: 5px solid #f00;
 	text-align: center;
 	color: var(--third-clr);
 	background-color: var(--main-clr);
 	transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 
-.card.two ul {
+.card ul {
 	list-style-position: inside;
 }
 
-.card.two a {
+.card a {
 	text-decoration: none;
 	color: inherit;
 }
 
-.card.two img {
+.card img {
 	height: 60%;
 }
 
-.card.two {
+.card {
 	color: var(--fourth-clr);
 	background-color: var(--second-clr);
 }

@@ -1,22 +1,12 @@
 import styles from "./Card.module.css";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { deletePokemon } from "../../Redux/Actions";
 
 function Card({ pokemon }) {
-	const { id, nombre, ataque, imagen, Types } = pokemon;
-
-	//* Dispatch para eliminar al pokemon actual de REDUX y POSTGRESQL
-	const dispatch = useDispatch();
-	const closeCard = (e) => {
-		e.preventDefault();
-		dispatch(deletePokemon(nombre));
-	};
-
+	const { nombre, ataque, imagen, Types } = pokemon;
 	return (
-		<div className="card two">
-			<button onClick={closeCard}>X</button>
-			<Link to={`/details/${id}`}>
+		<div className={styles.card}>
+			<button>X</button>
+			<Link to={`/details/${nombre}`}>
 				<h3>{nombre.toUpperCase()}</h3>
 				<p> Ataque: {ataque} </p>
 				<img src={imagen} alt={nombre} />
