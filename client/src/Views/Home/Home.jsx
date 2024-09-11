@@ -1,10 +1,6 @@
-import styles from "./Home.module.css";
+//import styles from "./Home.module.css";
 import axios from "axios";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { FaArrowUp } from "react-icons/fa";
-import SearchBar from "../../Components/SearchBar/SearchBar.jsx";
-import DarkMode from "../../Components/DarkMode/DarkMode.jsx";
 import Cards from "../../Components/Cards/Cards.jsx";
 import { usePokemonStore } from "../../stores/pokemonStore.js";
 import Navbar from "../../Components/Navbar/Navbar.jsx";
