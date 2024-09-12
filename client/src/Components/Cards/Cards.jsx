@@ -111,6 +111,7 @@ const Cards = ({ pokemons }) => {
 					</div>
 				</div>
 			)}
+
 			{/* CARDS CONTAINER */}
 			{/* Mensaje si no hay pokemones y Cards de pokemons cuando sí haya */}
 			{!pokemons.length ? (

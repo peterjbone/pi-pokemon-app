@@ -1,6 +1,7 @@
 .card {
 	padding: 0;
-	height: fit-content;
+	width: auto;
+	height: auto;
 	border: 3px solid #f00;
 
 	text-align: center;
@@ -21,7 +22,7 @@
 }
 
 .card img {
-	height: 150px;
+	height: 140px;
 }
 
 .card p {

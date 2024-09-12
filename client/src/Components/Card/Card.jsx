@@ -10,7 +10,6 @@ function Card({ pokemon }) {
 				<img src={imagen} alt={nombre} />
 				<p>Attack: {ataque} </p>
 				<h4>Types: </h4>
-				{console.log(Types)}
 				<ul>
 					{Types.map((type, index) => (
 						<li key={index + 1}> {type.nombre} </li>
