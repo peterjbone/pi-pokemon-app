@@ -11,6 +11,10 @@ function Pokemon(sequelize) {
 				//autoIncrement: true,
 				allowNull: false
 			},
+			idApi: {
+				type: DataTypes.INTEGER,
+				allowNull: false
+			},
 			nombre: {
 				type: DataTypes.STRING,
 				allowNull: false,

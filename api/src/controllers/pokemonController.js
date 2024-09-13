@@ -32,7 +32,7 @@ const getAllPokemons = async (req, res) => {
 		const pokemons = await Promise.all(
 			apiPokemons.map(async (pokemon) => {
 				const { data } = await axios.get(pokemon.url);
-				const { name, stats, sprites, height, weight, types } = data;
+				const { id, name, stats, sprites, height, weight, types } = data;
 
 				//* reviso si el pokemon ya esta en BD
 				const checkingPokemon = await Pokemon.findOne({
@@ -51,6 +51,7 @@ const getAllPokemons = async (req, res) => {
 
 				//* creando nuevo pokemon
 				const newPokemon = {
+					idApi: id,
 					nombre: name,
 					imagen: sprites.other["official-artwork"]["front_default"],
 					vida: stats[0]["base_stat"],
