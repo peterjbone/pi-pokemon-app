@@ -7,14 +7,17 @@ import Navbar from "../../Components/Navbar/Navbar.jsx";
 function Home() {
 	const { VITE_BACKEND_URL } = import.meta.env;
 	const [initialUpload, setInitialUpload] = useState(true);
+	const [isBottom, setIsBottom] = useState(false);
+
 	//* estados globales
 	const selectedPokemons = usePokemonStore((state) => state.selectedPokemons);
 	const offset = usePokemonStore((state) => state.offset);
+
 	//* acciones
 	const getFortyPokemons = usePokemonStore((state) => state.getFortyPokemons);
 	const resetPokemons = usePokemonStore((state) => state.resetPokemons);
 
-	//* traemos los primeros 40 pokemons
+	//* 1) traemos los primeros 40 pokemons
 	useEffect(() => {
 		async function getInitialPokemons() {
 			if (!initialUpload) return;
@@ -30,6 +33,36 @@ function Home() {
 
 		getInitialPokemons();
 	}, [initialUpload]);
+
+	//* 2 escuchar evento scroll y saber cuando el usuario llego al final
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+				setIsBottom(true);
+			} else {
+				setIsBottom(false);
+			}
+		};
+
+		window.addEventListener("scroll", handleScroll);
+
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
+
+	//* 3) Pido al siguiente grupo de pokemons
+	useEffect(() => {
+		async function getMorePokemons() {
+			try {
+				await getFortyPokemons(offset);
+			} catch (error) {
+				console.log(error);
+			}
+		}
+
+		if (isBottom) {
+			getMorePokemons();
+		}
+	}, [isBottom]);
 
 	//************************************COMPONENT HOME******************/
 	return (

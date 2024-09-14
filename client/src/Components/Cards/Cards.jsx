@@ -3,9 +3,10 @@ import Card from "../Card/Card";
 import { usePokemonStore } from "../../stores/pokemonStore.js";
 
 const Cards = ({ pokemons }) => {
+	//* actions
 	const sortByName = usePokemonStore((state) => state.sortByName);
 
-	//* Sorts functions
+	//* Sorts handlers
 	function handleSortByName(event) {
 		const { value } = event.target;
 		sortByName(value);
@@ -15,8 +16,16 @@ const Cards = ({ pokemons }) => {
 		const { value } = event.target;
 	}
 
-	//* Filters functions
+	function handleSortById(event) {
+		const { value } = event.target;
+	}
+
+	//* Filters handlers
 	function handleTypeFilter(event) {
+		const { value } = event.target;
+	}
+
+	function handleFilterByGeneration(event) {
 		const { value } = event.target;
 	}
 
