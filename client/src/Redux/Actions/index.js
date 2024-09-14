@@ -43,13 +43,6 @@ export function deletePokemon(nombre) {
 	};
 }
 
-export function filterByOrigin(origin) {
-	return {
-		type: FILTER_ORIGIN,
-		payload: origin
-	};
-}
-
 export function filterByType(type) {
 	return {
 		type: FILTER_TYPE,

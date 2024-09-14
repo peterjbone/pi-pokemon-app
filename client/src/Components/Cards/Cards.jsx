@@ -1,11 +1,6 @@
 import styles from "./Cards.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import {
-	filterByOrigin,
-	filterByType,
-	orderByAlpha,
-	orderByAttack
-} from "../../Redux/Actions";
+import { filterByType, orderByAlpha, orderByAttack } from "../../Redux/Actions";
 import Card from "../Card/Card";
 
 const Cards = ({ pokemons }) => {
@@ -29,11 +24,6 @@ const Cards = ({ pokemons }) => {
 	function handleTypeFilter(event) {
 		const { value } = event.target;
 		dispatch(filterByType(value));
-	}
-
-	function handleOriginFilter(event) {
-		const { value } = event.target;
-		dispatch(filterByOrigin(value));
 	}
 
 	//************************************* COMPONENTE CARDS**************************/
@@ -96,18 +86,6 @@ const Cards = ({ pokemons }) => {
 							<option value="fairy">Fairy</option>
 							<option value="unknown">Unknown</option>
 							<option value="shadow">Shadow</option>
-						</select>
-					</div>
-					{/* Origin filter */}
-					<div>
-						<h3>Filtrar por origen</h3>
-						<select name="origin-filter" onChange={handleOriginFilter}>
-							<option value="" disabled readOnly selected>
-								(Escoge una opción)
-							</option>
-							<option value="all">Todos</option>
-							<option value="api">API</option>
-							<option value="db">DB</option>
 						</select>
 					</div>
 				</div>
