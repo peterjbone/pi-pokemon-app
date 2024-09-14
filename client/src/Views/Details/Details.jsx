@@ -1,4 +1,4 @@
-import styles from "./Details.css";
+import styles from "./Details.module.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -14,12 +14,13 @@ function Details() {
 			const { data } = await axios.get(
 				`${VITE_BACKEND_URL}/pokename?name=${name}`
 			);
+			console.log(data);
 			setCurrentPokemon(data);
 		}
 		getPokemonByName();
 
 		return () => {
-			setCurrentPokemon({});
+			setCurrentPokemon(null);
 		};
 	}, [name]);
 
