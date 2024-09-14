@@ -40,8 +40,9 @@ const Cards = ({ pokemons }) => {
 	return (
 		<div className="cards">
 			{/* FILTERS AND ORDER CONTAINERS */}
-			{/* si el estado de pokemons no esta vacio se muestra la barra de filtros y ordenadores */}
-			{!selectedPokemons.length ? null : (
+			{/* NO HAY POKEMONS: no se muestra nada*/}
+			{/* SI HAY POKEMONS: se muestran los filtros*/}
+			{!pokemons.length ? null : (
 				<div className="filters-n-order-container">
 					{/* Order alpha  */}
 					<div className="alpha-order-container">
@@ -113,7 +114,8 @@ const Cards = ({ pokemons }) => {
 			)}
 
 			{/* CARDS CONTAINER */}
-			{/* Mensaje si no hay pokemones y Cards de pokemons cuando sí haya */}
+			{/* NO HAY POKEMONS: mensaje de error*/}
+			{/* SI HAY POKEMONS: se muestran los pokemones*/}
 			{!pokemons.length ? (
 				<div className="no-pokemons">
 					<h1>Hubo un error al mostrar a los pokemons :(</h1>

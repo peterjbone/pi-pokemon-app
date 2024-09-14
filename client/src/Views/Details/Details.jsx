@@ -1,24 +1,31 @@
-import "./Details.css";
+import styles from "./Details.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+const { VITE_BACKEND_URL } = import.meta.env;
 
 function Details() {
-	const { id } = useParams();
-	const URLGetPokemonById = "http://localhost:3001/pokemons/";
+	const { name } = useParams();
 	const [currentPokemon, setCurrentPokemon] = useState({});
 
-	//* Obteniendo el Pokemon al montar el componente
+	//* Obteniendo el Pokemon con el nombre
 	useEffect(() => {
-		async function getCurrentPokemon() {
-			const { data } = await axios.get(`${URLGetPokemonById}${id}`);
+		async function getPokemonByName() {
+			const { data } = await axios.get(
+				`${VITE_BACKEND_URL}/pokename?name=${name}`
+			);
 			setCurrentPokemon(data);
 		}
-		getCurrentPokemon();
-	}, [id]);
+		getPokemonByName();
 
+		return () => {
+			setCurrentPokemon({});
+		};
+	}, [name]);
+
+	//******************************* COMPONENTE DETAILS
 	return (
-		<div className="details">
+		<div className={styles.details}>
 			<div className="neon-border">
 				<img src={currentPokemon.imagen} alt={currentPokemon.nombre} />
 			</div>
@@ -28,7 +35,7 @@ function Details() {
 					<span className="property">Nombre:</span> {currentPokemon.nombre}
 				</h1>
 				<h2>
-					<span className="property">ID:</span> {currentPokemon.id}
+					<span className="property">ID #:</span> {currentPokemon.idApi}
 				</h2>
 				<h2>
 					<span className="property">Vida: </span>
