@@ -6,7 +6,7 @@ const { VITE_BACKEND_URL } = import.meta.env;
 
 function Details() {
 	const { name } = useParams();
-	const [currentPokemon, setCurrentPokemon] = useState({});
+	const [pokemon, setPokemon] = useState({});
 
 	//* Obteniendo el Pokemon con el nombre
 	useEffect(() => {
@@ -14,71 +14,66 @@ function Details() {
 			const { data } = await axios.get(
 				`${VITE_BACKEND_URL}/pokename?name=${name}`
 			);
-			console.log(data);
-			setCurrentPokemon(data);
+			setPokemon(data);
 		}
 		getPokemonByName();
-
-		return () => {
-			setCurrentPokemon(null);
-		};
-	}, [name]);
+	}, []);
 
 	//******************************* COMPONENTE DETAILS
 	return (
 		<div className={styles.details}>
 			<div className="neon-border">
-				<img src={currentPokemon.imagen} alt={currentPokemon.nombre} />
+				<img src={pokemon.imagen} alt={pokemon.nombre} />
 			</div>
 			<div>
 				<h1>
 					{" "}
-					<span className="property">Nombre:</span> {currentPokemon.nombre}
+					<span className="property">Nombre:</span> {pokemon.nombre}
 				</h1>
 				<h2>
-					<span className="property">ID #:</span> {currentPokemon.idApi}
+					<span className="property">ID #:</span> {pokemon.idApi}
 				</h2>
 				<h2>
 					<span className="property">Vida: </span>
-					{currentPokemon.vida}
+					{pokemon.vida}
 				</h2>
 				<h2>
 					<span className="property">Ataque: </span>
-					{currentPokemon.ataque}
+					{pokemon.ataque}
 				</h2>
 				<h2>
 					<span className="property">Defensa: </span>
-					{currentPokemon.defensa}
+					{pokemon.defensa}
 				</h2>
-				{currentPokemon.velocidad ? (
+				{pokemon.velocidad ? (
 					<h2>
 						<span className="property">Velocidad: </span>
-						{currentPokemon.velocidad}{" "}
+						{pokemon.velocidad}{" "}
 					</h2>
 				) : null}
-				{currentPokemon.altura ? (
+				{pokemon.altura ? (
 					<h2>
 						{" "}
 						<span className="property">Altura: </span>
-						{currentPokemon.altura}{" "}
+						{pokemon.altura}{" "}
 					</h2>
 				) : null}
-				{currentPokemon.peso ? (
+				{pokemon.peso ? (
 					<h2>
 						{" "}
 						<span className="property">Peso: </span>
-						{currentPokemon.peso}{" "}
+						{pokemon.peso}{" "}
 					</h2>
 				) : null}
 
-				{currentPokemon.Types ? (
+				{pokemon.Types ? (
 					<>
 						<h2>
 							{" "}
 							<span className="property">Tipo/s:</span>
 						</h2>
 						<ul>
-							{currentPokemon.Types.map((type, index) => (
+							{pokemon.Types.map((type, index) => (
 								<li key={index}> {type.nombre} </li>
 							))}
 						</ul>
