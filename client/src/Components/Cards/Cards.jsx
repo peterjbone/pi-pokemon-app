@@ -44,7 +44,7 @@ const Cards = ({ pokemons }) => {
 						{/* sort by name */}
 						<div>
 							<h3>Sort by name</h3>
-							<select name="name-sort" onChange={handleSortByName}>
+							<select name="sortByName" onChange={handleSortByName}>
 								<option value="" disabled readOnly selected>
 									(choose an option)
 								</option>

@@ -19,18 +19,6 @@ function rootReducer(state = initialState, { type, payload }) {
 				allPokemons: [payload, ...state.allPokemons]
 			};
 
-		case REMOVE_POKE: {
-			const pokemonsLeft = state.allPokemons.filter(
-				(pokemon) => pokemon.nombre !== payload
-			);
-
-			return {
-				...state,
-				selectedPokemons: pokemonsLeft,
-				allPokemons: pokemonsLeft
-			};
-		}
-
 		case FILTER_TYPE: {
 			if (payload === "default") {
 				return {

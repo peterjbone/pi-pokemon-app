@@ -5,32 +5,45 @@ const { VITE_BACKEND_URL } = import.meta.env;
 //* store
 export const usePokemonStore = create((set, get) => ({
 	//* initial states
-	allPokemons: [],
-	selectedPokemons: [],
+	allPokemons: [], //? esto es un backup de todos los pokemons
+	selectedPokemons: [], //? estos siempre seran los pokemons usaras en el front
 	offset: 0,
 	//* actions
-	getFortyPokemons: async () => {
-		const offset = get().offset; //? actual offset desde el estado global
-		const { data } = await axios.get(
-			`${VITE_BACKEND_URL}/pokemons?offset=${offset}`
-		);
+	getFortyPokemons: async (currentOffset = 0) => {
+		try {
+			const { data } = await axios.get(
+				`${VITE_BACKEND_URL}/pokemons?offset=${currentOffset}`
+			);
 
+			set((state) => ({
+				allPokemons: [...state.allPokemons, ...data.pokemons],
+				selectedPokemons: [...state.selectedPokemons, ...data.pokemons],
+				offset: data.nextOffset //? seteo el nuevo offset (cuantos pokemons tengo ahora)
+			}));
+		} catch (error) {
+			console.log(error);
+		}
+	},
+	resetPokemons: () => {
 		set((state) => ({
-			allPokemons: [...state.allPokemons, ...data.pokemons],
-			selectedPokemons: [...state.selectedPokemons, ...data.pokemons],
-			offset: data.nextOffset //? nuevo offset desde el backend
+			...state,
+			allPokemons: [],
+			selectedPokemons: [],
+			offset: 0
 		}));
 	},
+	//? SORTS
 	sortByName: (sort) => {
-		const selectedPokemons = get().selectedPokemons;
 		if (sort === "default") {
 			set((state) => ({
 				...state,
-				allPokemons: [...state.allPokemons],
-				selectedPokemons: [...state.allPokemons]
+				selectedPokemons: [...state.allPokemons],
+				allPokemons: [...state.allPokemons]
 			}));
+			return;
 		}
 
+		const selectedPokemons = get().selectedPokemons;
 		const pokemonsCopy = [...structuredClone(selectedPokemons)];
 		if (sort === "A") {
 			pokemonsCopy.sort((a, b) => a.nombre.localeCompare(b.nombre));
@@ -40,8 +53,9 @@ export const usePokemonStore = create((set, get) => ({
 		}
 		set((state) => ({
 			...state,
-			allPokemons: [...state.allPokemons],
-			selectedPokemons: pokemonsCopy
+			selectedPokemons: pokemonsCopy,
+			allPokemons: [...state.allPokemons]
 		}));
+		return;
 	}
 }));
