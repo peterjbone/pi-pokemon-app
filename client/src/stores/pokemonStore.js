@@ -14,7 +14,6 @@ export const usePokemonStore = create((set, get) => ({
 		const { data } = await axios.get(
 			`${VITE_BACKEND_URL}/pokemons?offset=${offset}`
 		);
-		//console.log(data);
 
 		set((state) => ({
 			allPokemons: [...state.allPokemons, ...data.pokemons],

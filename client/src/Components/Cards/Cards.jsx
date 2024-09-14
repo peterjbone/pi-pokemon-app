@@ -1,4 +1,4 @@
-import "./Cards.css";
+import styles from "./Cards.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
 	filterByOrigin,
@@ -38,14 +38,14 @@ const Cards = ({ pokemons }) => {
 
 	//************************************* COMPONENTE CARDS**************************/
 	return (
-		<div className="cards">
+		<div className={styles.cards}>
 			{/* FILTERS AND ORDER CONTAINERS */}
 			{/* NO HAY POKEMONS: no se muestra nada*/}
 			{/* SI HAY POKEMONS: se muestran los filtros*/}
 			{!pokemons.length ? null : (
-				<div className="filters-n-order-container">
+				<div className={styles.filtersAndOrderContainer}>
 					{/* Order alpha  */}
-					<div className="alpha-order-container">
+					<div>
 						<h3>Ordenar alfabeticamente</h3>
 						<select name="alpha-order" onChange={handleAlphaOrder}>
 							<option value="" disabled readOnly selected>
@@ -57,7 +57,7 @@ const Cards = ({ pokemons }) => {
 						</select>
 					</div>
 					{/* Order attack  */}
-					<div className="attack-order-container">
+					<div>
 						<h3>Ordenar por ataque</h3>
 						<select name="attack-order" onChange={handleAttackOrder}>
 							<option value="" disabled readOnly selected>
@@ -69,7 +69,7 @@ const Cards = ({ pokemons }) => {
 						</select>
 					</div>
 					{/* Type Filter  */}
-					<div className="type-filter-container">
+					<div>
 						<h3>Filtrar por tipo</h3>
 						<select name="type-filter" onChange={handleTypeFilter}>
 							<option value="" disabled readOnly selected>
@@ -99,7 +99,7 @@ const Cards = ({ pokemons }) => {
 						</select>
 					</div>
 					{/* Origin filter */}
-					<div className="origin-filter-container">
+					<div>
 						<h3>Filtrar por origen</h3>
 						<select name="origin-filter" onChange={handleOriginFilter}>
 							<option value="" disabled readOnly selected>
@@ -117,12 +117,12 @@ const Cards = ({ pokemons }) => {
 			{/* NO HAY POKEMONS: mensaje de error*/}
 			{/* SI HAY POKEMONS: se muestran los pokemones*/}
 			{!pokemons.length ? (
-				<div className="no-pokemons">
+				<div className={styles.noPokemons}>
 					<h1>Hubo un error al mostrar a los pokemons :(</h1>
 					<img src="../../../../public/sad-pikachu.gif" alt="sad-pikachu" />
 				</div>
 			) : (
-				<div className="yes-pokemons">
+				<div className={styles.yesPokemons}>
 					{pokemons.map((pokemon, index) => (
 						<Card key={index + 1} pokemon={pokemon} />
 					))}

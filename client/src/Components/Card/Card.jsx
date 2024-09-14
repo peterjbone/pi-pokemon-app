@@ -7,7 +7,7 @@ function Card({ pokemon }) {
 		<div className={styles.card}>
 			<Link to={`/details/${nombre}`}>
 				<h3>{nombre.toUpperCase()}</h3>
-				<p>ID (api): {idApi} </p>
+				<p>ID # {idApi} </p>
 				<img src={imagen} alt={nombre} />
 				<p>Attack: {ataque} </p>
 				<h4>Types: </h4>
