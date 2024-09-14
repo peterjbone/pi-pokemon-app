@@ -20,5 +20,28 @@ export const usePokemonStore = create((set, get) => ({
 			selectedPokemons: [...state.selectedPokemons, ...data.pokemons],
 			offset: data.nextOffset //? nuevo offset desde el backend
 		}));
+	},
+	sortByName: (sort) => {
+		const selectedPokemons = get().selectedPokemons;
+		if (sort === "default") {
+			set((state) => ({
+				...state,
+				allPokemons: [...state.allPokemons],
+				selectedPokemons: [...state.allPokemons]
+			}));
+		}
+
+		const pokemonsCopy = [...structuredClone(selectedPokemons)];
+		if (sort === "A") {
+			pokemonsCopy.sort((a, b) => a.nombre.localeCompare(b.nombre));
+		}
+		if (sort === "D") {
+			pokemonsCopy.sort((a, b) => b.nombre.localeCompare(a.nombre));
+		}
+		set((state) => ({
+			...state,
+			allPokemons: [...state.allPokemons],
+			selectedPokemons: pokemonsCopy
+		}));
 	}
 }));

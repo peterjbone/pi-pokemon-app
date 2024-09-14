@@ -1,7 +1,5 @@
 import {
 	ADD_POKE,
-	REMOVE_POKE,
-	FILTER_ORIGIN,
 	FILTER_TYPE,
 	ORDER_ALPHA,
 	ORDER_ATTACK
@@ -31,38 +29,6 @@ function rootReducer(state = initialState, { type, payload }) {
 				selectedPokemons: pokemonsLeft,
 				allPokemons: pokemonsLeft
 			};
-		}
-
-		case FILTER_ORIGIN: {
-			if (payload === "api") {
-				const apiPokemons = state.allPokemons.filter(
-					(pokemon) => pokemon.source === "api"
-				);
-				return {
-					...state,
-					selectedPokemons: apiPokemons,
-					allPokemons: [...state.allPokemons]
-				};
-			}
-
-			if (payload === "db") {
-				const dbPokemons = state.allPokemons.filter(
-					(pokemon) => pokemon.source === "database"
-				);
-				return {
-					...state,
-					selectedPokemons: dbPokemons,
-					allPokemons: [...state.allPokemons]
-				};
-			}
-
-			if (payload === "all") {
-				return {
-					...state,
-					selectedPokemons: [...state.allPokemons],
-					allPokemons: [...state.allPokemons]
-				};
-			}
 		}
 
 		case FILTER_TYPE: {

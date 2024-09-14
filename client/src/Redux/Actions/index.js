@@ -3,10 +3,8 @@
 import axios from "axios";
 import {
 	ADD_POKE,
-	REMOVE_POKE,
 	ORDER_ALPHA,
 	ORDER_ATTACK,
-	FILTER_ORIGIN,
 	FILTER_TYPE
 } from "./actions-types";
 
@@ -28,17 +26,6 @@ export function addPokemonByBody(pokemon) {
 		return dispatch({
 			type: ADD_POKE,
 			payload: data
-		});
-	};
-}
-
-export function deletePokemon(nombre) {
-	const endpoint = "http://localhost:3001/pokemons/";
-	return async (dispatch) => {
-		await axios.delete(`${endpoint}${nombre}`);
-		return dispatch({
-			type: REMOVE_POKE,
-			payload: nombre
 		});
 	};
 }

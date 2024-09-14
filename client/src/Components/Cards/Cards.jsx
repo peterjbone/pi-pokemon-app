@@ -1,32 +1,26 @@
 import styles from "./Cards.module.css";
-import { useSelector, useDispatch } from "react-redux";
-import { filterByType, orderByAlpha, orderByAttack } from "../../Redux/Actions";
 import Card from "../Card/Card";
+import { usePokemonStore } from "../../stores/pokemonStore.js";
 
 const Cards = ({ pokemons }) => {
-	//* pokemones guardados en redux
-	const selectedPokemons = useSelector((state) => state.selectedPokemons);
+	const sortByName = usePokemonStore((state) => state.sortByName);
 
-	//* dispatch para enviar actions a redux
-	const dispatch = useDispatch();
-
-	//* Filtros y orden
-	function handleAlphaOrder(event) {
+	//* Sorts functions
+	function handleSortByName(event) {
 		const { value } = event.target;
-		dispatch(orderByAlpha(value));
+		sortByName(value);
 	}
 
 	function handleAttackOrder(event) {
 		const { value } = event.target;
-		dispatch(orderByAttack(value));
 	}
 
+	//* Filters functions
 	function handleTypeFilter(event) {
 		const { value } = event.target;
-		dispatch(filterByType(value));
 	}
 
-	//************************************* COMPONENTE CARDS**************************/
+	//************************************* COMPONENTE CARDS **************************/
 	return (
 		<div className={styles.cards}>
 			{/* FILTERS AND ORDER CONTAINERS */}
@@ -36,16 +30,27 @@ const Cards = ({ pokemons }) => {
 				<div className={styles.filtersAndSortsUpperContainer}>
 					{/***SORTS**/}
 					<div className={styles.filtersContainer}>
+						{/* sort by ID  */}
+						<div>
+							<h3>Sort by ID</h3>
+							<select name="id-sort" onChange={() => {}}>
+								<option value="" disabled readOnly selected>
+									(choose an option)
+								</option>
+								<option value="A">Ascending</option>
+								<option value="D">Descending</option>
+							</select>
+						</div>
 						{/* sort by name */}
 						<div>
-							<h3>Ordenar alfabeticamente</h3>
-							<select name="alpha-order" onChange={handleAlphaOrder}>
+							<h3>Sort by name</h3>
+							<select name="name-sort" onChange={handleSortByName}>
 								<option value="" disabled readOnly selected>
-									(Escoge una opción)
+									(choose an option)
 								</option>
-								<option value="default">Por defecto</option>
-								<option value="A">Ascendente</option>
-								<option value="D">Descendente</option>
+								<option value="default">Default</option>
+								<option value="A">Ascending</option>
+								<option value="D">Descending</option>
 							</select>
 						</div>
 						{/* sort by attack  */}
