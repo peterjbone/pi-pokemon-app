@@ -33,60 +33,81 @@ const Cards = ({ pokemons }) => {
 			{/* NO HAY POKEMONS: no se muestra nada*/}
 			{/* SI HAY POKEMONS: se muestran los filtros*/}
 			{!pokemons.length ? null : (
-				<div className={styles.filtersAndOrderContainer}>
-					{/* Order alpha  */}
-					<div>
-						<h3>Ordenar alfabeticamente</h3>
-						<select name="alpha-order" onChange={handleAlphaOrder}>
-							<option value="" disabled readOnly selected>
-								(Escoge una opción)
-							</option>
-							<option value="default">Por defecto</option>
-							<option value="A">Ascendente</option>
-							<option value="D">Descendente</option>
-						</select>
+				<div className={styles.filtersAndSortsUpperContainer}>
+					{/***SORTS**/}
+					<div className={styles.filtersContainer}>
+						{/* sort by name */}
+						<div>
+							<h3>Ordenar alfabeticamente</h3>
+							<select name="alpha-order" onChange={handleAlphaOrder}>
+								<option value="" disabled readOnly selected>
+									(Escoge una opción)
+								</option>
+								<option value="default">Por defecto</option>
+								<option value="A">Ascendente</option>
+								<option value="D">Descendente</option>
+							</select>
+						</div>
+						{/* sort by attack  */}
+						<div>
+							<h3>Ordenar por ataque</h3>
+							<select name="attack-order" onChange={handleAttackOrder}>
+								<option value="" disabled readOnly selected>
+									(Escoge una opción)
+								</option>
+								<option value="default">Por defecto</option>
+								<option value="A">Ascendente</option>
+								<option value="D">Descendente</option>
+							</select>
+						</div>
 					</div>
-					{/* Order attack  */}
-					<div>
-						<h3>Ordenar por ataque</h3>
-						<select name="attack-order" onChange={handleAttackOrder}>
-							<option value="" disabled readOnly selected>
-								(Escoge una opción)
-							</option>
-							<option value="default">Por defecto</option>
-							<option value="A">Ascendente</option>
-							<option value="D">Descendente</option>
-						</select>
-					</div>
-					{/* Type Filter  */}
-					<div>
-						<h3>Filtrar por tipo</h3>
-						<select name="type-filter" onChange={handleTypeFilter}>
-							<option value="" disabled readOnly selected>
-								(Escoge una opción)
-							</option>
-							<option value="default">Por defecto</option>
-							<option value="normal">Normal</option>
-							<option value="fighting">Fighting</option>
-							<option value="flying">Flying</option>
-							<option value="poison">Poison</option>
-							<option value="ground">Ground</option>
-							<option value="rock">Rock</option>
-							<option value="bug">Bug</option>
-							<option value="ghost">Ghost</option>
-							<option value="steel">Steel</option>
-							<option value="fire">Fire</option>
-							<option value="water">Water</option>
-							<option value="grass">Grass</option>
-							<option value="electric">Electric</option>
-							<option value="psychic">Psychic</option>
-							<option value="ice">Ice</option>
-							<option value="dragon">Dragon</option>
-							<option value="dark">Dark</option>
-							<option value="fairy">Fairy</option>
-							<option value="unknown">Unknown</option>
-							<option value="shadow">Shadow</option>
-						</select>
+
+					{/***TYPES**/}
+					<div className={styles.sortsContainer}>
+						{/* Type Filter  */}
+						<div>
+							<h3>Filter by type</h3>
+							<select name="type-filter" onChange={handleTypeFilter}>
+								<option value="" disabled readOnly selected>
+									(choose an option)
+								</option>
+								<option value="default">All</option>
+								<option value="normal">Normal</option>
+								<option value="fighting">Fighting</option>
+								<option value="flying">Flying</option>
+								<option value="poison">Poison</option>
+								<option value="ground">Ground</option>
+								<option value="rock">Rock</option>
+								<option value="bug">Bug</option>
+								<option value="ghost">Ghost</option>
+								<option value="steel">Steel</option>
+								<option value="fire">Fire</option>
+								<option value="water">Water</option>
+								<option value="grass">Grass</option>
+								<option value="electric">Electric</option>
+								<option value="psychic">Psychic</option>
+								<option value="ice">Ice</option>
+								<option value="dragon">Dragon</option>
+								<option value="dark">Dark</option>
+								<option value="fairy">Fairy</option>
+								<option value="unknown">Unknown</option>
+								<option value="shadow">Shadow</option>
+							</select>
+						</div>
+						{/* Generation Filter  */}
+						<div>
+							<h3>Filter by generation</h3>
+							<select name="generation-filter" onChange={() => {}}>
+								<option value="" disabled readOnly selected>
+									(choose an option)
+								</option>
+								<option value="all">All</option>
+								<option value="generation-one">Generation I</option>
+								<option value="generation-two">Generation II</option>
+								<option value="generation-three">Generation III</option>
+								<option value="generation-four">Generation IV</option>
+							</select>
+						</div>
 					</div>
 				</div>
 			)}

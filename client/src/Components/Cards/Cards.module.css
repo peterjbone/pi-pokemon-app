@@ -17,15 +17,27 @@
 /** ESTILOS PARA CONTENEDOR DE FILTROS Y ORDEN (HIJO 1)**/
 /*******************************************/
 
-.cards .filtersAndOrderContainer {
+.cards .filtersAndSortsUpperContainer {
+	padding: 1rem;
+	width: 90%;
+	height: auto;
+	border: 3px solid pink;
+	display: flex;
+	justify-content: space-between;
+}
+
+.cards .filtersContainer,
+.cards .sortsContainer {
 	padding: 1em;
 	text-align: center;
+	border: 3px solid purple;
 	background-color: orangered;
 	display: flex;
 	gap: 2rem;
 }
 
-.cards .filtersAndOrderContainer select {
+.cards .filtersContainer select,
+.cards .sortsContainer select {
 	height: 2rem;
 	font-size: 1em;
 	font-weight: 600;
