@@ -79,3 +79,11 @@
 	column-gap: 1rem;
 	row-gap: 1rem;
 }
+
+/**ESTILOS DE LOS MENSAJES DE ADVERTENCIA*/
+
+.cards .warning {
+	font-weight: 800;
+	font-size: 2rem;
+	color: var(--second-clr);
+}

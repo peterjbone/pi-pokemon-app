@@ -159,12 +159,16 @@ const Cards = ({ pokemons, filterActivated, sortActivated }) => {
 
 			{/* FILTER MESSAGE */}
 			{filterActivated ? (
-				<div>Only the pokemons that are already loaded were filtered</div>
+				<div className={styles.warning}>
+					Only the pokemons that are already loaded were filtered
+				</div>
 			) : null}
 
 			{/* SORT MESSAGE */}
 			{sortActivated ? (
-				<div>Only the pokemons that are already loaded were sorted</div>
+				<div className={styles.warning}>
+					Only the pokemons that are already loaded were sorted
+				</div>
 			) : null}
 		</div>
 	);
