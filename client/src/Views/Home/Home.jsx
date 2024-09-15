@@ -12,6 +12,8 @@ function Home() {
 	//* estados globales
 	const selectedPokemons = usePokemonStore((state) => state.selectedPokemons);
 	const offset = usePokemonStore((state) => state.offset);
+	const filterActivated = usePokemonStore((state) => state.filterActivated);
+	const sortActivated = usePokemonStore((state) => state.sortActivated);
 
 	//* acciones
 	const getFortyPokemons = usePokemonStore((state) => state.getFortyPokemons);
@@ -62,10 +64,10 @@ function Home() {
 			}
 		}
 
-		if (isBottom) {
+		if (isBottom && !filterActivated) {
 			getMorePokemons();
 		}
-	}, [isBottom]);
+	}, [isBottom, filterActivated]);
 
 	//************************************COMPONENT HOME******************/
 	return (
@@ -73,7 +75,11 @@ function Home() {
 			{/* NAVBAR */}
 			<Navbar />
 			{/* CARDS */}
-			<Cards pokemons={selectedPokemons} />
+			<Cards
+				pokemons={selectedPokemons}
+				filterActivated={filterActivated}
+				sortActivated={sortActivated}
+			/>
 		</div>
 	);
 }

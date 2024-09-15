@@ -8,6 +8,8 @@ export const usePokemonStore = create((set, get) => ({
 	allPokemons: [], //? esto es un backup de todos los pokemons
 	selectedPokemons: [], //? estos siempre seran los pokemons usaras en el front
 	offset: 0,
+	filterActivated: false,
+	sortActivated: false,
 	//* actions
 	getFortyPokemons: async (currentOffset = 0) => {
 		try {
@@ -103,7 +105,9 @@ export const usePokemonStore = create((set, get) => ({
 		if (filter === "all") {
 			set((state) => ({
 				...state,
-				selectedPokemons: [...structuredClone(state.allPokemons)]
+				selectedPokemons: [...structuredClone(state.allPokemons)],
+				filterActivated: false,
+				sortActivated: false
 			}));
 			return;
 		}
@@ -125,8 +129,9 @@ export const usePokemonStore = create((set, get) => ({
 				set((state) => ({
 					...state,
 					//? los otros estados se quedan igual
-					selectedPokemons: filteredPokemons
+					selectedPokemons: filteredPokemons,
 					//? se devuelve el array vacio o lleno
+					filterActivated: true
 				}));
 				return;
 			}

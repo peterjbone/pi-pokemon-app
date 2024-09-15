@@ -2,7 +2,7 @@ import styles from "./Cards.module.css";
 import Card from "../Card/Card";
 import { usePokemonStore } from "../../stores/pokemonStore.js";
 
-const Cards = ({ pokemons }) => {
+const Cards = ({ pokemons, filterActivated, sortActivated }) => {
 	//* actions
 	const sortById = usePokemonStore((state) => state.sortById);
 	const sortByName = usePokemonStore((state) => state.sortByName);
@@ -31,10 +31,12 @@ const Cards = ({ pokemons }) => {
 	//* Filters handlers
 	function handleFilterByType(event) {
 		const { value } = event.target;
+		filterByType(value);
 	}
 
 	function handleFilterByGeneration(event) {
 		const { value } = event.target;
+		filterByGeneration(value);
 	}
 
 	//************************************* COMPONENTE CARDS **************************/
@@ -86,7 +88,7 @@ const Cards = ({ pokemons }) => {
 
 					{/***TYPES**/}
 					<div className={styles.sortsContainer}>
-						{/* Type Filter  */}
+						{/* Filter by type */}
 						<div>
 							<h3>Filter by type</h3>
 							<select name="filterByType" onChange={handleFilterByType}>
@@ -116,7 +118,7 @@ const Cards = ({ pokemons }) => {
 								<option value="shadow">Shadow</option>
 							</select>
 						</div>
-						{/* Generation Filter  */}
+						{/* Filter by generation */}
 						<div>
 							<h3>Filter by generation</h3>
 							<select
@@ -130,6 +132,9 @@ const Cards = ({ pokemons }) => {
 								<option value="generation-two">Generation II</option>
 								<option value="generation-three">Generation III</option>
 								<option value="generation-four">Generation IV</option>
+								<option value="generation-five">Generation V</option>
+								<option value="generation-six">Generation VI</option>
+								<option value="generation-seven">Generation VII</option>
 							</select>
 						</div>
 					</div>
@@ -151,6 +156,16 @@ const Cards = ({ pokemons }) => {
 					))}
 				</div>
 			)}
+
+			{/* FILTER MESSAGE */}
+			{filterActivated ? (
+				<div>Only the pokemons that are already loaded were filtered</div>
+			) : null}
+
+			{/* SORT MESSAGE */}
+			{sortActivated ? (
+				<div>Only the pokemons that are already loaded were sorted</div>
+			) : null}
 		</div>
 	);
 };
