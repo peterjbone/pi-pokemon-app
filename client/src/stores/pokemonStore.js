@@ -37,8 +37,7 @@ export const usePokemonStore = create((set, get) => ({
 		if (sort === "default") {
 			set((state) => ({
 				...state,
-				selectedPokemons: [...state.allPokemons],
-				allPokemons: [...state.allPokemons]
+				selectedPokemons: [...state.allPokemons]
 			}));
 			return;
 		}
@@ -62,14 +61,11 @@ export const usePokemonStore = create((set, get) => ({
 		const selectedPokemons = get().selectedPokemons;
 		const pokemonsCopy = [...structuredClone(selectedPokemons)];
 
-		console.log(pokemonsCopy);
-
 		if (sort === "A") {
 			pokemonsCopy.sort((a, b) => a.idApi - b.idApi);
 		}
 		if (sort === "D") {
 			pokemonsCopy.sort((a, b) => b.idApi - a.idApi);
-			//pokemonsCopy.reverse();
 		}
 
 		set((state) => ({
@@ -77,5 +73,28 @@ export const usePokemonStore = create((set, get) => ({
 			selectedPokemons: pokemonsCopy,
 			allPokemons: [...state.allPokemons]
 		}));
+	},
+	sortByAttack: (sort) => {
+		if (sort === "default") {
+			set((state) => ({
+				...state,
+				selectedPokemons: [...state.allPokemons]
+			}));
+			return;
+		}
+
+		const selectedPokemons = get().selectedPokemons;
+		const pokemonsCopy = [...structuredClone(selectedPokemons)];
+		if (sort === "A") {
+			pokemonsCopy.sort((a, b) => a.ataque - b.ataque);
+		}
+		if (sort === "D") {
+			pokemonsCopy.sort((a, b) => b.ataque - a.ataque);
+		}
+		set((state) => ({
+			...state,
+			selectedPokemons: pokemonsCopy
+		}));
+		return;
 	}
 }));

@@ -4,8 +4,9 @@ import { usePokemonStore } from "../../stores/pokemonStore.js";
 
 const Cards = ({ pokemons }) => {
 	//* actions
-	const sortByName = usePokemonStore((state) => state.sortByName);
 	const sortById = usePokemonStore((state) => state.sortById);
+	const sortByName = usePokemonStore((state) => state.sortByName);
+	const sortByAttack = usePokemonStore((state) => state.sortByAttack);
 
 	//* Sorts handlers
 	function handleSortById(event) {
@@ -16,6 +17,11 @@ const Cards = ({ pokemons }) => {
 	function handleSortByName(event) {
 		const { value } = event.target;
 		sortByName(value);
+	}
+
+	function handleSortByAttack(event) {
+		const { value } = event.target;
+		sortByAttack(value);
 	}
 
 	//* Filters handlers
@@ -62,14 +68,14 @@ const Cards = ({ pokemons }) => {
 						</div>
 						{/* sort by attack  */}
 						<div>
-							<h3>Ordenar por ataque</h3>
-							<select name="attack-order" onChange={() => {}}>
+							<h3>Sort by attack</h3>
+							<select name="sortByAttack" onChange={handleSortByAttack}>
 								<option value="" disabled readOnly selected>
-									(Escoge una opción)
+									(choose an option)
 								</option>
-								<option value="default">Por defecto</option>
-								<option value="A">Ascendente</option>
-								<option value="D">Descendente</option>
+								<option value="default">Default</option>
+								<option value="A">Ascending</option>
+								<option value="D">Descending</option>
 							</select>
 						</div>
 					</div>
