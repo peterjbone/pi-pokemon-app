@@ -1,9 +1,4 @@
-import {
-	ADD_POKE,
-	FILTER_TYPE,
-	ORDER_ALPHA,
-	ORDER_ATTACK
-} from "../Actions/actions-types.js";
+import { FILTER_TYPE } from "../Actions/actions-types.js";
 
 let initialState = {
 	selectedPokemons: [],
@@ -12,13 +7,6 @@ let initialState = {
 
 function rootReducer(state = initialState, { type, payload }) {
 	switch (type) {
-		case ADD_POKE:
-			return {
-				...state,
-				selectedPokemons: [payload, ...state.allPokemons],
-				allPokemons: [payload, ...state.allPokemons]
-			};
-
 		case FILTER_TYPE: {
 			if (payload === "default") {
 				return {
@@ -527,58 +515,6 @@ function rootReducer(state = initialState, { type, payload }) {
 							allPokemons: [...state.allPokemons]
 					  };
 			}
-		}
-
-		case ORDER_ALPHA: {
-			if (payload === "default") {
-				return {
-					...state,
-					selectedPokemons: [...state.allPokemons],
-					allPokemons: [...state.allPokemons]
-				};
-			}
-
-			const pokemonsCopy = [...structuredClone(state.selectedPokemons)];
-
-			if (payload === "A") {
-				pokemonsCopy.sort((a, b) => a.nombre.localeCompare(b.nombre));
-			}
-
-			if (payload === "D") {
-				pokemonsCopy.sort((a, b) => b.nombre.localeCompare(a.nombre));
-			}
-
-			return {
-				...state,
-				selectedPokemons: pokemonsCopy,
-				allPokemons: [...state.allPokemons]
-			};
-		}
-
-		case ORDER_ATTACK: {
-			if (payload === "default") {
-				return {
-					...state,
-					selectedPokemons: [...state.allPokemons],
-					allPokemons: [...state.allPokemons]
-				};
-			}
-
-			const pokemonsCopy = [...structuredClone(state.selectedPokemons)];
-
-			if (payload === "A") {
-				pokemonsCopy.sort((a, b) => a.ataque - b.ataque);
-			}
-
-			if (payload === "D") {
-				pokemonsCopy.sort((a, b) => b.ataque - a.ataque);
-			}
-
-			return {
-				...state,
-				selectedPokemons: pokemonsCopy,
-				allPokemons: [...state.allPokemons]
-			};
 		}
 
 		default:

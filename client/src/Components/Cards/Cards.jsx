@@ -7,6 +7,10 @@ const Cards = ({ pokemons }) => {
 	const sortById = usePokemonStore((state) => state.sortById);
 	const sortByName = usePokemonStore((state) => state.sortByName);
 	const sortByAttack = usePokemonStore((state) => state.sortByAttack);
+	const filterByType = usePokemonStore((state) => state.filterByType);
+	const filterByGeneration = usePokemonStore(
+		(state) => state.filterByGeneration
+	);
 
 	//* Sorts handlers
 	function handleSortById(event) {
@@ -25,7 +29,7 @@ const Cards = ({ pokemons }) => {
 	}
 
 	//* Filters handlers
-	function handleTypeFilter(event) {
+	function handleFilterByType(event) {
 		const { value } = event.target;
 	}
 
@@ -85,11 +89,11 @@ const Cards = ({ pokemons }) => {
 						{/* Type Filter  */}
 						<div>
 							<h3>Filter by type</h3>
-							<select name="type-filter" onChange={handleTypeFilter}>
+							<select name="filterByType" onChange={handleFilterByType}>
 								<option value="" disabled readOnly selected>
 									(choose an option)
 								</option>
-								<option value="default">All</option>
+								<option value="all">All</option>
 								<option value="normal">Normal</option>
 								<option value="fighting">Fighting</option>
 								<option value="flying">Flying</option>
@@ -115,7 +119,9 @@ const Cards = ({ pokemons }) => {
 						{/* Generation Filter  */}
 						<div>
 							<h3>Filter by generation</h3>
-							<select name="generation-filter" onChange={() => {}}>
+							<select
+								name="filterByGeneration"
+								onChange={handleFilterByGeneration}>
 								<option value="" disabled readOnly selected>
 									(choose an option)
 								</option>

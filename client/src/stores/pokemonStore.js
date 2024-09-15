@@ -25,6 +25,7 @@ export const usePokemonStore = create((set, get) => ({
 		}
 	},
 	resetPokemons: () => {
+		//? lo uso para borrar todo cuando se recarga la pagina
 		set((state) => ({
 			...state,
 			allPokemons: [],
@@ -96,5 +97,129 @@ export const usePokemonStore = create((set, get) => ({
 			selectedPokemons: pokemonsCopy
 		}));
 		return;
-	}
+	},
+	//? FILTERS
+	filterByType: (filter) => {
+		if (filter === "all") {
+			set((state) => ({
+				...state,
+				selectedPokemons: [...structuredClone(state.allPokemons)]
+			}));
+			return;
+		}
+
+		const allPokemons = get().allPokemons;
+		switch (filter) {
+			case "normal": {
+				const filteredPokemons = [];
+
+				allPokemons.forEach((pokemon) => {
+					const newPokemon = pokemon;
+					pokemon.Types.forEach((type) => {
+						if (type.nombre === "normal") {
+							filteredPokemons.push(newPokemon);
+						}
+					});
+				});
+
+				set((state) => ({
+					...state,
+					//? los otros estados se quedan igual
+					selectedPokemons: filteredPokemons
+					//? se devuelve el array vacio o lleno
+				}));
+				return;
+			}
+
+			case "fighting": {
+				const filteredPokemons = [];
+
+				allPokemons.forEach((pokemon) => {
+					const newPokemon = pokemon;
+					pokemon.Types.forEach((type) => {
+						if (type.nombre === "fighting") {
+							filteredPokemons.push(newPokemon);
+						}
+					});
+				});
+
+				set((state) => ({
+					...state,
+					//? los otros estados se quedan igual
+					selectedPokemons: filteredPokemons
+					//? se devuelve el array vacio o lleno
+				}));
+				return;
+			}
+
+			case "flying": {
+				const filteredPokemons = [];
+
+				allPokemons.forEach((pokemon) => {
+					const newPokemon = pokemon;
+					pokemon.Types.forEach((type) => {
+						if (type.nombre === "flying") {
+							filteredPokemons.push(newPokemon);
+						}
+					});
+				});
+
+				set((state) => ({
+					...state,
+					//? los otros estados se quedan igual
+					selectedPokemons: filteredPokemons
+					//? se devuelve el array vacio o lleno
+				}));
+				return;
+			}
+
+			case "poison": {
+				const filteredPokemons = [];
+
+				allPokemons.forEach((pokemon) => {
+					const newPokemon = pokemon;
+					pokemon.Types.forEach((type) => {
+						if (type.nombre === "poison") {
+							filteredPokemons.push(newPokemon);
+						}
+					});
+				});
+
+				set((state) => ({
+					...state,
+					//? los otros estados se quedan igual
+					selectedPokemons: filteredPokemons
+					//? se devuelve el array vacio o lleno
+				}));
+				return;
+			}
+
+			case "ground": {
+				const filteredPokemons = [];
+
+				allPokemons.forEach((pokemon) => {
+					const newPokemon = pokemon;
+					pokemon.Types.forEach((type) => {
+						if (type.nombre === "ground") {
+							filteredPokemons.push(newPokemon);
+						}
+					});
+				});
+
+				set((state) => ({
+					...state,
+					//? los otros estados se quedan igual
+					selectedPokemons: filteredPokemons
+					//? se devuelve el array vacio o lleno
+				}));
+				return;
+			}
+
+			default: {
+				set((state) => ({ ...state }));
+				return;
+			}
+		}
+	},
+	filterByGeneration: (filter) => {}
 }));
