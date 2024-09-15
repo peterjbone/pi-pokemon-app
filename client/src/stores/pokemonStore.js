@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import axios from "axios";
+import axios, { all } from "axios";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 //* store
@@ -57,5 +57,25 @@ export const usePokemonStore = create((set, get) => ({
 			allPokemons: [...state.allPokemons]
 		}));
 		return;
+	},
+	sortById: (sort) => {
+		const selectedPokemons = get().selectedPokemons;
+		const pokemonsCopy = [...structuredClone(selectedPokemons)];
+
+		console.log(pokemonsCopy);
+
+		if (sort === "A") {
+			pokemonsCopy.sort((a, b) => a.idApi - b.idApi);
+		}
+		if (sort === "D") {
+			pokemonsCopy.sort((a, b) => b.idApi - a.idApi);
+			//pokemonsCopy.reverse();
+		}
+
+		set((state) => ({
+			...state,
+			selectedPokemons: pokemonsCopy,
+			allPokemons: [...state.allPokemons]
+		}));
 	}
 }));

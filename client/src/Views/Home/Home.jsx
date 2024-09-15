@@ -37,7 +37,10 @@ function Home() {
 	//* 2 escuchar evento scroll y saber cuando el usuario llego al final
 	useEffect(() => {
 		const handleScroll = () => {
-			if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+			const scrollTop = window.scrollY || document.documentElement.scrollTop;
+			const windowHeight = window.innerHeight;
+			const documentHeight = document.documentElement.scrollHeight;
+			if (scrollTop + windowHeight >= documentHeight - 1) {
 				setIsBottom(true);
 			} else {
 				setIsBottom(false);
@@ -67,8 +70,6 @@ function Home() {
 	//************************************COMPONENT HOME******************/
 	return (
 		<div>
-			{console.log(offset)}
-			{console.log(selectedPokemons)}
 			{/* NAVBAR */}
 			<Navbar />
 			{/* CARDS */}
