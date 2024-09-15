@@ -215,6 +215,321 @@ export const usePokemonStore = create((set, get) => ({
 				return;
 			}
 
+			case "rock": {
+				const filteredPokemons = [];
+
+				allPokemons.forEach((pokemon) => {
+					const newPokemon = pokemon;
+					pokemon.Types.forEach((type) => {
+						if (type.nombre === "rock") {
+							filteredPokemons.push(newPokemon);
+						}
+					});
+				});
+
+				set((state) => ({
+					...state,
+					//? los otros estados se quedan igual
+					selectedPokemons: filteredPokemons
+					//? se devuelve el array vacio o lleno
+				}));
+				return;
+			}
+
+			case "bug": {
+				const filteredPokemons = [];
+
+				allPokemons.forEach((pokemon) => {
+					const newPokemon = pokemon;
+					pokemon.Types.forEach((type) => {
+						if (type.nombre === "bug") {
+							filteredPokemons.push(newPokemon);
+						}
+					});
+				});
+
+				set((state) => ({
+					...state,
+					//? los otros estados se quedan igual
+					selectedPokemons: filteredPokemons
+					//? se devuelve el array vacio o lleno
+				}));
+				return;
+			}
+
+			case "ghost": {
+				const filteredPokemons = [];
+
+				allPokemons.forEach((pokemon) => {
+					const newPokemon = pokemon;
+					pokemon.Types.forEach((type) => {
+						if (type.nombre === "ghost") {
+							filteredPokemons.push(newPokemon);
+						}
+					});
+				});
+
+				set((state) => ({
+					...state,
+					//? los otros estados se quedan igual
+					selectedPokemons: filteredPokemons
+					//? se devuelve el array vacio o lleno
+				}));
+				return;
+			}
+
+			case "steel": {
+				const filteredPokemons = [];
+
+				allPokemons.forEach((pokemon) => {
+					const newPokemon = pokemon;
+					pokemon.Types.forEach((type) => {
+						if (type.nombre === "steel") {
+							filteredPokemons.push(newPokemon);
+						}
+					});
+				});
+
+				set((state) => ({
+					...state,
+					//? los otros estados se quedan igual
+					selectedPokemons: filteredPokemons
+					//? se devuelve el array vacio o lleno
+				}));
+				return;
+			}
+
+			case "fire": {
+				const filteredPokemons = [];
+
+				allPokemons.forEach((pokemon) => {
+					const newPokemon = pokemon;
+					pokemon.Types.forEach((type) => {
+						if (type.nombre === "fire") {
+							filteredPokemons.push(newPokemon);
+						}
+					});
+				});
+
+				set((state) => ({
+					...state,
+					//? los otros estados se quedan igual
+					selectedPokemons: filteredPokemons
+					//? se devuelve el array vacio o lleno
+				}));
+				return;
+			}
+
+			case "water": {
+				const filteredPokemons = [];
+
+				allPokemons.forEach((pokemon) => {
+					const newPokemon = pokemon;
+					pokemon.Types.forEach((type) => {
+						if (type.nombre === "water") {
+							filteredPokemons.push(newPokemon);
+						}
+					});
+				});
+
+				set((state) => ({
+					...state,
+					//? los otros estados se quedan igual
+					selectedPokemons: filteredPokemons
+					//? se devuelve el array vacio o lleno
+				}));
+				return;
+			}
+
+			case "grass": {
+				const filteredPokemons = [];
+
+				allPokemons.forEach((pokemon) => {
+					const newPokemon = pokemon;
+					pokemon.Types.forEach((type) => {
+						if (type.nombre === "grass") {
+							filteredPokemons.push(newPokemon);
+						}
+					});
+				});
+
+				set((state) => ({
+					...state,
+					//? los otros estados se quedan igual
+					selectedPokemons: filteredPokemons
+					//? se devuelve el array vacio o lleno
+				}));
+				return;
+			}
+
+			case "electric": {
+				const filteredPokemons = [];
+
+				allPokemons.forEach((pokemon) => {
+					const newPokemon = pokemon;
+					pokemon.Types.forEach((type) => {
+						if (type.nombre === "electric") {
+							filteredPokemons.push(newPokemon);
+						}
+					});
+				});
+
+				set((state) => ({
+					...state,
+					//? los otros estados se quedan igual
+					selectedPokemons: filteredPokemons
+					//? se devuelve el array vacio o lleno
+				}));
+				return;
+			}
+
+			case "psychic": {
+				const filteredPokemons = [];
+
+				allPokemons.forEach((pokemon) => {
+					const newPokemon = pokemon;
+					pokemon.Types.forEach((type) => {
+						if (type.nombre === "psychic") {
+							filteredPokemons.push(newPokemon);
+						}
+					});
+				});
+
+				set((state) => ({
+					...state,
+					//? los otros estados se quedan igual
+					selectedPokemons: filteredPokemons
+					//? se devuelve el array vacio o lleno
+				}));
+				return;
+			}
+
+			case "ice": {
+				const filteredPokemons = [];
+
+				allPokemons.forEach((pokemon) => {
+					const newPokemon = pokemon;
+					pokemon.Types.forEach((type) => {
+						if (type.nombre === "ice") {
+							filteredPokemons.push(newPokemon);
+						}
+					});
+				});
+
+				set((state) => ({
+					...state,
+					//? los otros estados se quedan igual
+					selectedPokemons: filteredPokemons
+					//? se devuelve el array vacio o lleno
+				}));
+				return;
+			}
+
+			case "dragon": {
+				const filteredPokemons = [];
+
+				allPokemons.forEach((pokemon) => {
+					const newPokemon = pokemon;
+					pokemon.Types.forEach((type) => {
+						if (type.nombre === "dragon") {
+							filteredPokemons.push(newPokemon);
+						}
+					});
+				});
+
+				set((state) => ({
+					...state,
+					//? los otros estados se quedan igual
+					selectedPokemons: filteredPokemons
+					//? se devuelve el array vacio o lleno
+				}));
+				return;
+			}
+
+			case "dark": {
+				const filteredPokemons = [];
+
+				allPokemons.forEach((pokemon) => {
+					const newPokemon = pokemon;
+					pokemon.Types.forEach((type) => {
+						if (type.nombre === "dark") {
+							filteredPokemons.push(newPokemon);
+						}
+					});
+				});
+
+				set((state) => ({
+					...state,
+					//? los otros estados se quedan igual
+					selectedPokemons: filteredPokemons
+					//? se devuelve el array vacio o lleno
+				}));
+				return;
+			}
+
+			case "fairy": {
+				const filteredPokemons = [];
+
+				allPokemons.forEach((pokemon) => {
+					const newPokemon = pokemon;
+					pokemon.Types.forEach((type) => {
+						if (type.nombre === "fairy") {
+							filteredPokemons.push(newPokemon);
+						}
+					});
+				});
+
+				set((state) => ({
+					...state,
+					//? los otros estados se quedan igual
+					selectedPokemons: filteredPokemons
+					//? se devuelve el array vacio o lleno
+				}));
+				return;
+			}
+
+			case "unknown": {
+				const filteredPokemons = [];
+
+				allPokemons.forEach((pokemon) => {
+					const newPokemon = pokemon;
+					pokemon.Types.forEach((type) => {
+						if (type.nombre === "unknown") {
+							filteredPokemons.push(newPokemon);
+						}
+					});
+				});
+
+				set((state) => ({
+					...state,
+					//? los otros estados se quedan igual
+					selectedPokemons: filteredPokemons
+					//? se devuelve el array vacio o lleno
+				}));
+				return;
+			}
+
+			case "shadow": {
+				const filteredPokemons = [];
+
+				allPokemons.forEach((pokemon) => {
+					const newPokemon = pokemon;
+					pokemon.Types.forEach((type) => {
+						if (type.nombre === "shadow") {
+							filteredPokemons.push(newPokemon);
+						}
+					});
+				});
+
+				set((state) => ({
+					...state,
+					//? los otros estados se quedan igual
+					selectedPokemons: filteredPokemons
+					//? se devuelve el array vacio o lleno
+				}));
+				return;
+			}
+
 			default: {
 				set((state) => ({ ...state }));
 				return;
