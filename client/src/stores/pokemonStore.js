@@ -27,7 +27,7 @@ export const usePokemonStore = create((set, get) => ({
 		}
 	},
 	resetPokemons: () => {
-		//? lo uso para borrar todo cuando se recarga la pagina
+		//? lo uso en Home.jsx para borrar todo cuando se recarga la pagina
 		set((state) => ({
 			...state,
 			allPokemons: [],

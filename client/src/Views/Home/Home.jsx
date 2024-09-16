@@ -24,10 +24,10 @@ function Home() {
 		async function getInitialPokemons() {
 			if (!initialUpload) return;
 			try {
-				await axios.get(`${VITE_BACKEND_URL}/types`); //* trae y guarda los tipos en BD
-				resetPokemons();
-				await getFortyPokemons(); //* obtiene 40 pokemons y los guarda en BD y en zustand
-				setInitialUpload(false);
+				await axios.get(`${VITE_BACKEND_URL}/types`); //? trae y guarda los tipos en BD
+				resetPokemons(); //? resetea los estados globales
+				await getFortyPokemons(); //? obtiene los primeros 40 pokemons
+				setInitialUpload(false); //? indica que ya se realizo la carga inicial
 			} catch (error) {
 				console.log(error);
 			}
@@ -67,9 +67,9 @@ function Home() {
 		if (isBottom && !filterActivated && !sortActivated) {
 			getMorePokemons();
 		}
-	}, [isBottom, filterActivated]);
+	}, [isBottom, filterActivated, sortActivated]);
 
-	//************************************COMPONENT HOME******************/
+	//************************************ COMPONENT HOME
 	return (
 		<div>
 			{/* NAVBAR */}
