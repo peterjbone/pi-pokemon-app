@@ -27,7 +27,7 @@ export const usePokemonStore = create((set, get) => ({
 		}
 	},
 	resetPokemons: () => {
-		//? lo uso en Home.jsx para borrar todo cuando se recarga la pagina
+		//? lo uso en el useEffect del Home.jsx para borrar todo cuando se recarga la pagina
 		set((state) => ({
 			...state,
 			allPokemons: [],
@@ -114,13 +114,16 @@ export const usePokemonStore = create((set, get) => ({
 			set((state) => ({
 				...state,
 				selectedPokemons: [...structuredClone(state.allPokemons)],
-				filterActivated: false,
-				sortActivated: false
+				filterActivated: false
 			}));
 			return;
 		}
 
 		const allPokemons = get().allPokemons;
+		set((state) => ({
+			...state,
+			filterActivated: true
+		}));
 		switch (filter) {
 			case "normal": {
 				const filteredPokemons = [];
@@ -137,9 +140,8 @@ export const usePokemonStore = create((set, get) => ({
 				set((state) => ({
 					...state,
 					//? los otros estados se quedan igual
-					selectedPokemons: filteredPokemons,
+					selectedPokemons: filteredPokemons
 					//? se devuelve el array vacio o lleno
-					filterActivated: true
 				}));
 				return;
 			}
