@@ -85,7 +85,6 @@ const Cards = ({ pokemons, filterActivated, sortActivated }) => {
 							</select>
 						</div>
 					</div>
-
 					{/***TYPES**/}
 					<div className={styles.sortsContainer}>
 						{/* Filter by type */}
@@ -146,7 +145,7 @@ const Cards = ({ pokemons, filterActivated, sortActivated }) => {
 			{/* SI HAY POKEMONS: se muestran los pokemones*/}
 			{!pokemons.length ? (
 				<div className={styles.noPokemons}>
-					<h1>Hubo un error al mostrar a los pokemons :(</h1>
+					<h1>There was an error to display the pokemons :(</h1>
 					<img src="../../../../public/sad-pikachu.gif" alt="sad-pikachu" />
 				</div>
 			) : (
@@ -160,14 +159,16 @@ const Cards = ({ pokemons, filterActivated, sortActivated }) => {
 			{/* FILTER MESSAGE */}
 			{filterActivated ? (
 				<div className={styles.warning}>
-					Only the pokemons that are already loaded were filtered
+					You cannot load more Pokemon while a filter is active. If you want
+					more, disabled the filter and bring more pokemons.
 				</div>
 			) : null}
 
 			{/* SORT MESSAGE */}
 			{sortActivated ? (
 				<div className={styles.warning}>
-					Only the pokemons that are already loaded were sorted
+					You cannot load more Pokemon while a sort is active. If you want more,
+					disabled the sort and bring more pokemons.
 				</div>
 			) : null}
 		</div>

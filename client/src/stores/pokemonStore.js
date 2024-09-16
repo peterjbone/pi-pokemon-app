@@ -40,7 +40,8 @@ export const usePokemonStore = create((set, get) => ({
 		if (sort === "default") {
 			set((state) => ({
 				...state,
-				selectedPokemons: [...state.allPokemons]
+				selectedPokemons: [...state.allPokemons],
+				sortActivated: false
 			}));
 			return;
 		}
@@ -56,32 +57,38 @@ export const usePokemonStore = create((set, get) => ({
 		set((state) => ({
 			...state,
 			selectedPokemons: pokemonsCopy,
-			allPokemons: [...state.allPokemons]
+			allPokemons: [...state.allPokemons],
+			sortActivated: true
 		}));
 		return;
 	},
 	sortById: (sort) => {
 		const selectedPokemons = get().selectedPokemons;
 		const pokemonsCopy = [...structuredClone(selectedPokemons)];
+		let isSort;
 
 		if (sort === "A") {
+			//? this is the default option too
 			pokemonsCopy.sort((a, b) => a.idApi - b.idApi);
+			isSort = false;
 		}
 		if (sort === "D") {
 			pokemonsCopy.sort((a, b) => b.idApi - a.idApi);
+			isSort = true;
 		}
 
 		set((state) => ({
 			...state,
 			selectedPokemons: pokemonsCopy,
-			allPokemons: [...state.allPokemons]
+			sortActivated: isSort
 		}));
 	},
 	sortByAttack: (sort) => {
 		if (sort === "default") {
 			set((state) => ({
 				...state,
-				selectedPokemons: [...state.allPokemons]
+				selectedPokemons: [...state.allPokemons],
+				sortActivated: false
 			}));
 			return;
 		}
@@ -96,7 +103,8 @@ export const usePokemonStore = create((set, get) => ({
 		}
 		set((state) => ({
 			...state,
-			selectedPokemons: pokemonsCopy
+			selectedPokemons: pokemonsCopy,
+			sortActivated: true
 		}));
 		return;
 	},

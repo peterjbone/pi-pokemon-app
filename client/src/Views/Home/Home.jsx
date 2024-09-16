@@ -64,7 +64,7 @@ function Home() {
 			}
 		}
 
-		if (isBottom && !filterActivated) {
+		if (isBottom && !filterActivated && !sortActivated) {
 			getMorePokemons();
 		}
 	}, [isBottom, filterActivated]);
