@@ -2,8 +2,6 @@ import "./SearchBar.css";
 import axios from "axios";
 import { FaSearch } from "react-icons/fa";
 import { useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addPokemonByName } from "../../Redux/Actions";
 
 function SearchBar() {
 	const [pokeName, setPokeName] = useState("");
@@ -14,8 +12,6 @@ function SearchBar() {
 		setPokeName(value);
 	}
 
-	const selectedPokemons = useSelector((state) => state.selectedPokemons);
-	const dispatch = useDispatch();
 	const searchInput = useRef(null);
 
 	//* Esta función hace 4 cosas
@@ -65,7 +61,7 @@ function SearchBar() {
 				}
 			});
 		} else {
-			dispatch(addPokemonByName(pokeNameFix));
+			//* llamar a la action de getPokemonByName
 			searchInput.current.value = "";
 			setPokeName("");
 
