@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Cards from "../../Components/Cards/Cards.jsx";
 import { usePokemonStore } from "../../stores/pokemonStore.js";
 import Navbar from "../../Components/Navbar/Navbar.jsx";
+import SearchBar from "../../Components/SearchBar/SearchBar.jsx";
 
 function Home() {
 	const { VITE_BACKEND_URL } = import.meta.env;
@@ -74,6 +75,7 @@ function Home() {
 		<div>
 			{/* NAVBAR */}
 			<Navbar />
+			{/* SEARCH BAR */}
 			{/* TYPES LINKS */}
 			{/* GENERATIONS LINKS */}
 			{/* CARDS */}

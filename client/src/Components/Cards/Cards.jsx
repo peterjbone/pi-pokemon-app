@@ -8,9 +8,6 @@ const Cards = ({ pokemons, filterActivated, sortActivated }) => {
 	const sortByName = usePokemonStore((state) => state.sortByName);
 	const sortByAttack = usePokemonStore((state) => state.sortByAttack);
 	const filterByType = usePokemonStore((state) => state.filterByType);
-	const filterByGeneration = usePokemonStore(
-		(state) => state.filterByGeneration
-	);
 
 	//* Sorts handlers
 	function handleSortById(event) {
@@ -33,13 +30,7 @@ const Cards = ({ pokemons, filterActivated, sortActivated }) => {
 		const { value } = event.target;
 		filterByType(value);
 	}
-
-	function handleFilterByGeneration(event) {
-		const { value } = event.target;
-		filterByGeneration(value);
-	}
-
-	//************************************* COMPONENTE CARDS **************************/
+	//************************************* CARDS COMPONENT
 	return (
 		<div className={styles.cards}>
 			{/* FILTERS AND ORDER CONTAINERS */}
