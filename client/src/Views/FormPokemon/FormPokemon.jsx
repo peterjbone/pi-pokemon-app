@@ -9,12 +9,12 @@
 //* SI todo esta correcto, se puede hacer el dispatch
 //* Recuerda que por cada pokemon puede ingresar hasta 3 tipos
 
-import "./FormPokemon.css"
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
-import { addPokemonByBody } from "../../Redux/Actions"
-import validation from "./validation.js"
+import "./FormPokemon.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addPokemonByBody } from "../../Redux/Actions";
+import validation from "./validation.js";
 
 function FormPokemon() {
 	//* Estados locales para pokedata y errores
@@ -30,7 +30,7 @@ function FormPokemon() {
 		velocidad: "",
 		altura: "",
 		peso: ""
-	})
+	});
 	const [errors, setErrors] = useState({
 		nombre: "Ingrese un nombre",
 		imagen: "Ingrese la URL de la imagen",
@@ -42,75 +42,75 @@ function FormPokemon() {
 		velocidad: "",
 		altura: "",
 		peso: ""
-	})
+	});
 
 	function handleChange(event) {
-		const { name, value } = event.target
+		const { name, value } = event.target;
 
 		if (name === "Types") {
 			//* Para los cambios en Types
 
-			const previousValues = pokedata.Types.filter((tipo) => tipo !== value) //? no se repite el ultimo agregado
+			const previousValues = pokedata.Types.filter((tipo) => tipo !== value); //? no se repite el ultimo agregado
 
-			const repeatedValue = pokedata.Types.indexOf(value) //? evita meter repetidos
+			const repeatedValue = pokedata.Types.indexOf(value); //? evita meter repetidos
 
 			if (repeatedValue !== -1) {
 				setPokedata({
 					...pokedata,
 					Types: [...previousValues]
-				})
+				});
 				setErrors(
 					validation({
 						...pokedata,
 						Types: [...previousValues]
 					})
-				)
+				);
 			}
 
 			setPokedata({
 				...pokedata,
 				Types: [value, ...previousValues]
-			})
+			});
 			setErrors(
 				validation({
 					...pokedata,
 					Types: [value, ...previousValues]
 				})
-			)
+			);
 		} else {
 			//* Para los cambios en cualquier otra propiedad
 			setPokedata({
 				...pokedata,
 				[name]: value
-			})
+			});
 			setErrors(
 				validation({
 					...pokedata,
 					[name]: value
 				})
-			)
+			);
 		}
 	}
-	console.log(pokedata)
-	console.log(errors)
+	//onsole.log(pokedata);
+	//console.log(errors);
 
 	//* El dispatch
-	const dispatch = useDispatch()
-	const navigate = useNavigate()
-	const selectedPokemons = useSelector((state) => state.selectedPokemons)
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const selectedPokemons = useSelector((state) => state.selectedPokemons);
 
 	function handleSubmit(event) {
-		event.preventDefault()
+		event.preventDefault();
 
 		const repeatedPokemon = selectedPokemons.find(
 			(pokemon) => pokemon.nombre === pokedata.nombre.trim().toLowerCase()
-		)
+		);
 
 		if (repeatedPokemon) {
-			window.alert("Ese pokemon ya existe en tu colección!")
+			window.alert("Ese pokemon ya existe en tu colección!");
 		} else {
-			dispatch(addPokemonByBody(pokedata))
-			navigate("/home")
+			//dispatch(addPokemonByBody(pokedata))
+			navigate("/home");
 		}
 	}
 
@@ -118,8 +118,8 @@ function FormPokemon() {
 		<div className="formPokemon">
 			<h1>Crea tu propio Pokemon</h1>
 			<h3>
-				Una vez creado, el pokemon aparecera en la página principal <br /> junto a
-				los demas pokemones.
+				Una vez creado, el pokemon aparecera en la página principal <br /> junto
+				a los demas pokemones.
 			</h3>
 			<form onSubmit={handleSubmit}>
 				<div className="form-group">
@@ -309,7 +309,7 @@ function FormPokemon() {
 				</button>
 			</form>
 		</div>
-	)
+	);
 }
 
-export default FormPokemon
+export default FormPokemon;
