@@ -74,6 +74,8 @@ function Home() {
 		<div>
 			{/* NAVBAR */}
 			<Navbar />
+			{/* TYPES LINKS */}
+			{/* GENERATIONS LINKS */}
 			{/* CARDS */}
 			<Cards
 				pokemons={selectedPokemons}

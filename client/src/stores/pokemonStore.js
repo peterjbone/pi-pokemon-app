@@ -550,6 +550,5 @@ export const usePokemonStore = create((set, get) => ({
 				return;
 			}
 		}
-	},
-	filterByGeneration: (filter) => {}
+	}
 }));

@@ -23,7 +23,7 @@
 	height: auto;
 	border: 3px solid pink;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 }
 
 .cards .filtersContainer,

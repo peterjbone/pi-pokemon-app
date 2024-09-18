@@ -12,12 +12,12 @@ const Navbar = () => {
 	return (
     <div className={styles.navbar}>
       {/*link to pokemon form*/}
-      <div className={styles.navbarFormLink}>
+      <div className={styles.formLink}>
         <Link to="/form">
           <img src={srcPokemonBall} alt="pokemon ball" />
         </Link>
         <FaArrowUp/>
-        <p>Crea tu Pokemon</p>
+        <p>Create your pokemon</p>
       </div>
       {/*logo*/}
       <h1>Pokemon Stats</h1>

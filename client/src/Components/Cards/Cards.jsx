@@ -117,25 +117,6 @@ const Cards = ({ pokemons, filterActivated, sortActivated }) => {
 								<option value="shadow">Shadow</option>
 							</select>
 						</div>
-						{/* Filter by generation */}
-						<div>
-							<h3>Filter by generation</h3>
-							<select
-								name="filterByGeneration"
-								onChange={handleFilterByGeneration}>
-								<option value="" disabled readOnly selected>
-									(choose an option)
-								</option>
-								<option value="all">All</option>
-								<option value="generation-one">Generation I</option>
-								<option value="generation-two">Generation II</option>
-								<option value="generation-three">Generation III</option>
-								<option value="generation-four">Generation IV</option>
-								<option value="generation-five">Generation V</option>
-								<option value="generation-six">Generation VI</option>
-								<option value="generation-seven">Generation VII</option>
-							</select>
-						</div>
 					</div>
 				</div>
 			)}

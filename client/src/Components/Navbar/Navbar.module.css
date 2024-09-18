@@ -14,18 +14,18 @@
 		background-color 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 
-.navbarFormLink {
+.navbar h1 {
+	font-size: 2rem;
+}
+
+.navbar .formLink {
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
 	justify-content: space-evenly;
 }
 
-.navbarFormLink img {
+.navbar .formLink img {
 	width: 40px;
 	height: 40px;
-}
-
-.navbar h1 {
-	font-size: 2rem;
 }
