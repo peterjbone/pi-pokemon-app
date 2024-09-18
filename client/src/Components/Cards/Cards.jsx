@@ -8,7 +8,6 @@ const Cards = ({ pokemons, filterActivated, sortActivated }) => {
 	const sortByName = usePokemonStore((state) => state.sortByName);
 	const sortByAttack = usePokemonStore((state) => state.sortByAttack);
 	const filterByType = usePokemonStore((state) => state.filterByType);
-
 	//* global states
 	const allPokemons = usePokemonStore((state) => state.allPokemons);
 	const selectedPokemons = usePokemonStore((state) => state.selectedPokemons);
