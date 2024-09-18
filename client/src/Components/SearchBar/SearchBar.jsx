@@ -106,6 +106,7 @@ function SearchBar() {
 		}
 	}
 
+	//**************************** SEARCHBAR COMPONENT
 	return (
 		<div className="searchBar">
 			<p>Aquí puedes buscar Pokemones por su nombre:</p>
@@ -119,6 +120,7 @@ function SearchBar() {
 				required
 			/>
 			<FaSearch className="searchIcon" onClick={handleClick} />
+			//todo: agregar boton para buscar un pokemon random
 		</div>
 	);
 }
