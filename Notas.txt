@@ -3,15 +3,11 @@ FALTA en el proyecto:
 - Arreglar problemas de la coincidencias de ID (en su lugar usar UUID) ✅
 - Las UNICAS RUTAS QUE VAN GUARDAR DATA EN BD son "/types" (osea los 20 tipos de pokemones)  y "/pokemons" (todo los pokemones) ✅
 - Crear ruta que me traiga 40 pokemones cada vez que el usuario lo pide (almacenar en estado global y BD) ✅
-
-- Cambiar el uso de REDUX con ZUNTAG
-
-- Crear ruta que me traiga todos los pokemones de cierto tipo (almacenar en ZUTANG y BD)
+- Cambiar el uso de REDUX con ZUNTAG ✅
+- Crear ruta que me muestre todos los pokemones de cierto tipo (almacenar en ZUTANG)
+- Crear ruta que me muestres todos los pokemones de cierta generacion (almacenar en ZUTANG)
 - La ruta para los details va a ser "/pokename" y se envia la solicitud cuando el usuario lo tipea o hace click (NO guarda nada en BD, solo extrae la data desde la BD)
 
-- Inspiración del proyecto: https://pokestats.gg/
-
-- Revisar y descargar version anterior del proyecto para ver su funcionamiento (REDUX front y rutas back)
 
 
 TECNOLOGIAS USADAS EN ESTE PROYECTO 
@@ -19,3 +15,7 @@ TECNOLOGIAS USADAS EN ESTE PROYECTO
 - CSS modules y css puro (NO uso SASS, styled components, tailwindcss, bootstrap, shadcnui, etc)
 - Node y express
 - PostgreSQL y sequelize
+
+
+INSPIRATION FOR THE PROJECT:
+https://pokestats.gg/

@@ -4,6 +4,7 @@
 	--second-clr: #f1f1f1;
 	--third-clr: #000;
 	--fourth-clr: #2b58e2;
+	--fourth-clr-v2: #2b58e2;
 	--root-font-size: 16px;
 }
 
@@ -12,12 +13,13 @@
 	--main-clr: #000;
 	--second-clr: #ffff00;
 	--third-clr: #ffe600;
-	--fourth-clr: #333;
+	--fourth-clr: #ff0000;
+	--fourth-clr-v2: #333;
 }
 
 html {
-	font-size: var(--root-font-size);
 	box-sizing: border-box;
+	font-size: var(--root-font-size);
 	scroll-behavior: smooth;
 }
 
@@ -28,7 +30,9 @@ html {
 }
 
 body {
+	width: auto;
 	min-height: 100vh;
+	padding-left: 0;
 	margin: 0;
 	font-size: 1rem;
 	font-family: "Montserrat", sans-serif;

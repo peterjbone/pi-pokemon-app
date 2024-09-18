@@ -8,9 +8,10 @@ const Cards = ({ pokemons, filterActivated, sortActivated }) => {
 	const sortByName = usePokemonStore((state) => state.sortByName);
 	const sortByAttack = usePokemonStore((state) => state.sortByAttack);
 	const filterByType = usePokemonStore((state) => state.filterByType);
-	const filterByGeneration = usePokemonStore(
-		(state) => state.filterByGeneration
-	);
+
+	//* global states
+	const allPokemons = usePokemonStore((state) => state.allPokemons);
+	const selectedPokemons = usePokemonStore((state) => state.selectedPokemons);
 
 	//* Sorts handlers
 	function handleSortById(event) {
@@ -33,13 +34,7 @@ const Cards = ({ pokemons, filterActivated, sortActivated }) => {
 		const { value } = event.target;
 		filterByType(value);
 	}
-
-	function handleFilterByGeneration(event) {
-		const { value } = event.target;
-		filterByGeneration(value);
-	}
-
-	//************************************* COMPONENTE CARDS **************************/
+	//************************************* CARDS COMPONENT
 	return (
 		<div className={styles.cards}>
 			{/* FILTERS AND ORDER CONTAINERS */}
@@ -48,7 +43,7 @@ const Cards = ({ pokemons, filterActivated, sortActivated }) => {
 			{!pokemons.length ? null : (
 				<div className={styles.filtersAndSortsUpperContainer}>
 					{/***SORTS**/}
-					<div className={styles.filtersContainer}>
+					<div className={styles.sortsContainer}>
 						{/* sort by ID  */}
 						<div>
 							<h3>Sort by ID</h3>
@@ -85,8 +80,8 @@ const Cards = ({ pokemons, filterActivated, sortActivated }) => {
 							</select>
 						</div>
 					</div>
-					{/***TYPES**/}
-					<div className={styles.sortsContainer}>
+					{/*** FILTERS **/}
+					<div className={styles.filtersContainer}>
 						{/* Filter by type */}
 						<div>
 							<h3>Filter by type</h3>
@@ -121,6 +116,24 @@ const Cards = ({ pokemons, filterActivated, sortActivated }) => {
 				</div>
 			)}
 
+			{/* INFO CONTAINER */}
+			{!pokemons.length ? null : (
+				<div className={styles.infoContainer}>
+					<div>
+						<p>
+							There are <span>1302</span> pokemons in total
+						</p>
+						<p>
+							You have reached <span>{allPokemons.length}</span> pokemons so
+							far.
+						</p>
+						<p>
+							You have <span>{selectedPokemons.length}</span> pokemons filtered.
+						</p>
+					</div>
+				</div>
+			)}
+
 			{/* CARDS CONTAINER */}
 			{/* NO HAY POKEMONS: mensaje de error*/}
 			{/* SI HAY POKEMONS: se muestran los pokemones*/}
@@ -140,16 +153,16 @@ const Cards = ({ pokemons, filterActivated, sortActivated }) => {
 			{/* FILTER MESSAGE */}
 			{filterActivated ? (
 				<div className={styles.warning}>
-					You cannot load more Pokemon while a filter is active. If you want
-					more, disabled the filter and bring more pokemons.
+					You cannot load more Pokemon while a filter is active. <br /> If you
+					want more, disabled the filter and bring more pokemons.
 				</div>
 			) : null}
 
 			{/* SORT MESSAGE */}
 			{sortActivated ? (
 				<div className={styles.warning}>
-					You cannot load more Pokemon while a sort is active. If you want more,
-					disabled the sort and bring more pokemons.
+					You cannot load more Pokemon while a sort is active. <br /> If you
+					want more, disabled the sort and bring more pokemons.
 				</div>
 			) : null}
 		</div>
