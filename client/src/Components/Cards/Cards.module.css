@@ -37,10 +37,15 @@
 	gap: 2rem;
 }
 
+.cards .filtersContainer h3,
+.cards .sortsContainer h3 {
+	font-size: 1.2em;
+}
+
 .cards .filtersContainer select,
 .cards .sortsContainer select {
 	height: 2rem;
-	font-size: 1em;
+	font-size: 1.2em;
 	font-weight: 600;
 	color: var(--second-clr);
 	background-color: var(--fourth-clr-v2);
