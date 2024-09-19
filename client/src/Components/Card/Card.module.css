@@ -2,7 +2,7 @@
 	padding: 0;
 	width: auto;
 	height: auto;
-	border: 3px solid #f00;
+	border: 3px solid var(--third-clr);
 
 	text-align: center;
 

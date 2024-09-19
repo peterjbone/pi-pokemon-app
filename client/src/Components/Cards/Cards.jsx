@@ -126,9 +126,14 @@ const Cards = ({ pokemons, filterActivated, sortActivated }) => {
 							You have reached <span>{allPokemons.length}</span> pokemons so
 							far.
 						</p>
-						<p>
-							You have <span>{selectedPokemons.length}</span> pokemons filtered.
-						</p>
+						{filterActivated ? (
+							<p>
+								You have <span>{selectedPokemons.length}</span> pokemons
+								filtered.
+							</p>
+						) : (
+							<p>You have not applied any filters yet.</p>
+						)}
 					</div>
 				</div>
 			)}

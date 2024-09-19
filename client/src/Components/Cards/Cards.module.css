@@ -32,7 +32,7 @@
 	font-size: 0.85rem;
 	text-align: center;
 	/* 	border: 3px solid purple; */
-	background-color: orangered;
+	/* 	background-color: orangered; */
 	display: flex;
 	gap: 2rem;
 }
@@ -50,7 +50,7 @@
 .cards .infoContainer {
 	width: 100%;
 	height: auto;
-	padding: 1rem;
+	padding: 0;
 	margin: 1rem 0;
 
 	/* background-color: blue; */
@@ -105,9 +105,9 @@
 
 .cards .yesPokemons {
 	width: 100%;
-	padding: 1.5rem;
+	padding: 0;
 	margin: 0 auto;
-	background-color: tomato;
+	/* 	background-color: tomato; */
 
 	display: grid;
 	justify-content: center;
