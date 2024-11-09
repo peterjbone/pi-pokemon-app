@@ -1,6 +1,6 @@
 const { Schema } = require("mongoose");
 
-const userSchema = new Schema(
+const pokemonSchema = new Schema(
 	{
 		idApi: {
 			type: Number,
@@ -49,4 +49,4 @@ const userSchema = new Schema(
 	{ timestamps: false }
 );
 
-module.exports = userSchema;
+module.exports = pokemonSchema;

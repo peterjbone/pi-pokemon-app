@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize")
+const { DataTypes } = require("sequelize");
 
 function Type(sequelize) {
 	sequelize.define(
@@ -16,7 +16,7 @@ function Type(sequelize) {
 			}
 		},
 		{ timestamps: false }
-	)
+	);
 }
 
-module.exports = Type
+module.exports = Type;
