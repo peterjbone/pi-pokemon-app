@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
-const { VITE_BACKEND_URL } = import.meta.env;
+const { VITE_BACK_URL } = import.meta.env;
+const apiBackUrl = VITE_BACK_URL;
 
 //* store
 export const usePokemonStore = create((set, get) => ({
@@ -14,7 +15,7 @@ export const usePokemonStore = create((set, get) => ({
 	getFortyPokemons: async (currentOffset = 0) => {
 		try {
 			const { data } = await axios.get(
-				`${VITE_BACKEND_URL}/pokemons?offset=${currentOffset}`
+				`${apiBackUrl}/pokemons?offset=${currentOffset}`
 			);
 
 			set((state) => ({

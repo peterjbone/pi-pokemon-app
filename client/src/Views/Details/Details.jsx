@@ -2,7 +2,8 @@ import styles from "./Details.module.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-const { VITE_BACKEND_URL } = import.meta.env;
+const { VITE_BACK_URL } = import.meta.env;
+const apiBackUrl = VITE_BACK_URL;
 
 function Details() {
 	const { name } = useParams();
@@ -11,15 +12,13 @@ function Details() {
 	//* Obteniendo el Pokemon con el nombre
 	useEffect(() => {
 		async function getPokemonByName() {
-			const { data } = await axios.get(
-				`${VITE_BACKEND_URL}/pokename?name=${name}`
-			);
+			const { data } = await axios.get(`${apiBackUrl}/pokename?name=${name}`);
 			setPokemon(data);
 		}
 		getPokemonByName();
 	}, []);
 
-	//******************************* COMPONENTE DETAILS
+	//******************************* DETAILS COMPONENT
 	return (
 		<div className={styles.details}>
 			<div className="neon-border">

@@ -3,10 +3,11 @@ import React, { useState, useEffect } from "react";
 import Cards from "../../Components/Cards/Cards.jsx";
 import { usePokemonStore } from "../../stores/pokemonStore.js";
 import Navbar from "../../Components/Navbar/Navbar.jsx";
-import SearchBar from "../../Components/SearchBar/SearchBar.jsx";
+//import SearchBar from "../../Components/SearchBar/SearchBar.jsx";
 
 function Home() {
-	const { VITE_BACKEND_URL } = import.meta.env;
+	const { VITE_BACK_URL } = import.meta.env;
+	const apiBackUrl = VITE_BACK_URL;
 	const [initialUpload, setInitialUpload] = useState(true);
 	const [isBottom, setIsBottom] = useState(false);
 
@@ -25,7 +26,7 @@ function Home() {
 		async function getInitialPokemons() {
 			if (!initialUpload) return;
 			try {
-				await axios.get(`${VITE_BACKEND_URL}/types`); //? trae y guarda los tipos en BD
+				await axios.get(`${apiBackUrl}/types`); //? trae y guarda los tipos en BD
 				resetPokemons(); //? resetea los estados globales
 				await getFortyPokemons(); //? obtiene los primeros 40 pokemons
 				setInitialUpload(false); //? indica que ya se realizo la carga inicial
