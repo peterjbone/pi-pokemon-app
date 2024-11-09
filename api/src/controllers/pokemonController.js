@@ -2,7 +2,7 @@ require("dotenv").config();
 const axios = require("axios");
 //const { Pokemon, Type } = require("../db.js");
 const { Pokemon, Type } = require("../mongodb.js");
-const { APIendpoint } = process.env;
+const { APIendpointPokemon } = process.env;
 
 const getAllPokemons = async (req, res) => {
 	try {
@@ -15,14 +15,16 @@ const getAllPokemons = async (req, res) => {
 		//* DEFINIENDO EL OFFSET Y EL LIMIT PARA HACER LA PETICION A LA API
 		if (offset === 0) {
 			//* Para la primera petición
-			response1 = await axios.get(`${APIendpoint}?offset=${0}&limit=${20}`);
-			response2 = await axios.get(`${APIendpoint}?offset=${20}&limit=${20}`);
+			response1 = await axios.get(`${APIendpointPokemon}?offset=${0}&limit=${20}`);
+			response2 = await axios.get(`${APIendpointPokemon}?offset=${20}&limit=${20}`);
 			apiPokemons = response1.data.results.concat(response2.data.results);
 		} else {
 			//* Para el resto de la peticiones
-			response1 = await axios.get(`${APIendpoint}?offset=${offset}&limit=${20}`);
+			response1 = await axios.get(
+				`${APIendpointPokemon}?offset=${offset}&limit=${20}`
+			);
 			response2 = await axios.get(
-				`${APIendpoint}?offset=${offset + 20}&limit=${20}`
+				`${APIendpointPokemon}?offset=${offset + 20}&limit=${20}`
 			);
 			apiPokemons = response1.data.results.concat(response2.data.results);
 		}

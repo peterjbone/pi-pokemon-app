@@ -1,6 +1,7 @@
 const axios = require("axios");
-const APIendpoint = "https://pokeapi.co/api/v2/type";
-const { Type } = require("../db.js");
+//const APIendpointType = "https://pokeapi.co/api/v2/type";
+const { APIendpointType } = "https://pokeapi.co/api/v2/type";
+const { Type } = require("../mongodb.js");
 
 //* 1) Validar que la entidad / tabla "Types" este vacío
 //* 2) si lo esta debera consumir la API, guardar en BD y responder
@@ -18,7 +19,7 @@ const getAllTypes = async (req, res) => {
 		//* entra al else y al try-catch cuando NO tiene registros
 		console.log("Types were fetched in API");
 		try {
-			const { data } = await axios.get(APIendpoint);
+			const { data } = await axios.get(APIendpointType);
 
 			const types = data.results.map((type, index) => {
 				return { id: index + 1, nombre: type.name }; //* no tiene indice en 'PokeApi', colocando indices manualmente para la BD (act: si tienen indice pero es confuso)

@@ -1,8 +1,8 @@
 const axios = require("axios");
 //const { Pokemon, Type } = require("../db.js");
 const { Pokemon, Type } = require("../mongodb.js");
-//const APIendpoint = "https://pokeapi.co/api/v2/pokemon/";
-const { APIendpoint } = process.env;
+//const APIendpointPokemon = "https://pokeapi.co/api/v2/pokemon/";
+const { APIendpointPokemon } = process.env;
 
 const getPokemonByName = async (req, res) => {
 	const { name } = req.query;
@@ -22,7 +22,7 @@ const getPokemonByName = async (req, res) => {
 		//* si el pokemon NO existe en la BD, lo buscara en la API y luego lo guarda en BD
 		try {
 			console.log("Search made in API");
-			const { data } = await axios.get(`${APIendpoint}/${queryName}`);
+			const { data } = await axios.get(`${APIendpointPokemon}/${queryName}`);
 
 			const { id, name, stats, sprites, height, weight, types } = data;
 			const newPokemon = {
