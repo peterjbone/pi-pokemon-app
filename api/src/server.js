@@ -18,10 +18,15 @@ server.use((req, res, next) => {
 	res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
 	next();
 });
+
 server.use(express.json());
+
 server.use(morgan("dev"));
 
 //* Middlewares de rutas
+server.get("/", (req, res) => {
+	return res.status(200).send("The server was raised with success");
+});
 server.use("/pokemons", pokemonRouter);
 server.use("/types", typeRouter);
 server.use("/pokename", pokenameRouter);
