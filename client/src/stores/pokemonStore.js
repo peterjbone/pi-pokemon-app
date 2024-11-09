@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import axios, { all } from "axios";
+import axios from "axios";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 //* store
