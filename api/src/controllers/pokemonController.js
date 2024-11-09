@@ -1,6 +1,7 @@
 require("dotenv").config();
 const axios = require("axios");
-const { Pokemon, Type } = require("../db.js");
+//const { Pokemon, Type } = require("../db.js");
+const { Pokemon, Type } = require("../mongodb.js");
 const { APIendpoint } = process.env;
 
 const getAllPokemons = async (req, res) => {
@@ -19,9 +20,7 @@ const getAllPokemons = async (req, res) => {
 			apiPokemons = response1.data.results.concat(response2.data.results);
 		} else {
 			//* Para el resto de la peticiones
-			response1 = await axios.get(
-				`${APIendpoint}?offset=${offset}&limit=${20}`
-			);
+			response1 = await axios.get(`${APIendpoint}?offset=${offset}&limit=${20}`);
 			response2 = await axios.get(
 				`${APIendpoint}?offset=${offset + 20}&limit=${20}`
 			);
@@ -35,21 +34,17 @@ const getAllPokemons = async (req, res) => {
 				const { id, name, stats, sprites, height, weight, types } = data;
 
 				//* reviso si el pokemon ya esta en BD
-				const checkingPokemon = await Pokemon.findOne({
-					where: { nombre: name },
-					include: {
-						model: Type,
-						attributes: ["id", "nombre"],
-						through: { attributes: [] }
-					}
-				});
+				const checkingPokemon = await Pokemon.findOne({ nombre: name }).populate(
+					"types"
+				);
+
 				if (checkingPokemon) {
 					console.log(`${checkingPokemon.nombre.toUpperCase()} already in DB.`);
-					checkingPokemon.dataValues.source = "DB";
+					checkingPokemon.source = "DB";
 					return checkingPokemon;
 				}
 
-				//* creando nuevo pokemon
+				//* creando el documento del pokemon
 				const newPokemon = {
 					idApi: id,
 					nombre: name,
@@ -62,32 +57,25 @@ const getAllPokemons = async (req, res) => {
 					peso: weight
 				};
 
-				const TypesId = await Promise.all(
-					types.map(async (el) => {
-						const DBType = await Type.findOne({
-							where: { nombre: el.type.name } //?busca coincidencia con el tipo de pokemon
-						});
-						return DBType.id; //? solo devuelve el id del tipo (númerico)
-					})
-				);
+				//* creo al nuevo pokemon en DB, inserto los ids y traigo otra vez al pokemon
+				await Pokemon.create(newPokemon);
 
-				//* creo al nuevo pokemon en bd, crea la relación de tipo y traigo al pokemon de nuevo de la bd
-				let DBPokemon = await Pokemon.create(newPokemon);
-				await DBPokemon.addType(TypesId);
-				DBPokemon = await Pokemon.findOne({
-					where: { nombre: name },
-					include: {
-						model: Type,
-						attributes: ["id", "nombre"],
-						through: { attributes: [] }
-					}
+				types.forEach(async (item) => {
+					const type = await Type.findOne({ nombre: item.type.name });
+					await Pokemon.findOneAndUpdate(
+						{ nombre: name },
+						{
+							$push: { types: type._id }
+						}
+					);
 				});
-				DBPokemon.dataValues.source = "api";
+
+				const DBPokemon = await Pokemon.findOne({ nombre: name }).populate("types");
+				DBPokemon.source = "api";
 				return DBPokemon;
 			})
 		);
 
-		//* DEVUELVO LA RESPUESTA SOLICITADA
 		console.log("40 more pokemons were inserted in BD");
 		return res.status(200).json({
 			nextOffset: offset + limit,

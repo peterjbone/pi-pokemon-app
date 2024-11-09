@@ -25,7 +25,7 @@ server.use(morgan("dev"));
 
 //* Middlewares de rutas
 server.get("/", (req, res) => {
-	return res.status(200).send("The server was raised with success");
+	return res.status(200).send("Hello there, the root route is working!");
 });
 server.use("/pokemons", pokemonRouter);
 server.use("/types", typeRouter);
