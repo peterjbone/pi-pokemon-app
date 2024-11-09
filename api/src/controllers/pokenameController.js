@@ -1,32 +1,28 @@
 const axios = require("axios");
-const { Pokemon, Type } = require("../db.js");
-const APIendpoint = "https://pokeapi.co/api/v2/pokemon/"; //* para buscar por nombre
+//const { Pokemon, Type } = require("../db.js");
+const { Pokemon, Type } = require("../mongodb.js");
+//const APIendpoint = "https://pokeapi.co/api/v2/pokemon/";
+const { APIendpoint } = process.env;
 
 const getPokemonByName = async (req, res) => {
 	const { name } = req.query;
 	const queryName = name.trim().toLowerCase();
+
 	//* reviso si el pokemon no se encuentra en BD
-	const pokemonWanted = await Pokemon.findOne({
-		where: { nombre: queryName },
-		include: {
-			//* con esto puebla el campo de Types
-			model: Type,
-			attributes: ["id", "nombre"],
-			through: { attributes: [] }
-		}
-	});
+	const pokemonWanted = await Pokemon.findOne({ nombre: queryName }).populate(
+		"types"
+	);
 
 	//* si el pokemon SI existe en la BD, te lo devuelve sin volver a buscar en API
 	if (pokemonWanted) {
 		console.log(`${pokemonWanted.nombre.toUpperCase()} already in DB.`);
-		pokemonWanted.dataValues.source = "DB";
+		pokemonWanted.source = "DB";
 		return res.status(200).json(pokemonWanted);
 	} else {
 		//* si el pokemon NO existe en la BD, lo buscara en la API y luego lo guarda en BD
 		try {
 			console.log("Search made in API");
-			const { data } = await axios.get(`${APIendpoint}${queryName}`);
-			//console.log(data);
+			const { data } = await axios.get(`${APIendpoint}/${queryName}`);
 
 			const { id, name, stats, sprites, height, weight, types } = data;
 			const newPokemon = {
@@ -41,34 +37,24 @@ const getPokemonByName = async (req, res) => {
 				peso: weight
 			};
 
-			const TypesId = await Promise.all(
-				types.map(async (el) => {
-					const DBType = await Type.findOne({
-						where: { nombre: el.type.name } //?busca coincidencia con el tipo de pokemon
-					});
-					return DBType.id; //? solo devuelve el id del tipo (númerico)
-				})
-			);
-			//console.log(TypesId);
-
 			//* AQUI CREA AL POKEMON EN BD, HACE LA RELACION DE TIPO Y LUEGO LO VUELVE A BUSCAR EN BD
-			let DBPokemon = await Pokemon.create(newPokemon);
-			await DBPokemon.addType(TypesId);
-			DBPokemon = await Pokemon.findOne({
-				where: { nombre: name },
-				include: {
-					model: Type,
-					attributes: ["id", "nombre"],
-					through: { attributes: [] }
-				}
+			await Pokemon.create(newPokemon);
+
+			types.forEach(async (item) => {
+				const type = await Type.findOne({ nombre: item.type.name });
+				await Pokemon.findOneAndUpdate(
+					{ nombre: name },
+					{
+						$push: { types: type._id }
+					}
+				);
 			});
 
-			//* agrego la info de donde vino este Pokemon
-			DBPokemon.dataValues.source = "api";
-			return res.status(200).json(DBPokemon); //* devuelve el pokemon solicitado
+			const DBPokemon = await Pokemon.findOne({ nombre: name }).populate("types");
+			DBPokemon.source = "api";
+			return res.status(200).json(DBPokemon);
 		} catch (error) {
 			console.log(error);
-			console.error(error.message);
 			return res.status(404).send("Pokemon not founded");
 		}
 	}
