@@ -43,9 +43,11 @@ const getAllPokemons = async (req, res) => {
 				if (checkingPokemon) {
 					console.log(`${checkingPokemon.nombre.toUpperCase()} already in DB.`);
 					checkingPokemon.source = "DB";
+					//console.log(checkingPokemon);
 					return checkingPokemon;
 				}
 
+				//*******************************************************************/
 				//* creando el documento del pokemon
 				const newPokemon = {
 					idApi: id,
@@ -67,7 +69,7 @@ const getAllPokemons = async (req, res) => {
 					await Pokemon.findOneAndUpdate(
 						{ nombre: name },
 						{
-							$push: { types: type._id }
+							$push: { type: type._id }
 						}
 					);
 				});
