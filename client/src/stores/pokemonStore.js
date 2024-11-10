@@ -131,7 +131,7 @@ export const usePokemonStore = create((set, get) => ({
 
 				allPokemons.forEach((pokemon) => {
 					const newPokemon = pokemon;
-					pokemon.Types.forEach((type) => {
+					pokemon.types.forEach((type) => {
 						if (type.nombre === "normal") {
 							filteredPokemons.push(newPokemon);
 						}
@@ -152,7 +152,7 @@ export const usePokemonStore = create((set, get) => ({
 
 				allPokemons.forEach((pokemon) => {
 					const newPokemon = pokemon;
-					pokemon.Types.forEach((type) => {
+					pokemon.types.forEach((type) => {
 						if (type.nombre === "fighting") {
 							filteredPokemons.push(newPokemon);
 						}
@@ -173,7 +173,7 @@ export const usePokemonStore = create((set, get) => ({
 
 				allPokemons.forEach((pokemon) => {
 					const newPokemon = pokemon;
-					pokemon.Types.forEach((type) => {
+					pokemon.types.forEach((type) => {
 						if (type.nombre === "flying") {
 							filteredPokemons.push(newPokemon);
 						}
@@ -194,7 +194,7 @@ export const usePokemonStore = create((set, get) => ({
 
 				allPokemons.forEach((pokemon) => {
 					const newPokemon = pokemon;
-					pokemon.Types.forEach((type) => {
+					pokemon.types.forEach((type) => {
 						if (type.nombre === "poison") {
 							filteredPokemons.push(newPokemon);
 						}
@@ -215,7 +215,7 @@ export const usePokemonStore = create((set, get) => ({
 
 				allPokemons.forEach((pokemon) => {
 					const newPokemon = pokemon;
-					pokemon.Types.forEach((type) => {
+					pokemon.types.forEach((type) => {
 						if (type.nombre === "ground") {
 							filteredPokemons.push(newPokemon);
 						}
@@ -236,7 +236,7 @@ export const usePokemonStore = create((set, get) => ({
 
 				allPokemons.forEach((pokemon) => {
 					const newPokemon = pokemon;
-					pokemon.Types.forEach((type) => {
+					pokemon.types.forEach((type) => {
 						if (type.nombre === "rock") {
 							filteredPokemons.push(newPokemon);
 						}
@@ -257,7 +257,7 @@ export const usePokemonStore = create((set, get) => ({
 
 				allPokemons.forEach((pokemon) => {
 					const newPokemon = pokemon;
-					pokemon.Types.forEach((type) => {
+					pokemon.types.forEach((type) => {
 						if (type.nombre === "bug") {
 							filteredPokemons.push(newPokemon);
 						}
@@ -278,7 +278,7 @@ export const usePokemonStore = create((set, get) => ({
 
 				allPokemons.forEach((pokemon) => {
 					const newPokemon = pokemon;
-					pokemon.Types.forEach((type) => {
+					pokemon.types.forEach((type) => {
 						if (type.nombre === "ghost") {
 							filteredPokemons.push(newPokemon);
 						}
@@ -299,7 +299,7 @@ export const usePokemonStore = create((set, get) => ({
 
 				allPokemons.forEach((pokemon) => {
 					const newPokemon = pokemon;
-					pokemon.Types.forEach((type) => {
+					pokemon.types.forEach((type) => {
 						if (type.nombre === "steel") {
 							filteredPokemons.push(newPokemon);
 						}
@@ -320,7 +320,7 @@ export const usePokemonStore = create((set, get) => ({
 
 				allPokemons.forEach((pokemon) => {
 					const newPokemon = pokemon;
-					pokemon.Types.forEach((type) => {
+					pokemon.types.forEach((type) => {
 						if (type.nombre === "fire") {
 							filteredPokemons.push(newPokemon);
 						}
@@ -341,7 +341,7 @@ export const usePokemonStore = create((set, get) => ({
 
 				allPokemons.forEach((pokemon) => {
 					const newPokemon = pokemon;
-					pokemon.Types.forEach((type) => {
+					pokemon.types.forEach((type) => {
 						if (type.nombre === "water") {
 							filteredPokemons.push(newPokemon);
 						}
@@ -362,7 +362,7 @@ export const usePokemonStore = create((set, get) => ({
 
 				allPokemons.forEach((pokemon) => {
 					const newPokemon = pokemon;
-					pokemon.Types.forEach((type) => {
+					pokemon.types.forEach((type) => {
 						if (type.nombre === "grass") {
 							filteredPokemons.push(newPokemon);
 						}
@@ -383,7 +383,7 @@ export const usePokemonStore = create((set, get) => ({
 
 				allPokemons.forEach((pokemon) => {
 					const newPokemon = pokemon;
-					pokemon.Types.forEach((type) => {
+					pokemon.types.forEach((type) => {
 						if (type.nombre === "electric") {
 							filteredPokemons.push(newPokemon);
 						}
@@ -404,7 +404,7 @@ export const usePokemonStore = create((set, get) => ({
 
 				allPokemons.forEach((pokemon) => {
 					const newPokemon = pokemon;
-					pokemon.Types.forEach((type) => {
+					pokemon.types.forEach((type) => {
 						if (type.nombre === "psychic") {
 							filteredPokemons.push(newPokemon);
 						}
@@ -425,7 +425,7 @@ export const usePokemonStore = create((set, get) => ({
 
 				allPokemons.forEach((pokemon) => {
 					const newPokemon = pokemon;
-					pokemon.Types.forEach((type) => {
+					pokemon.types.forEach((type) => {
 						if (type.nombre === "ice") {
 							filteredPokemons.push(newPokemon);
 						}
@@ -446,7 +446,7 @@ export const usePokemonStore = create((set, get) => ({
 
 				allPokemons.forEach((pokemon) => {
 					const newPokemon = pokemon;
-					pokemon.Types.forEach((type) => {
+					pokemon.types.forEach((type) => {
 						if (type.nombre === "dragon") {
 							filteredPokemons.push(newPokemon);
 						}
@@ -467,7 +467,7 @@ export const usePokemonStore = create((set, get) => ({
 
 				allPokemons.forEach((pokemon) => {
 					const newPokemon = pokemon;
-					pokemon.Types.forEach((type) => {
+					pokemon.types.forEach((type) => {
 						if (type.nombre === "dark") {
 							filteredPokemons.push(newPokemon);
 						}
@@ -488,7 +488,7 @@ export const usePokemonStore = create((set, get) => ({
 
 				allPokemons.forEach((pokemon) => {
 					const newPokemon = pokemon;
-					pokemon.Types.forEach((type) => {
+					pokemon.types.forEach((type) => {
 						if (type.nombre === "fairy") {
 							filteredPokemons.push(newPokemon);
 						}
@@ -509,7 +509,7 @@ export const usePokemonStore = create((set, get) => ({
 
 				allPokemons.forEach((pokemon) => {
 					const newPokemon = pokemon;
-					pokemon.Types.forEach((type) => {
+					pokemon.types.forEach((type) => {
 						if (type.nombre === "unknown") {
 							filteredPokemons.push(newPokemon);
 						}
@@ -530,7 +530,7 @@ export const usePokemonStore = create((set, get) => ({
 
 				allPokemons.forEach((pokemon) => {
 					const newPokemon = pokemon;
-					pokemon.Types.forEach((type) => {
+					pokemon.types.forEach((type) => {
 						if (type.nombre === "shadow") {
 							filteredPokemons.push(newPokemon);
 						}

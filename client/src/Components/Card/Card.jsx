@@ -1,8 +1,9 @@
 import styles from "./Card.module.css";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 function Card({ pokemon }) {
-	const { idApi, nombre, ataque, imagen, Types } = pokemon;
+	const { idApi, nombre, ataque, imagen, types } = pokemon;
 	return (
 		<div className={styles.card}>
 			<Link to={`/details/${nombre}`}>
@@ -12,8 +13,8 @@ function Card({ pokemon }) {
 				<p>Attack: {ataque} </p>
 				<h4>Types: </h4>
 				<ul>
-					{Types.map((type, index) => (
-						<li key={index + 1}> {type.nombre} </li>
+					{types.map((item) => (
+						<li key={uuidv4()}> {item.nombre} </li>
 					))}
 				</ul>
 			</Link>

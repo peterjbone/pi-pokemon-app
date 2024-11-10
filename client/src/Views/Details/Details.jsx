@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 const { VITE_BACK_URL } = import.meta.env;
 const apiBackUrl = VITE_BACK_URL;
+import { v4 as uuidv4 } from "uuid";
 
 function Details() {
 	const { name } = useParams();
@@ -65,15 +66,15 @@ function Details() {
 					</h2>
 				) : null}
 
-				{pokemon.Types ? (
+				{pokemon.types ? (
 					<>
 						<h2>
 							{" "}
 							<span className="property">Tipo/s:</span>
 						</h2>
 						<ul>
-							{pokemon.Types.map((type, index) => (
-								<li key={index}> {type.nombre} </li>
+							{pokemon.types.map((type) => (
+								<li key={uuidv4()}> {type.nombre} </li>
 							))}
 						</ul>
 					</>

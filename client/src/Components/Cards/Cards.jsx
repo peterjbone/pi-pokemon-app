@@ -1,6 +1,7 @@
 import styles from "./Cards.module.css";
 import Card from "../Card/Card";
 import { usePokemonStore } from "../../stores/pokemonStore.js";
+import { v4 as uuidv4 } from "uuid";
 
 const Cards = ({ pokemons, filterActivated, sortActivated }) => {
 	//* actions
@@ -123,13 +124,11 @@ const Cards = ({ pokemons, filterActivated, sortActivated }) => {
 							There are <span>1302</span> pokemons in total
 						</p>
 						<p>
-							You have reached <span>{allPokemons.length}</span> pokemons so
-							far.
+							You have reached <span>{allPokemons.length}</span> pokemons so far.
 						</p>
 						{filterActivated ? (
 							<p>
-								You have <span>{selectedPokemons.length}</span> pokemons
-								filtered.
+								You have <span>{selectedPokemons.length}</span> pokemons filtered.
 							</p>
 						) : (
 							<p>You have not applied any filters yet.</p>
@@ -148,8 +147,8 @@ const Cards = ({ pokemons, filterActivated, sortActivated }) => {
 				</div>
 			) : (
 				<div className={styles.yesPokemons}>
-					{pokemons.map((pokemon, index) => (
-						<Card key={index + 1} pokemon={pokemon} />
+					{pokemons.map((pokemon) => (
+						<Card key={uuidv4()} pokemon={pokemon} />
 					))}
 				</div>
 			)}
@@ -157,16 +156,16 @@ const Cards = ({ pokemons, filterActivated, sortActivated }) => {
 			{/* FILTER MESSAGE */}
 			{filterActivated ? (
 				<div className={styles.warning}>
-					You cannot load more Pokemon while a filter is active. <br /> If you
-					want more, disabled the filter and bring more pokemons.
+					You cannot load more Pokemon while a filter is active. <br /> If you want
+					more, disabled the filter and bring more pokemons.
 				</div>
 			) : null}
 
 			{/* SORT MESSAGE */}
 			{sortActivated ? (
 				<div className={styles.warning}>
-					You cannot load more Pokemon while a sort is active. <br /> If you
-					want more, disabled the sort and bring more pokemons.
+					You cannot load more Pokemon while a sort is active. <br /> If you want
+					more, disabled the sort and bring more pokemons.
 				</div>
 			) : null}
 		</div>
