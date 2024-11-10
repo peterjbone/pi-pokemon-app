@@ -42,8 +42,7 @@ const getAllPokemons = async (req, res) => {
 
 				if (checkingPokemon) {
 					console.log(`${checkingPokemon.nombre.toUpperCase()} already in DB.`);
-					checkingPokemon.source = "DB";
-					//console.log(checkingPokemon);
+					checkingPokemon._doc.source = "DB";
 					return checkingPokemon;
 				}
 
@@ -64,18 +63,29 @@ const getAllPokemons = async (req, res) => {
 				//* creo al nuevo pokemon en DB, inserto los ids y traigo otra vez al pokemon
 				await Pokemon.create(newPokemon);
 
-				types.forEach(async (item) => {
-					const type = await Type.findOne({ nombre: item.type.name });
-					await Pokemon.findOneAndUpdate(
-						{ nombre: name },
-						{
-							$push: { type: type._id }
-						}
-					);
-				});
+				//para darle tiempo a que se cumplan todas las promesas
+				await Promise.all(
+					types.map(async (item) => {
+						const type = await Type.findOne({ nombre: item.type.name });
+
+						await Pokemon.findOneAndUpdate(
+							{ nombre: name },
+							{
+								$push: { types: type._id }
+							},
+							{ new: true }
+						);
+
+						return { ...item }; // no es necesario esto
+					})
+				);
 
 				const DBPokemon = await Pokemon.findOne({ nombre: name }).populate("types");
-				DBPokemon.source = "api";
+				DBPokemon._doc.source = "api";
+				//DBPokemon.origen = "api";
+				//DBPokemon["fuente"] = "api";
+				//Object.assign(DBPokemon, { fuente: "api" });
+				//const result = { ...DBPokemon, source: "api" };
 				return DBPokemon;
 			})
 		);

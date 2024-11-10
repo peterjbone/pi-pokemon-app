@@ -16,9 +16,7 @@ const getPokemonByName = async (req, res) => {
 	//* si el pokemon SI existe en la BD, te lo devuelve sin volver a buscar en API
 	if (pokemonWanted) {
 		console.log(`${pokemonWanted.nombre.toUpperCase()} already in DB.`);
-		pokemonWanted.source = "DB";
-		//console.log(pokemonWanted);
-
+		pokemonWanted._doc.source = "DB";
 		return res.status(200).json(pokemonWanted);
 	} else {
 		//* si el pokemon NO existe en la BD, lo buscara en la API y luego lo guarda en BD
@@ -44,6 +42,7 @@ const getPokemonByName = async (req, res) => {
 			//* AQUI CREA AL POKEMON EN BD, HACE LA RELACION DE TIPO Y LUEGO LO VUELVE A BUSCAR EN BD
 			await Pokemon.create(newPokemon);
 
+			//para darle tiempo a que se cumplan todas las promesas
 			await Promise.all(
 				types.map(async (item) => {
 					const type = await Type.findOne({ nombre: item.type.name });
@@ -56,7 +55,7 @@ const getPokemonByName = async (req, res) => {
 						{ new: true }
 					);
 
-					return { ...item };
+					return { ...item }; // no es necesario esto
 				})
 			);
 

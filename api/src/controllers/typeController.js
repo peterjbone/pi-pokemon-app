@@ -10,7 +10,7 @@ const { Type } = require("../mongodb.js");
 
 const getAllTypes = async (req, res) => {
 	const registersCount = await Type.countDocuments();
-	console.log(registersCount);
+	//console.log(registersCount);
 
 	if (registersCount > 0) {
 		//* entra en el IF cuando SI tiene registros
