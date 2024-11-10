@@ -1,7 +1,8 @@
 import { create } from "zustand";
 import axios from "axios";
 const { VITE_BACK_URL } = import.meta.env;
-const apiBackUrl = VITE_BACK_URL;
+//const apiBackUrl = VITE_BACK_URL;
+const apiBackUrl = "https://pokemon-hw8c.onrender.com";
 
 //* store
 export const usePokemonStore = create((set, get) => ({

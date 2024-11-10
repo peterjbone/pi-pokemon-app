@@ -4,10 +4,11 @@ import Cards from "../../Components/Cards/Cards.jsx";
 import { usePokemonStore } from "../../stores/pokemonStore.js";
 import Navbar from "../../Components/Navbar/Navbar.jsx";
 //import SearchBar from "../../Components/SearchBar/SearchBar.jsx";
+const { VITE_BACK_URL } = import.meta.env;
+//const apiBackUrl = VITE_BACK_URL;
+const apiBackUrl = "https://pokemon-hw8c.onrender.com";
 
 function Home() {
-	const { VITE_BACK_URL } = import.meta.env;
-	const apiBackUrl = VITE_BACK_URL;
 	const [initialUpload, setInitialUpload] = useState(true);
 	const [isBottom, setIsBottom] = useState(false);
 

@@ -3,7 +3,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 const { VITE_BACK_URL } = import.meta.env;
-const apiBackUrl = VITE_BACK_URL;
+//const apiBackUrl = VITE_BACK_URL;
+const apiBackUrl = "https://pokemon-hw8c.onrender.com";
 import { v4 as uuidv4 } from "uuid";
 
 function Details() {
